@@ -4,7 +4,21 @@
   </div>
 </template>
 <script>
+import { Account } from "@/api/account.js";
 export default {
-  name: 'Login'
+  name: 'Login',
+  data(){
+    return{}
+  },
+    methods: {
+    login() {
+      Account.Login(formdata)
+        .then((response) => {       
+        })
+        .catch((error) => {     
+        });
+    },
+  
+  }
 }
 </script>
