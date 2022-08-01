@@ -51,7 +51,7 @@ export default {
       Account.Login(formdata)
         .then((response) => {      
           console.log(response) 
-          if(response.data.msg=='登录成功'){
+          if(response.data.errno==0){
             this.$notify({
               title: '登录成功',
               type: 'success'
@@ -59,6 +59,18 @@ export default {
             this.username=''
             this.password=''
             this.$router.push('/main')
+          }
+          else if(response.data.errno==100004){
+            this.$notify({
+              title: '用户名不存在',
+              type: 'warning'
+            })
+          }
+          else if(response.data.errno==100003){
+            this.$notify({
+              title: '密码错误',
+              type: 'warning'
+            })
           }
         })
         .catch((error) => {    

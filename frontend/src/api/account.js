@@ -1,8 +1,8 @@
 import service from '@/http/request.js'
 //之后接口啥的就写这里就好了
 const url={
-    login:'/login',
-    register:'/register'
+    login:'/api/user/login',
+    register:'/api/user/register'
 }
 
 export class Account{
