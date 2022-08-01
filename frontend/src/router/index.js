@@ -5,11 +5,11 @@ import Login from '../components/Starting/Login.vue'
 import Register from '../components/Starting/Register.vue'
 import Reset from '../components/Starting/Reset.vue'
 import Main from '../components/Starting/Main.vue'
-import Project from '../components/Project/Manage.vue'
-import ShowAll from '../components/Project/ShowAll.vue'
-import MeAttend from '../components/Project/MeAttend.vue'
-import MeCreate from '../components/Project/MeCreate.vue'
-import Deleted from '../components/Project/Deleted.vue'
+import Project from '../components/project/Manage.vue'
+import ShowAll from '../components/project/ShowAll.vue'
+import MeAttend from '../components/project/MeAttend.vue'
+import MeCreate from '../components/project/MeCreate.vue'
+import Deleted from '../components/project/Deleted.vue'
 
 Vue.use(VueRouter)
 
