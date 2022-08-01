@@ -60,7 +60,7 @@ export default {
     return{
         dialog: false,
         newProject:{
-            name:'',
+            name:"",
             introduction:"",
         },
         project:[
@@ -72,8 +72,8 @@ export default {
   },
     methods: {
         addProject(){
-            console.log(this.newProject.name,"xxx",this.newProject.introduction)
-            this.project.push(this.newProject);
+            const newpro={name:this.newProject.name,introduction:this.newProject.introduction};
+            this.project.push(newpro);
             console.log(this.project)
            
 
