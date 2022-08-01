@@ -1,18 +1,18 @@
 <template>
-  <div class="allmember">
-    <h1>所有成员列表</h1>
+  <div class="showAll">
+    <h1>所有团队列表</h1>
   </div>
 </template>
 <script>
 
 export default {
-  name: 'AllMember',
+  name: 'AllTeams',
   data(){
     return{}
   },
     methods: {
-    
-  
+
+
   }
 }
 </script>
