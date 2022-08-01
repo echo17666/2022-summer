@@ -4,6 +4,12 @@ import Home from '../components/Starting/Home.vue'
 import Login from '../components/Starting/Login.vue'
 import Register from '../components/Starting/Register.vue'
 import Reset from '../components/Starting/Reset.vue'
+import Main from '../components/Starting/Main.vue'
+import Project from '../components/Project/Manage.vue'
+import ShowAll from '../components/Project/ShowAll.vue'
+import MeAttend from '../components/Project/MeAttend.vue'
+import MeCreate from '../components/Project/MeCreate.vue'
+import Deleted from '../components/Project/Deleted.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +34,26 @@ const routes = [
     name: 'Reset',
     component: Reset
   },
+  {
+    path: '/main',
+    name: 'Main',
+    component: Main
+  },
+  {
+    path: '/project',
+    component: Project,
+    // meta: {
+    //     requiresAuth: true
+    // },
+    children: [
+        {path: '', component: ShowAll},
+        {path: 'showall', name:'ShowAll',component: ShowAll},
+        {path: 'mecreate', name:'MeCreate',component: MeCreate},
+        {path: 'meattend', name:'MeAttend',component: MeAttend},
+        {path: 'deleted', name:'Deleted',component: Deleted},
+       
+    ]
+},
   
 ]
 
