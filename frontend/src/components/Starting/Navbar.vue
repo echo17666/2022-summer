@@ -31,7 +31,7 @@
       <v-btn
         text
       >
-        <span class="mr-2">Project</span>
+        <span class="mr-2">Projects</span>
 
       </v-btn>
       </router-link>
