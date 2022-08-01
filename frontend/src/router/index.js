@@ -5,22 +5,19 @@ import Login from '../components/Starting/Login.vue'
 import Register from '../components/Starting/Register.vue'
 import Reset from '../components/Starting/Reset.vue'
 import Main from '../components/Starting/Main.vue'
-import Project from '../components/Project/Manage.vue'
-import ShowAll from '../components/Project/ShowAll.vue'
-import MeAttend from '../components/Project/MeAttend.vue'
-import MeCreate from '../components/Project/MeCreate.vue'
+import Project from '../components/MyProject/Manage.vue'
+import ShowAll from '../components/MyProject/ShowAll.vue'
+import MeAttend from '../components/MyProject/MeAttend.vue'
+import MeCreate from '../components/MyProject/MeCreate.vue'
 
-import People from '../components/People/Manage.vue'
-<<<<<<< HEAD
-import AllMember from '../components/People/AllTeams.vue'
-=======
-import AllMember from '../components/People/AllMember.vue'
+import Teams from '../components/Teams/Manage.vue'
+import AllTeams from '../components/Teams/AllTeams.vue'
+
 
 import Team from '../components/Team/Team.vue'
 import MemberList from '../components/Team/MemberList.vue'
 import TeamProject from '../components/Team/TeamProject.vue'
 import Deleted from '../components/Team/Deleted.vue'
->>>>>>> c93b09679276761173b1c68957397a215a95e8a7
 Vue.use(VueRouter)
 
 const routes = [
@@ -60,25 +57,18 @@ const routes = [
         {path: 'showall', name:'ShowAll',component: ShowAll},
         {path: 'mecreate', name:'MeCreate',component: MeCreate},
         {path: 'meattend', name:'MeAttend',component: MeAttend},
-<<<<<<< HEAD
-        {path: 'deleted', name:'Deleted',component: Deleted},
-
-=======
 
        
->>>>>>> c93b09679276761173b1c68957397a215a95e8a7
     ]
 },
 {
-  path: '/people',
-  name: 'People',
-  component: People,
+  path: '/teams',
+  name: 'Teams',
+  component: Teams,
   children: [
-    {path: '', component: AllMember},
-    {path: 'allmember',name:'AllMember', component: AllMember},
+    {path: '', component: AllTeams},
+    {path: 'allteams',name:'AllTeams', component: AllTeams},
 
-<<<<<<< HEAD
-=======
    
 ]
 },
@@ -93,7 +83,6 @@ const routes = [
     {path: 'deleted', name:'Deleted',component: Deleted},
     {path: 'project', name:'TeamProject',component: TeamProject},
    
->>>>>>> c93b09679276761173b1c68957397a215a95e8a7
 ]
 },
 

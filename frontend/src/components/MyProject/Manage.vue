@@ -1,5 +1,5 @@
 <template>
-  <div class="peoplemanage">
+  <div class="projectmanage">
     <div class="row">
       <v-col cols="12" md="3">
      <v-navigation-drawer
@@ -10,21 +10,21 @@
 
       <v-list dense>
         <v-list-item
-        @click="$router.push({name:'AllMember'})"
+        @click="$router.push({name:'ShowAll'})"
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
-                stars</span>
+                home</span>
           </v-list-item-icon>
           
 
           <v-list-item-content>
-            <v-list-item-title>人员列表</v-list-item-title>
+            <v-list-item-title>所有项目</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item
-          
+           @click="$router.push({name:'MeCreate'})"
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
@@ -37,7 +37,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          
+           @click="$router.push({name:'MeAttend'})"
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
@@ -50,19 +50,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-divider/>
-        <v-list-item
-          
-        >
-          <v-list-item-icon>
-            <span class="material-icons-outlined">
-                home</span>
-          </v-list-item-icon>
-          
-
-          <v-list-item-content>
-            <v-list-item-title>回收站</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+        
       </v-list>
     </v-navigation-drawer>
     </v-col>
@@ -74,22 +62,20 @@
   </div>
   </div>
 </template>
-
-
 <script>
 export default {
-  name: 'PeopleManage',
+  name: 'ProjectManage',
   data(){
     return {
-    
+        
       }
   },
     methods: {
-       
+
+  
   }
 }
 </script>
-
 <style>
 
 </style>
