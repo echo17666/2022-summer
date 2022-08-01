@@ -1,6 +1,8 @@
 <template>
   <div class="teamproject">
-    <h1>团队项目列表</h1>
+    <h1>团队项目列表</h1>  <v-btn class="mx-2"  >
+    <span class="material-icons-outlined">plus</span>
+    </v-btn>
   </div>
 </template>
 <script>
