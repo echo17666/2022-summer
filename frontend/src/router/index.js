@@ -5,12 +5,13 @@ import Login from '../components/Starting/Login.vue'
 import Register from '../components/Starting/Register.vue'
 import Reset from '../components/Starting/Reset.vue'
 import Main from '../components/Starting/Main.vue'
-import Project from '../components/project/Manage.vue'
-import ShowAll from '../components/project/ShowAll.vue'
-import MeAttend from '../components/project/MeAttend.vue'
-import MeCreate from '../components/project/MeCreate.vue'
-import Deleted from '../components/project/Deleted.vue'
-
+import Project from '../components/Project/Manage.vue'
+import ShowAll from '../components/Project/ShowAll.vue'
+import MeAttend from '../components/Project/MeAttend.vue'
+import MeCreate from '../components/Project/MeCreate.vue'
+import Deleted from '../components/Project/Deleted.vue'
+import People from '../components/People/Manage.vue'
+import AllMember from '../components/People/AllMember.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -53,6 +54,16 @@ const routes = [
         {path: 'deleted', name:'Deleted',component: Deleted},
        
     ]
+},
+{
+  path: '/people',
+  name: 'People',
+  component: People,
+  children: [
+    {path: '', component: AllMember},
+    {path: 'allmember',name:'AllMember', component: AllMember},
+   
+]
 },
   
 ]

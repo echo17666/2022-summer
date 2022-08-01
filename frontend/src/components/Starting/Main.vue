@@ -47,7 +47,7 @@ export default {
   data () {
       return {
         items: [
-          { title: '团队管理', icon: 'home' ,link:'/'},
+          { title: '团队管理', icon: 'home' ,link:'/people'},
           { title: '项目管理', icon: 'home',link:'/project' },
         ],
       }

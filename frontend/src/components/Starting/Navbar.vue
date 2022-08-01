@@ -27,11 +27,11 @@
       </div>
 
       <v-spacer></v-spacer>
-       <router-link :to="{name:'ShowAll'}">
+       <router-link :to="{name:'Main'}">
       <v-btn
         text
       >
-        <span class="mr-2">Projects</span>
+        <span class="mr-2">Main</span>
 
       </v-btn>
       </router-link>

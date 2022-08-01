@@ -79,11 +79,7 @@ export default {
   name: 'ProjectManage',
   data(){
     return {
-        items: [
-          { title: '所有项目', icon: 'home' },
-          { title: '我创建的', icon: 'home' },
-          { title: '我加入的', icon: 'home' },
-        ],
+        
       }
   },
     methods: {
@@ -93,8 +89,5 @@ export default {
 }
 </script>
 <style>
-.v-list-item.router-link-active {
-  text-decoration: none;
-  color:white
-}
+
 </style>
