@@ -11,16 +11,12 @@ import MeAttend from '../components/Project/MeAttend.vue'
 import MeCreate from '../components/Project/MeCreate.vue'
 
 import People from '../components/People/Manage.vue'
-<<<<<<< HEAD
-import AllMember from '../components/People/AllTeams.vue'
-=======
 import AllMember from '../components/People/AllMember.vue'
 
 import Team from '../components/Team/Team.vue'
 import MemberList from '../components/Team/MemberList.vue'
 import TeamProject from '../components/Team/TeamProject.vue'
 import Deleted from '../components/Team/Deleted.vue'
->>>>>>> c93b09679276761173b1c68957397a215a95e8a7
 Vue.use(VueRouter)
 
 const routes = [
@@ -60,13 +56,6 @@ const routes = [
         {path: 'showall', name:'ShowAll',component: ShowAll},
         {path: 'mecreate', name:'MeCreate',component: MeCreate},
         {path: 'meattend', name:'MeAttend',component: MeAttend},
-<<<<<<< HEAD
-        {path: 'deleted', name:'Deleted',component: Deleted},
-
-=======
-
-       
->>>>>>> c93b09679276761173b1c68957397a215a95e8a7
     ]
 },
 {
@@ -76,9 +65,6 @@ const routes = [
   children: [
     {path: '', component: AllMember},
     {path: 'allmember',name:'AllMember', component: AllMember},
-
-<<<<<<< HEAD
-=======
    
 ]
 },
@@ -93,7 +79,6 @@ const routes = [
     {path: 'deleted', name:'Deleted',component: Deleted},
     {path: 'project', name:'TeamProject',component: TeamProject},
    
->>>>>>> c93b09679276761173b1c68957397a215a95e8a7
 ]
 },
 
