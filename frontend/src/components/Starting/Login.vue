@@ -26,9 +26,11 @@ export default {
   data(){
     return{
       username: '',
-      password: ''
+      password: '',
+      token: ''
     }
   },
+
     methods: {
     login() {
       if(this.username==''){
@@ -56,6 +58,8 @@ export default {
               title: '登录成功',
               type: 'success'
             })
+            this.$store.commit('login')
+            this.$store.state.token=response.data.data.authorization;
             this.username=''
             this.password=''
             this.$router.push('/main')
