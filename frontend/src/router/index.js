@@ -10,7 +10,8 @@ import ShowAll from '../components/Project/ShowAll.vue'
 import MeAttend from '../components/Project/MeAttend.vue'
 import MeCreate from '../components/Project/MeCreate.vue'
 import Deleted from '../components/Project/Deleted.vue'
-
+import People from '../components/People/Manage.vue'
+import AllMember from '../components/People/AllMember.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -53,6 +54,16 @@ const routes = [
         {path: 'deleted', name:'Deleted',component: Deleted},
        
     ]
+},
+{
+  path: '/people',
+  name: 'People',
+  component: People,
+  children: [
+    {path: '', component: AllMember},
+    {path: 'allmember',name:'AllMember', component: AllMember},
+   
+]
 },
   
 ]
