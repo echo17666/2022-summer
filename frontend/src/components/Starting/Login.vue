@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is Login page</h1>
+    <h1>登录</h1>
     <div>
       <el-input v-model="username" placeholder="请输入昵称">
         <template slot="prepend">昵称</template>
@@ -15,7 +15,7 @@
       <el-button type="primary" @click="login()" round>登录</el-button>
     </div>
     <div style="margin-top: 15px;">
-      <el-button type="primary" @click="register()" round>注册</el-button>
+      <el-button @click="register()" round>注册</el-button>
     </div>
   </div>
 </template>
@@ -37,10 +37,19 @@ export default {
       Account.Login(formdata)
         .then((response) => {      
           console.log(response) 
+          if(response.data.msg=='登录成功'){
+            this.$notify({
+              title: '登录成功',
+              type: 'success'
+            })
+            
+          }
         })
         .catch((error) => {    
           console.log(error) 
         });
+      // this.username=''
+      // this.password=''
     },
     register(){
       this.$router.push('/register')
@@ -48,3 +57,6 @@ export default {
   }
 }
 </script>
+<style>
+  @import "../../assets/loginAndRegister.css";
+</style>

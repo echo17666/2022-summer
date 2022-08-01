@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is Register page</h1>
+    <h1>注册</h1>
     <div>
       <el-input v-model="username" placeholder="请输入昵称">
         <template slot="prepend">昵称</template>
@@ -25,7 +25,7 @@
       <el-button type="primary" @click="register()" round>注册</el-button>
     </div>
     <div style="margin-top: 15px;">
-      <el-button type="primary" @click="login()" round>登录</el-button>
+      <el-button @click="login()" round>登录</el-button>
     </div>
   </div>
 </template>
@@ -36,7 +36,8 @@ export default {
   data(){
     return{
       username: '',
-      password: '',
+      password_1: '',
+      password_2: '',
       realname: '',
       email: ''
     }
@@ -45,12 +46,20 @@ export default {
     register(){
       let formdata = new FormData()
       formdata.append('username',this.username)
-      formdata.append('password',this.password)
-      formdata.append('realname',this.realname)
+      formdata.append('password_1',this.password_1)
+      formdata.append('password_2',this.password_2)
+      formdata.append('true_name',this.realname)
       formdata.append('email',this.email)
       Account.Register(formdata)
       .then((response) => {      
           console.log(response) 
+          if(response.data.msg=='注册成功'){
+            this.$notify({
+              title: '注册成功',
+              type: 'success'
+            })
+            this.$router.push('/login')
+          }
         })
         .catch((error) => {    
           console.log(error) 
@@ -62,3 +71,6 @@ export default {
   }
 }
 </script>
+<style>
+  @import "../../assets/loginAndRegister.css";
+</style>
