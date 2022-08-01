@@ -57,8 +57,6 @@ const routes = [
         {path: 'showall', name:'ShowAll',component: ShowAll},
         {path: 'mecreate', name:'MeCreate',component: MeCreate},
         {path: 'meattend', name:'MeAttend',component: MeAttend},
-
-       
     ]
 },
 {

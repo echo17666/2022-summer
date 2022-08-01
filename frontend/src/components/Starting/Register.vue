@@ -7,8 +7,13 @@
       </el-input>
     </div>
     <div style="margin-top: 15px;">
-      <el-input v-model="password" placeholder="请输入密码" show-password>
+      <el-input v-model="password_1" placeholder="请输入密码" show-password>
         <template slot="prepend">密码</template>
+      </el-input>
+    </div>
+    <div style="margin-top: 15px;">
+      <el-input v-model="password_2" placeholder="请确认密码" show-password>
+        <template slot="prepend">确认密码</template>
       </el-input>
     </div>
     <div style="margin-top: 15px;">
@@ -44,6 +49,41 @@ export default {
   },
   methods:{
     register(){
+      if(this.username==''){
+        this.$notify({
+          title: '用户名不能为空！',
+          type: 'warning'
+        })
+        return;
+      }
+      if(this.password_1==''){
+        this.$notify({
+          title: '密码不能为空！',
+          type: 'warning'
+        })
+        return;
+      }
+      if(this.password_2!=this.password_1){
+        this.$notify({
+          title: '两次密码不一致！',
+          type: 'warning'
+        })
+        return;
+      }
+      if(this.realname==''){
+        this.$notify({
+          title: '真实姓名不能为空！',
+          type: 'warning'
+        })
+        return;
+      }
+      if(this.email==''){
+        this.$notify({
+          title: '邮箱不能为空！',
+          type: 'warning'
+        })
+        return;
+      }
       let formdata = new FormData()
       formdata.append('username',this.username)
       formdata.append('password_1',this.password_1)
@@ -58,6 +98,11 @@ export default {
               title: '注册成功',
               type: 'success'
             })
+            this.username=''
+            this.password_1=''
+            this.password_2=''
+            this.email=''
+            this.realname=''
             this.$router.push('/login')
           }
         })

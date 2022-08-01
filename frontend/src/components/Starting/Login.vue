@@ -31,6 +31,20 @@ export default {
   },
     methods: {
     login() {
+      if(this.username==''){
+        this.$notify({
+          title: '用户名不能为空！',
+          type: 'warning'
+        })
+        return;
+      }
+      if(this.password==''){
+        this.$notify({
+          title: '密码不能为空！',
+          type: 'warning'
+        })
+        return;
+      }
       let formdata = new FormData()
       formdata.append('username',this.username)
       formdata.append('password',this.password)
@@ -42,14 +56,15 @@ export default {
               title: '登录成功',
               type: 'success'
             })
-            
+            this.username=''
+            this.password=''
+            this.$router.push('/main')
           }
         })
         .catch((error) => {    
           console.log(error) 
         });
-      // this.username=''
-      // this.password=''
+      
     },
     register(){
       this.$router.push('/register')
