@@ -1,5 +1,5 @@
 <template>
-  <div class="projectmanage">
+  <div class="peoplemanage">
     <div class="row">
       <v-col cols="12" md="3">
      <v-navigation-drawer
@@ -10,21 +10,21 @@
 
       <v-list dense>
         <v-list-item
-        @click="$router.push({name:'ShowAll'})"
+        @click="$router.push({name:'AllTeams'})"
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
-                home</span>
+                stars</span>
           </v-list-item-icon>
           
 
           <v-list-item-content>
-            <v-list-item-title>所有项目</v-list-item-title>
+            <v-list-item-title>团队列表</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item
-           @click="$router.push({name:'MeCreate'})"
+          
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
@@ -33,11 +33,11 @@
           
 
           <v-list-item-content>
-            <v-list-item-title>我创建的</v-list-item-title>
+            <v-list-item-title>创建团队</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-           @click="$router.push({name:'MeAttend'})"
+          
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
@@ -46,23 +46,11 @@
           
 
           <v-list-item-content>
-            <v-list-item-title>我加入的</v-list-item-title>
+            <v-list-item-title>加入团队</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-divider/>
-        <v-list-item
-          @click="$router.push({name:'Deleted'})"
-        >
-          <v-list-item-icon>
-            <span class="material-icons-outlined">
-                home</span>
-          </v-list-item-icon>
-          
-
-          <v-list-item-content>
-            <v-list-item-title>回收站</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+        
       </v-list>
     </v-navigation-drawer>
     </v-col>
@@ -74,20 +62,22 @@
   </div>
   </div>
 </template>
+
+
 <script>
 export default {
-  name: 'ProjectManage',
+  name: 'PeopleManage',
   data(){
     return {
-        
+    
       }
   },
     methods: {
-
-  
+       
   }
 }
 </script>
+
 <style>
 
 </style>

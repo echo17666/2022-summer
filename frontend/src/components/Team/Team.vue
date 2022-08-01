@@ -9,6 +9,21 @@
      
 
       <v-list dense>
+
+         <v-list-item
+           @click="$router.push({name:'TeamProject'})"
+        >
+          <v-list-item-icon>
+            <span class="material-icons-outlined">
+                home</span>
+          </v-list-item-icon>
+          
+
+          <v-list-item-content>
+            <v-list-item-title>团队项目列表</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        
         <v-list-item
         @click="$router.push({name:'MemberList'})"
         >
@@ -22,20 +37,8 @@
             <v-list-item-title>人员列表</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-divider></v-divider>
-        <v-list-item
-           @click="$router.push({name:'TeamProject'})"
-        >
-          <v-list-item-icon>
-            <span class="material-icons-outlined">
-                home</span>
-          </v-list-item-icon>
-          
-
-          <v-list-item-content>
-            <v-list-item-title>团队项目列表</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+    
+       
         <v-list-item
           @click="$router.push({name:'Deleted'})"
         >
