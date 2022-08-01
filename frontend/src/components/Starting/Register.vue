@@ -93,7 +93,7 @@ export default {
       Account.Register(formdata)
       .then((response) => {      
           console.log(response) 
-          if(response.data.msg=='注册成功'){
+          if(response.data.errno==0){
             this.$notify({
               title: '注册成功',
               type: 'success'
@@ -104,6 +104,18 @@ export default {
             this.email=''
             this.realname=''
             this.$router.push('/login')
+          }
+          else if(response.data.errno==300001){
+            this.$notify({
+              title: '用户名已存在',
+              type: 'warning'
+            })
+          }
+          else{
+            this.$notify({
+              title: '注册失败',
+              type: 'error'
+            })
           }
         })
         .catch((error) => {    
