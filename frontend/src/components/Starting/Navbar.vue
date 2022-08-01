@@ -27,7 +27,15 @@
       </div>
 
       <v-spacer></v-spacer>
-      <router-link :to="{path:'login'}">
+       <router-link :to="{name:'ShowAll'}">
+      <v-btn
+        text
+      >
+        <span class="mr-2">Projects</span>
+
+      </v-btn>
+      </router-link>
+      <router-link :to="{name:'Login'}">
       <v-btn
         text
       >
@@ -44,14 +52,7 @@
 
       </v-btn>
       </router-link>
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+     
     </v-app-bar>
 </template>
     
