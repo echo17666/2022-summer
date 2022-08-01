@@ -1,7 +1,7 @@
 <template>
   <div class="team">
     <div class="row">
-      <v-col cols="12" md="3">
+      <v-col cols="12" md="2">
      <v-navigation-drawer
       permanent
       height="90vh"
@@ -23,7 +23,7 @@
             <v-list-item-title>团队项目列表</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        
+
         <v-list-item
         @click="$router.push({name:'MemberList'})"
         >
@@ -58,7 +58,7 @@
     </v-navigation-drawer>
     </v-col>
     
-    <v-col cols="12" md="9">
+    <v-col cols="12" md="10" >
             <router-view/>
     </v-col>
     
