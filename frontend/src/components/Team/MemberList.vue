@@ -8,8 +8,8 @@
     </v-row>
 
     <v-dialog v-model="dialog" persistent max-width="600px">
-      <v-card color="blue lighten-3" light>
-        <v-card-title class="headline blue lighten-3">
+      <v-card color="blue lighten-4" light>
+        <v-card-title class="headline white--text">
         </v-card-title>
         <v-card-text>
           搜索成员列表
@@ -48,7 +48,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-              color="grey darken-3"
+              color="blue lighten-4"
               @click="cancel()"
           >
             Cancel
