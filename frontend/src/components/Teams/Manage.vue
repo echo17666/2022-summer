@@ -24,7 +24,7 @@
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item
-          
+          @click="$router.push({name:'CreateTeam'})"
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
@@ -37,7 +37,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
-          
+        
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">

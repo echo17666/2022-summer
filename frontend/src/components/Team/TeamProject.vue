@@ -84,9 +84,12 @@ export default {
           this.dialog = false;
     },
     cancel(){
+
       this.newProject.name='';
       this.newProject.introduction="";
+
       this.dialog=false;
+
     }
 
   }
