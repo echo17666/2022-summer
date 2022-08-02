@@ -63,7 +63,7 @@
         </v-list-item>
 
         <v-list-item
-          @click="this.$router.push('/login')"
+          @click="$router.push('/login')"
           v-else
         >
           <v-list-item-icon>
@@ -92,6 +92,7 @@ export default {
         items: [
           { title: '团队管理', icon: 'home' ,link:'/teams'},
           { title: '项目管理', icon: 'home',link:'/project' },
+          { title: '回到主页', icon: 'home',link:'/main' },
           
         ],
       }
