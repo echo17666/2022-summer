@@ -17,7 +17,7 @@ export default {
       getTeams(){
          Team.showTeam()
         .then((response) => { 
-          this.teams = response.data;
+          this.teams = response.data.Teams;
           console.log(this.teams)
         })  
       

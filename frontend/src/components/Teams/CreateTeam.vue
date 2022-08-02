@@ -12,7 +12,7 @@
 
           <v-textarea
             outlined
-            v-model="name"
+            v-model="intro"
             :counter="100"
             label="团队简介"
             required
@@ -28,13 +28,15 @@ export default {
   name: 'CreateTeam',
   data(){
     return{
-      name:""
+      name:"",
+      intro:""
     }
   },
     methods: {
      createTeam(){
         let formdata = new FormData();
         formdata.append('team_name',this.name);
+        formdata.append('team_intro',this.intro);
         Team.createTeam(formdata)
        .then((response) => { 
          

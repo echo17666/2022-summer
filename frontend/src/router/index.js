@@ -19,6 +19,11 @@ import Team from '../components/Team/Team.vue'
 import MemberList from '../components/Team/MemberList.vue'
 import TeamProject from '../components/Team/TeamProject.vue'
 import Deleted from '../components/Team/Deleted.vue'
+
+import ProjectManage from '../components/Project/Manage.vue'
+import Design from '../components/Project/Design.vue'
+
+import Text from '../components/Project/Text.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -48,7 +53,22 @@ const routes = [
     component: Main
   },
   {
+    path: '/design',
+    name: 'Design',
+    component: Design
+  },
+  {
+    path: '/text',
+    name: 'Text',
+    component: Text
+  },
+  {
     path: '/project',
+    name: 'ProjectManage',
+    component: ProjectManage
+  },
+  {
+    path: '/myproject',
     component: Project,
     // meta: {
     //     requiresAuth: true
