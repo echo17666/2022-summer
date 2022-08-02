@@ -26,7 +26,19 @@
               完成项目
             </v-btn>
 
+            <v-spacer></v-spacer>
+
+            <v-btn
+                class="ma-3"
+                color="secondary"
+                @click="Restore"
+                v-show="this.project.deleted===true"
+            >
+              恢复
+            </v-btn>
+
           </v-card-actions>
+
         </v-col>
 
 
@@ -46,16 +58,20 @@ export default {
   data() {
     return {
 
-    };
+    }
   },
   methods: {
+    Restore()
+    {
+      if(this.project.deleted===true)
+        this.project.deleted =! this.project.deleted;
+    },
     Completed()
     {
       if(this.project.completed===false)
       this.project.completed =! this.project.completed;
     }
   },
-
 };
 </script>
 <style scoped>
