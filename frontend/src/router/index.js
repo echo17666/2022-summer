@@ -19,88 +19,19 @@ import Team from '../components/Team/Team.vue'
 import MemberList from '../components/Team/MemberList.vue'
 import TeamProject from '../components/Team/TeamProject.vue'
 import Deleted from '../components/Team/Deleted.vue'
-<<<<<<< HEAD
-import documentEdit from "@/components/documentEdit/documentEdit";
-import newDocument from "@/components/documentEdit/newDocument";
-import documentmanage from "@/components/documentEdit/Manage"
-Vue.use(VueRouter)
-
-const routes = [
-    {
-        path: '/',
-        name: 'Home',
-        component: Home
-    },
-    {
-        path: '/login',
-        name: 'Login',
-        component: Login
-    },
-    {
-        path: '/register',
-        name: 'Register',
-        component: Register
-    },
-    {
-        path: '/reset',
-        name: 'Reset',
-        component: Reset
-    },
-    {
-        path: '/main',
-        name: 'Main',
-        component: Main
-    },
-    {
-        path: '/project',
-        component: Project,
-        // meta: {
-        //     requiresAuth: true
-        // },
-        children: [
-            {path: '', component: ShowAll},
-            {path: 'showall', name: 'ShowAll', component: ShowAll},
-            {path: 'mecreate', name: 'MeCreate', component: MeCreate},
-            {path: 'meattend', name: 'MeAttend', component: MeAttend},
-        ]
-    },
-    {
-        path: '/teams',
-        name: 'Teams',
-        component: Teams,
-        children: [
-            {path: '', component: AllTeams},
-            {path: 'allteams', name: 'AllTeams', component: AllTeams},
-            {path: 'create', name: 'CreateTeam', component: CreateTeam},
-        ]
-    },
-    {
-        path: '/team',
-        name: 'Team',
-        component: Team,
-        children: [
-            {path: '', component: MemberList},
-            {path: 'list', name: 'MemberList', component: MemberList},
-            {path: 'deleted', name: 'Deleted', component: Deleted},
-            {path: 'project', name: 'TeamProject', component: TeamProject},
-
-        ]
-    },
-    {
-        path: '/document',
-        name: 'Document',
-        component: documentmanage,
-        children: [
-            {path: '/newdocument', name: 'NewDocument', component: newDocument},
-            {path: 'newdocument',name:'DocumentEdit', component: documentEdit}
-        ]
-    },
-=======
 
 import ProjectManage from '../components/Project/Manage.vue'
 import Design from '../components/Project/Design.vue'
 
 import Text from '../components/Project/Text.vue'
+
+import documentEdit from "@/components/documentEdit/documentEdit";
+import newDocument from "@/components/documentEdit/newDocument";
+import documentmanage from "@/components/documentEdit/Manage"
+
+
+
+   
 Vue.use(VueRouter)
 
 const routes = [
@@ -182,7 +113,15 @@ const routes = [
    
 ]
 },
->>>>>>> 942eee9cf907d498c715100cae2281f97fea8451
+{
+  path: '/document',
+  name: 'Document',
+  component: documentmanage,
+  children: [
+      {path: '/newdocument', name: 'NewDocument', component: newDocument},
+      {path: 'newdocument',name:'DocumentEdit', component: documentEdit}
+  ]
+},
 
 ]
 
