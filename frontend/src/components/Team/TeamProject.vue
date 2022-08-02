@@ -2,7 +2,10 @@
   <div class="teamproject" :style="{'margin-left':'10px','margin-right':'10px'}">
     <h1>团队项目列表</h1>
     <v-row>
-      <v-col cols="12" md="4" v-for="(project,index) in project" :key="index">
+      <v-col cols="12" md="4" v-for="(project,index) in project"
+             :key="index"
+             v-if="project.deleted===false"
+      >
         <proitem :project="project"></proitem>
       </v-col>
     </v-row>
@@ -63,17 +66,19 @@ export default {
       newProject:{
         name:"",
         introduction:"",
+        completed:false,
+        deleted:false,
       },
       project:[
-        {name:"aaa",introduction:"yyds"},
-        {name:"bbb",introduction:"hello"},
-        {name:"ccc",introduction:"hi"},
+        {name:"aaa",introduction:"yyds",completed:false, deleted:false},
+        {name:"bbb",introduction:"hello",completed:true, deleted:false},
+        {name:"ccc",introduction:"hi",completed:false, deleted:false},
       ]
     }
   },
   methods: {
     addProject(){
-      const newpro={name:this.newProject.name,introduction:this.newProject.introduction};
+      const newpro={name:this.newProject.name,introduction:this.newProject.introduction,completed:false,deleted:false};
       this.project.push(newpro);
       console.log(this.project)
       this.$notify({
@@ -81,7 +86,7 @@ export default {
         type: 'success'
       })
       this.newProject.name='';
-      this.newProject.introduction="",
+      this.newProject.introduction="";
           this.dialog = false;
     },
     cancel(){
@@ -91,7 +96,7 @@ export default {
 
       this.dialog=false;
 
-    }
+    },
 
   }
 }
