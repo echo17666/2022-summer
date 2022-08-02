@@ -1,10 +1,10 @@
 <template>
   <div class="peoplemanage">
     <div class="row">
-      <v-col cols="12" md="3">
+      <v-col cols="12" md="2">
      <v-navigation-drawer
       permanent
-      height="90vh"
+      height="100vh"
     >
      
 
@@ -55,7 +55,7 @@
     </v-navigation-drawer>
     </v-col>
     
-    <v-col cols="12" md="9">
+    <v-col cols="12" md="10">
             <router-view/>
             </v-col>
     

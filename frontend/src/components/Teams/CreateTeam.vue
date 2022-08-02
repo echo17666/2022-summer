@@ -1,13 +1,25 @@
 <template>
   <div class="createTeam">
     <h1>创建团队</h1>
+    <v-container>
      <v-text-field
+            outlined
             v-model="name"
             :counter="10"
             label="团队名称"
             required
           ></v-text-field>
+
+          <v-textarea
+            outlined
+            v-model="name"
+            :counter="100"
+            label="团队简介"
+            required
+          ></v-textarea>
           <v-btn @click="createTeam()">确定</v-btn>
+    </v-container
+    >
   </div>
 </template>
 <script>
