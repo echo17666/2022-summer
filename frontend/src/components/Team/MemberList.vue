@@ -2,8 +2,8 @@
   <div class="memberlist">
     <h1>人员列表</h1>
     <v-row>
-      <v-col cols="12" md="4" v-for="(project,index) in project" :key="index">
-        <proitem :project="project"></proitem>
+      <v-col cols="12" md="4" v-for="(people,index) in people" :key="index">
+        <peoitem :people="people"></peoitem>
       </v-col>
     </v-row>
 
@@ -65,49 +65,49 @@
   </div>
 </template>
 <script>
-import ProjectItem from '@/components/Starting/ProjectItem.vue'
+import PeopleItem from "@/components/Starting/PeopleItem";
 export default {
   name: 'MemberList',
   components: {
-    proitem:ProjectItem
+    peoitem:PeopleItem
   },
   data(){
     return{
       dialog: false,
-      newProject:{
+      newPeople:{
         name:"",
         introduction:"",
         profile:"",
       },
-      project:[
-        {name:"aaa",introduction:"yyds",profile:".../assets/logo.png"},
-        {name:"bbb",introduction:"hello",profile:".../assets/logo.png"},
-        {name:"ccc",introduction:"hi",profile:".../assets/logo.png"},
+      people:[
+        {name:"aaa",introduction:"yyds",profile:"../assets/logo.png"},
+        {name:"bbb",introduction:"hello",profile:"../assets/logo.png"},
+        {name:"ccc",introduction:"hi",profile:"../assets/logo.png"},
       ]
 
     }
   },
   methods: {
-    addProject(){
-      const newpro={name:this.newProject.name,introduction:this.newProject.introduction,profile: this.newProject.profile};
-      this.project.push(newpro);
-      console.log(this.project)
+    addPeople(){
+      const newpro={name:this.newPeople.name,introduction:this.newPeople.introduction,profile: this.newPeople.profile};
+      this.people.push(newpro);
+      console.log(this.people)
 
 
       this.$notify({
         title: '人员添加成功',
         type: 'success'
       })
-      this.newProject.name='';
-      this.newProject.introduction="";
-      this.newProject.profile="";
+      this.newPeople.name='';
+      this.newPeople.introduction="";
+      this.newPeople.profile="";
       this.dialog = false;
     },
     cancel(){
 
-      this.newProject.name='';
-      this.newProject.introduction="";
-      this.newProject.profile="";
+      this.newPeople.name='';
+      this.newPeople.introduction="";
+      this.newPeople.profile="";
       this.dialog=false;
 
     }
