@@ -8,20 +8,11 @@
     </v-row>
 
     <v-dialog v-model="dialog" persistent max-width="600px">
-      <v-card
-          color="black"
-          dark
-      >
-        <v-card-title class="headline red lighten-3">
-          Search for Public APIs
+      <v-card color="blue lighten-3" light>
+        <v-card-title class="headline blue lighten-3">
         </v-card-title>
         <v-card-text>
-          Explore hundreds of free API's ready for consumption! For more information visit
-          <a
-              class="grey--text text--lighten-3"
-              href="https://github.com/toddmotto/public-apis"
-              target="_blank"
-          >the Github repository</a>.
+          搜索成员列表
         </v-card-text>
         <v-card-text>
           <v-autocomplete
@@ -34,7 +25,7 @@
               hide-selected
               item-text="Description"
               item-value="API"
-              label="Public APIs"
+              label="search"
               placeholder="Start typing to Search"
               prepend-icon="mdi-database-search"
               return-object
@@ -57,11 +48,10 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-              :disabled="!model"
               color="grey darken-3"
-              @click="model = null"
+              @click="cancel()"
           >
-            Clear
+            Cancel
             <v-icon right>mdi-close-circle</v-icon>
           </v-btn>
         </v-card-actions>
