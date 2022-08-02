@@ -75,8 +75,6 @@ export default {
             const newpro={name:this.newProject.name,introduction:this.newProject.introduction};
             this.project.push(newpro);
             console.log(this.project)
-           
-
             this.$notify({
               title: '项目创建成功',
               type: 'success'
