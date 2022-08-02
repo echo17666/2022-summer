@@ -9,6 +9,7 @@ const service = axios.create({
     timeout: 50000 //超时时间
 });
 service.interceptors.request.use(function (config) {
+    // Do something before request is sent
     const token = window.localStorage.getItem('token')
     if (token) {
         config.headers.Authorization = `Bearer ${token}`

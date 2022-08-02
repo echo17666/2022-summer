@@ -60,6 +60,7 @@ export default {
             })
             this.$store.commit('login')
             this.$store.state.token=response.data.data.authorization;
+            window.localStorage.setItem("token", response.data.data.authorization);
             this.username=''
             this.password=''
             this.$router.push('/main')
