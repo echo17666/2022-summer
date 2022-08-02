@@ -12,6 +12,7 @@ import MeCreate from '../components/MyProject/MeCreate.vue'
 
 import Teams from '../components/Teams/Manage.vue'
 import AllTeams from '../components/Teams/AllTeams.vue'
+import CreateTeam from '../components/Teams/CreateTeam.vue'
 
 
 import Team from '../components/Team/Team.vue'
@@ -66,6 +67,7 @@ const routes = [
   children: [
     {path: '', component: AllTeams},
     {path: 'allteams',name:'AllTeams', component: AllTeams},
+    {path: 'create',name:'CreateTeam', component: CreateTeam},
 
    
 ]

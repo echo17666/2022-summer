@@ -5,15 +5,31 @@
   </div>
 </template>
 <script>
-
+import { Team } from "@/api/team.js";
 export default {
   name: 'AllTeams',
   data(){
-    return{}
+    return{
+      teams:[]
+    }
   },
     methods: {
+      getTeams(){
+         Team.showTeam()
+        .then((response) => { 
+          this.teams = response.data;
+          console.log(this.teams)
+        })  
+      
+        .catch((error) => {    
+          console.log(error) 
+        });
+    },
+     
 
-
+  },
+  mounted(){
+    this.getTeams();
   }
 }
 </script>
