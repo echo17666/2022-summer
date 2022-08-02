@@ -63,11 +63,12 @@ export default {
       newProject:{
         name:"",
         introduction:"",
+        completed:false,
       },
       project:[
-        {name:"aaa",introduction:"yyds"},
-        {name:"bbb",introduction:"hello"},
-        {name:"ccc",introduction:"hi"},
+        {name:"aaa",introduction:"yyds",completed:false, deleted:false},
+        {name:"bbb",introduction:"hello",completed:true, deleted:false},
+        {name:"ccc",introduction:"hi",completed:false, deleted:false},
       ]
     }
   },
@@ -81,7 +82,7 @@ export default {
         type: 'success'
       })
       this.newProject.name='';
-      this.newProject.introduction="",
+      this.newProject.introduction="";
           this.dialog = false;
     },
     cancel(){
@@ -91,7 +92,7 @@ export default {
 
       this.dialog=false;
 
-    }
+    },
 
   }
 }

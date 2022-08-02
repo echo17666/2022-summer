@@ -11,7 +11,7 @@
           <v-card-text>
             {{people.introduction}}
           </v-card-text>
-          <v-img>{{ people.profile }}</v-img>
+          <v-img src="people.profile"></v-img>
             <v-card-actions>
 
             </v-card-actions>
