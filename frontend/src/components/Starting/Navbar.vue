@@ -6,7 +6,7 @@
       height="100vh"
       width="280px"
       expand-on-hover
-    
+
       :style="{'background-color':'#bdd5ed'}"
       app
     >
@@ -40,7 +40,7 @@
             <span class="material-icons-outlined">
                 {{item.icon}}</span>
           </v-list-item-icon>
-          
+
 
           <v-list-item-content >
             <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -55,7 +55,7 @@
             <span class="material-icons-outlined" >
                 logout</span>
           </v-list-item-icon>
-          
+
 
           <v-list-item-content >
             <v-list-item-title >登出</v-list-item-title>
@@ -70,7 +70,7 @@
             <span class="material-icons-outlined" >
                 login</span>
           </v-list-item-icon>
-          
+
 
           <v-list-item-content >
             <v-list-item-title >登录</v-list-item-title>
@@ -92,7 +92,7 @@ export default {
         items: [
           { title: '团队管理', icon: 'home' ,link:'/teams'},
           { title: '项目管理', icon: 'home',link:'/project' },
-          
+          { title: '文档编辑', icon: 'home',link:'/document' }
         ],
       }
     },

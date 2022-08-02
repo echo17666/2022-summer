@@ -7,8 +7,11 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@tiptap/starter-kit": "^2.0.0-beta.191",
+    "@tiptap/vue-2": "^2.0.0-beta.84",
     "axios": "^0.27.2",
-    "core-js": "^3.8.3",
+    "core-js": "^3.24.1",
+    "element-tiptap": "^1.27.1",
     "element-ui": "^2.15.9",
     "material-icons": "^1.11.4",
     "pnpm": "^7.8.0",
@@ -20,12 +23,12 @@
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
-    "sass": "~1.32.0",
-    "sass-loader": "^10.0.0",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "sass": "~1.32.0",
+    "sass-loader": "^10.0.0",
     "vue-cli-plugin-vuetify": "~2.5.1",
     "vue-template-compiler": "^2.6.14",
     "vuetify-loader": "^1.7.0"
