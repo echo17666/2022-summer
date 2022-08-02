@@ -8,52 +8,28 @@
     </v-row>
 
     <v-dialog v-model="dialog" persistent max-width="600px">
-      <v-card color="blue lighten-4" light>
-        <v-card-title class="headline white--text">
+      <v-card>
+        <v-card-title>
+          <span class="headline">添加成员</span>
         </v-card-title>
         <v-card-text>
-          搜索成员列表
+          <v-container>
+            <v-row>
+              <v-col col="12" md="12">
+                <v-text-field
+                    v-model="newPeople.name"
+                    :counter="10"
+                    label="人员名称"
+                    required
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
         </v-card-text>
-        <v-card-text>
-          <v-autocomplete
-              v-model="model"
-              :items="items"
-              :loading="isLoading"
-              :search-input.sync="search"
-              color="white"
-              hide-no-data
-              hide-selected
-              item-text="Description"
-              item-value="API"
-              label="search"
-              placeholder="Start typing to Search"
-              prepend-icon="mdi-database-search"
-              return-object
-          ></v-autocomplete>
-        </v-card-text>
-        <v-divider></v-divider>
-        <v-expand-transition>
-          <v-list v-if="model" class="red lighten-3">
-            <v-list-item
-                v-for="(field, i) in fields"
-                :key="i"
-            >
-              <v-list-item-content>
-                <v-list-item-title v-text="field.value"></v-list-item-title>
-                <v-list-item-subtitle v-text="field.key"></v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-expand-transition>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn
-              color="blue lighten-4"
-              @click="cancel()"
-          >
-            Cancel
-            <v-icon right>mdi-close-circle</v-icon>
-          </v-btn>
+          <v-btn color="blue darken-1" text @click="cancel()">取消</v-btn>
+          <v-btn color="blue darken-1" text @click="addPeople()">创建</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -83,8 +59,8 @@ export default {
         {name:"aaa",introduction:"yyds",profile:"../assets/logo.png"},
         {name:"bbb",introduction:"hello",profile:"../assets/logo.png"},
         {name:"ccc",introduction:"hi",profile:"../assets/logo.png"},
-      ]
-
+      ],
+      model: "",
     }
   },
   methods: {
