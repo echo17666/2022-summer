@@ -94,7 +94,7 @@ const routes = [
 },
 
 {
-  path: '/team',
+  path: '/team/:id',
   name: 'Team',
   component: Team,
   children: [

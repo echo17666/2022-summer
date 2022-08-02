@@ -3,11 +3,13 @@
     <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'200px'}">
       <v-row>
         <v-col cols="12" md="10" sm="10">
+            <router-link @click="toTeam()" :to="{ name: 'TeamProject', params: { id: team.url } }">
             <v-card-title>
               <h1>
              {{team.team_name}}
              </h1>
             </v-card-title>
+            </router-link>
           <v-card-text>
              简介：{{team.team_intro}}
           </v-card-text>
@@ -89,6 +91,7 @@ export default {
         dialog:false,
         name:"",
         intro:"",
+        id:"xxx",
     };
   },
   methods: {
@@ -122,8 +125,20 @@ export default {
         this.name=this.team.team_name,
         this.intro=this.team.team_intro,
         this.dialog = false;
-    }
+    },
+    // toTeam(){
+        
+    //     this.id=this.creator_username+this.team.team_id;
+    //     console.log(this.id)
+    //     for(let i=0;i<id.length;i++){
+    //         console.log(id[i],"xxx");
+    //     }
+    //     // :to="{ name: 'ShowProfile', params: { id: sharedState.user_id } }"
+    // }
   },
+  mounted(){
+    this.toTeam();
+  }
 
 };
 </script>
