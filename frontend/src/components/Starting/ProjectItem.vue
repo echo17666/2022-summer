@@ -22,11 +22,31 @@
                 class="ma-2"
                 color="secondary"
                 @click="Completed"
+                v-if="this.project.deleted===false"
             >
               完成项目
             </v-btn>
 
+            <v-btn
+                class="ma-2"
+                color="secondary"
+                @click="Delete"
+                v-if="this.project.deleted===false"
+            >
+              删除
+            </v-btn>
+
+            <v-btn
+                class="ma-2"
+                color="secondary"
+                @click="Restore"
+                v-if="this.project.deleted===true"
+            >
+              恢复
+            </v-btn>
+
           </v-card-actions>
+
         </v-col>
 
 
@@ -46,16 +66,25 @@ export default {
   data() {
     return {
 
-    };
+    }
   },
   methods: {
+    Restore()
+    {
+      if(this.project.deleted===true)
+        this.project.deleted =! this.project.deleted;
+    },
     Completed()
     {
       if(this.project.completed===false)
       this.project.completed =! this.project.completed;
+    },
+    Delete()
+    {
+      if(this.project.deleted===false)
+        this.project.deleted =! this.project.deleted;
     }
   },
-
 };
 </script>
 <style scoped>
