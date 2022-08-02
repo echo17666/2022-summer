@@ -6,7 +6,6 @@
         <team :team="team"></team>
       </v-col>
       </v-row>
-       <v-btn @click="$router.push({name:'TeamProject'})"> 某个团队 </v-btn>
   </div>
 </template>
 <script>
