@@ -1,8 +1,6 @@
 <template>
   <div class="teamproject" :style="{'margin-left':'10px','margin-right':'10px'}">
-    <h1>团队项目列表</h1>  <v-btn  @click="dialog=!dialog" class="mx-2" fab dark color="indigo">
-    <span class="material-icons-outlined">add</span>
-    </v-btn>
+    <h1>团队项目列表</h1>
     <v-row>
     <v-col cols="12" md="4" v-for="(project,index) in project" :key="index">
     <proitem :project="project"></proitem>
@@ -44,7 +42,9 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-
+    <v-btn  @click="dialog=!dialog" class="mx-2" fab dark color="indigo">
+      <span class="material-icons-outlined">add</span>
+    </v-btn>
 
   </div>
 
@@ -75,7 +75,7 @@ export default {
             const newpro={name:this.newProject.name,introduction:this.newProject.introduction};
             this.project.push(newpro);
             console.log(this.project)
-           
+
 
             this.$notify({
               title: '项目创建成功',
@@ -93,7 +93,7 @@ export default {
             this.dialog=false;
 
         }
-  
+
   }
 }
 </script>
