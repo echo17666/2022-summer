@@ -2,6 +2,7 @@
   <div class="design">
 
     <h1 class="mx-auto">设计主页</h1>
+    
 
   </div>
 </template>
