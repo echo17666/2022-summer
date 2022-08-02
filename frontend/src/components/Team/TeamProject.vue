@@ -78,7 +78,7 @@ export default {
   },
   methods: {
     addProject(){
-      const newpro={name:this.newProject.name,introduction:this.newProject.introduction};
+      const newpro={name:this.newProject.name,introduction:this.newProject.introduction,completed:false,deleted:false};
       this.project.push(newpro);
       console.log(this.project)
       this.$notify({
