@@ -11,13 +11,20 @@
           <v-card-text>
              {{project.introduction}}
           </v-card-text>
-          <v-card-text v-if="project.completed==true">
+          <v-card-text v-if="project.completed===true">
             项目已完成
           </v-card-text>
           <v-card-text v-else>
             项目进行中
           </v-card-text>
           <v-card-actions>
+            <v-btn
+                class="ma-2"
+                color="secondary"
+                @click="Completed"
+            >
+              完成项目
+            </v-btn>
 
           </v-card-actions>
         </v-col>
@@ -42,7 +49,11 @@ export default {
     };
   },
   methods: {
-
+    Completed()
+    {
+      if(this.project.completed===false)
+      this.project.completed =! this.project.completed;
+    }
   },
 
 };

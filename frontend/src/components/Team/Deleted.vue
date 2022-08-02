@@ -16,6 +16,7 @@ export default {
   name: 'Deleted',
   components: {
     proitem:ProjectItem
+    
   },
   methods: {
 

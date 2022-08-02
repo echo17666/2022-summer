@@ -64,6 +64,7 @@ export default {
         name:"",
         introduction:"",
         completed:false,
+        deleted:false,
       },
       project:[
         {name:"aaa",introduction:"yyds",completed:false, deleted:false},
