@@ -13,17 +13,17 @@ Vue.use(ElementUI)
 
 Vue.prototype.$axios = axios;
 
-axios.interceptors.request.use(
-  config => {
-    if (this.$store.state.islogin) {
-      config.headers.Authorization = this.$store.state.token;
-    }
-    return config;
-  },
-  error => {
-    return Promise.reject(error);
-  }
-);
+// axios.interceptors.request.use(
+//   config => {
+//     if (this.$store.state.islogin) {
+//       config.headers.Authorization = this.$store.state.token;
+//     }
+//     return config;
+//   },
+//   error => {
+//     return Promise.reject(error);
+//   }
+// );
 
 new Vue({
   router,

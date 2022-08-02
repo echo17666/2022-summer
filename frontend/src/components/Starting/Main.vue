@@ -36,6 +36,23 @@
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+
+        <v-list-item
+          @click="logout()"
+        >
+          <v-list-item-icon>
+            <span class="material-icons-outlined">
+                logout</span>
+          </v-list-item-icon>
+          
+
+          <v-list-item-content>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+
+
       </v-list>
     </v-navigation-drawer>
 
@@ -49,12 +66,17 @@ export default {
         items: [
           { title: '团队管理', icon: 'home' ,link:'/teams'},
           { title: '项目管理', icon: 'home',link:'/project' },
+          
         ],
       }
     },
     methods: {
       turn(link){
         this.$router.push(link)
+      },
+      logout(){
+        this.$store.commit('logout')
+        this.$router.push('/login')
       }
     }
     }
