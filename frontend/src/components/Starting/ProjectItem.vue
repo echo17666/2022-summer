@@ -22,17 +22,25 @@
                 class="ma-2"
                 color="secondary"
                 @click="Completed"
+                v-if="this.project.deleted===false"
             >
               完成项目
             </v-btn>
 
-            <v-spacer></v-spacer>
+            <v-btn
+                class="ma-2"
+                color="secondary"
+                @click="Delete"
+                v-if="this.project.deleted===false"
+            >
+              删除
+            </v-btn>
 
             <v-btn
-                class="ma-3"
+                class="ma-2"
                 color="secondary"
                 @click="Restore"
-                v-show="this.project.deleted===true"
+                v-if="this.project.deleted===true"
             >
               恢复
             </v-btn>
@@ -70,6 +78,11 @@ export default {
     {
       if(this.project.completed===false)
       this.project.completed =! this.project.completed;
+    },
+    Delete()
+    {
+      if(this.project.deleted===false)
+        this.project.deleted =! this.project.deleted;
     }
   },
 };

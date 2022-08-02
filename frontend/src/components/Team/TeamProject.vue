@@ -2,7 +2,10 @@
   <div class="teamproject" :style="{'margin-left':'10px','margin-right':'10px'}">
     <h1>团队项目列表</h1>
     <v-row>
-      <v-col cols="12" md="4" v-for="(project,index) in project" :key="index">
+      <v-col cols="12" md="4" v-for="(project,index) in project"
+             :key="index"
+             v-if="project.deleted===false"
+      >
         <proitem :project="project"></proitem>
       </v-col>
     </v-row>
