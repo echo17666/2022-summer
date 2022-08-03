@@ -1,9 +1,8 @@
 <template>
   <div class="design">
         <VueDragResize  v-show="info.isshown" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
-             <div :style="{'position':'relative'}" :width="info.width" :height="info.height">
-                <img id="img" src="../../assets/rectangle.png" width="100%">
-                </img>
+             <div id="container" :style="{'position':'relative'}">
+                <img id="img" src="../../assets/rectangle.png" >
                 <v-btn @click="deleted(info)" :style="{'position':'absolute','top':'0px','right':'0px'}" icon> <span class="material-icons-outlined">
                         close</span></v-btn>
             </div>
@@ -41,3 +40,14 @@ export default {
     }
 
 </script>
+<style>
+#container{
+  /* resize: both;
+  overflow: hidden; */
+  height: 100%;
+}
+img{
+  width:100%;
+  height:100%
+}
+</style>
