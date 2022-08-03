@@ -24,10 +24,10 @@ export default {
     methods: {
       getTeams(){
          Team.showTeam()
-        .then((response) => { 
+        .then((response) => {
           this.teams = response.data.Teams;
           var key = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-          var a = key.split("");  
+          var a = key.split("");
           for(let i=0;i<this.teams.length;i++){
             let s="";
             for(let j=0;j<this.teams[i].creator_username.length;j++){
@@ -39,13 +39,13 @@ export default {
             this.teams[i]["url"]=s;
           }
           console.log(this.teams)
-        })  
-      
-        .catch((error) => {    
-          console.log(error) 
+        })
+
+        .catch((error) => {
+          console.log(error)
         });
     },
-     
+
 
   },
   mounted(){
