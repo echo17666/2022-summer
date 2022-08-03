@@ -14,11 +14,9 @@ import 'element-ui/lib/theme-chalk/index.css';
 // 引入 import element-tiptap 样式
 import 'element-tiptap/lib/index.css';
 Vue.use(ElementUI)
-Vue.component('vue-drag-resize', VueDragResize)
+
 Vue.prototype.$axios = axios;
-Vue.use( ElementTiptapPlugin, {
-  lang: 'zh', // 设置语言为中文
-});
+Vue.component('vue-drag-resize', VueDragResize)
 // axios.interceptors.request.use(
 //   config => {
 //     if (this.$store.state.islogin) {

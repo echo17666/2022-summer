@@ -19,22 +19,7 @@ import Team from '../components/Team/Team.vue'
 import MemberList from '../components/Team/MemberList.vue'
 import TeamProject from '../components/Team/TeamProject.vue'
 import Deleted from '../components/Team/Deleted.vue'
-
 import Prototype from '../components/PrototypeDesign/prototype.vue'
-
-
-import ProjectManage from '../components/Project/Manage.vue'
-import Design from '../components/Project/Design.vue'
-
-import Text from '../components/Project/Text.vue'
-
-import documentEdit from "@/components/documentEdit/documentEdit";
-import newDocument from "@/components/documentEdit/newDocument";
-import documentmanage from "@/components/documentEdit/Manage"
-
-
-
-   
 Vue.use(VueRouter)
 
 const routes = [
@@ -64,22 +49,7 @@ const routes = [
     component: Main
   },
   {
-    path: '/design',
-    name: 'Design',
-    component: Design
-  },
-  {
-    path: '/text',
-    name: 'Text',
-    component: Text
-  },
-  {
     path: '/project',
-    name: 'ProjectManage',
-    component: ProjectManage
-  },
-  {
-    path: '/myproject',
     component: Project,
     // meta: {
     //     requiresAuth: true
@@ -105,7 +75,7 @@ const routes = [
 },
 
 {
-  path: '/team/:id',
+  path: '/team',
   name: 'Team',
   component: Team,
   children: [
@@ -120,27 +90,14 @@ const routes = [
   path: '/prototype',
   name: 'Prototype',
   component: Prototype,
-},
-{
-  path: '/document',
-  name: 'Document',
-  component: documentmanage,
-  children: [
-      {path: '/newdocument', name: 'NewDocument', component: newDocument},
-      {path: 'newdocument',name:'DocumentEdit', component: documentEdit}
-  ]
 }
+
 ]
 
-
 const router = new VueRouter({
-    mode: 'history',
-    base: process.env.BASE_URL,
-    routes
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
 })
-// 解决导航栏中的vue-router在3.0版本以上重复点菜单报错问题
-// const originalPush = router.prototype.push
-// router.prototype.push = function push(location) {
-//     return originalPush.call(this, location).catch(err => err)
-// }
+
 export default router
