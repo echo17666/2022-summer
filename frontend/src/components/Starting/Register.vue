@@ -32,6 +32,9 @@
     <div style="margin-top: 15px;">
       <el-button @click="login()" round>登录</el-button>
     </div>
+    <div style="margin-top: 15px;">
+      <el-button @click="pro()" round>原型设计</el-button>
+    </div>
   </div>
 </template>
 <script>
@@ -48,6 +51,9 @@ export default {
     }
   },
   methods:{
+    pro(){
+      this.$router.push('/prototype')
+    },
     register(){
       if(this.username==''){
         this.$notify({

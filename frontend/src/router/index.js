@@ -19,6 +19,7 @@ import Team from '../components/Team/Team.vue'
 import MemberList from '../components/Team/MemberList.vue'
 import TeamProject from '../components/Team/TeamProject.vue'
 import Deleted from '../components/Team/Deleted.vue'
+import Prototype from '../components/PrototypeDesign/prototype.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -85,6 +86,11 @@ const routes = [
    
 ]
 },
+{
+  path: '/prototype',
+  name: 'Prototype',
+  component: Prototype,
+}
 
 ]
 
