@@ -5,15 +5,19 @@
         <v-col cols="12" md="7">
           <v-card-title>
             <h1>
-              {{people.name}}
+              {{people.user_name}}
             </h1>
           </v-card-title>
           <v-card-text>
-            {{people.introduction}}
+            {{people.user_identity}}
           </v-card-text>
-          <v-img v-bind:src="people.profile" alt=""> </v-img>
+          <v-card-text>
+            {{people.user_email}}
+          </v-card-text>
+          <v-card-text>
+            {{people.user_true_name}}
+          </v-card-text>
             <v-card-actions>
-
             </v-card-actions>
         </v-col>
 

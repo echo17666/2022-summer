@@ -109,7 +109,7 @@
 </template>
 <script>
   import { Account } from "@/api/account.js";
-   import DesignItem from './DesignItem.vue';
+
    import Inputbox from '../com/inputbox.vue'
    import ButtonBox from '../com/button.vue'
    import RadioBox from '../com/radio.vue'
