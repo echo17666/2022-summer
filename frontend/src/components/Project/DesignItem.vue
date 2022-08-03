@@ -4,11 +4,16 @@
 
 
         <VueDragResize  v-show="info.isshown" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
-          <v-btn  :width="info.width" :height="info.height">info
-            <v-btn @click="deleted(info)"> <span class="material-icons-outlined">
-                home</span></v-btn>
+           <div :style="{'position':'relative'}">
+          <v-btn  :width="info.width" :height="info.height" >
+           
+            info
+           
           </v-btn>
-          
+          <v-btn @click="deleted(info)" :style="{'position':'absolute','top':'0px','right':'0px'}" icon> <span class="material-icons-outlined">
+                close</span></v-btn>
+            
+          </div>
         </VueDragResize>
 
 
