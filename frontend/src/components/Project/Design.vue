@@ -4,9 +4,9 @@
      <div v-for="(info,index) in info"
              :key="index">
 
-       <DesignItem :info="info">
+       <ButtonItem :info="info">
      
-       </DesignItem>
+       </ButtonItem>
      
 
     </div>
@@ -15,11 +15,11 @@
   </div>
 </template>
 <script>
-   import DesignItem from './DesignItem.vue';
+   import ButtonItem from './ButtonItem.vue';
 export default {
   name: 'Design',
    components: {
-            DesignItem
+            ButtonItem
         },
 
   data () {

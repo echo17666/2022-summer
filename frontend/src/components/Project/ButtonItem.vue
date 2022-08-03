@@ -25,7 +25,7 @@
 <script>
    import VueDragResize from 'vue-drag-resize';
 export default {
-  name: 'DesignInfo',
+  name: 'ButtonItem',
   props:['info'],
    components: {
             VueDragResize
