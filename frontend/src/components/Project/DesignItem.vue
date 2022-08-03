@@ -5,7 +5,7 @@
 
         <VueDragResize  v-show="info.isshown" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
           <v-btn  :width="info.width" :height="info.height">info
-            <v-btn @click="deleted(info)"> <span class="material-icons-outlined">
+            <v-btn @click="deleted()"> <span class="material-icons-outlined">
                 home</span></v-btn>
           </v-btn>
           
@@ -20,7 +20,7 @@
 <script>
    import VueDragResize from 'vue-drag-resize';
 export default {
-  name: 'DesignInfo',
+  name: 'DesignItem',
   props:['info'],
    components: {
             VueDragResize
@@ -33,7 +33,7 @@ export default {
       }
     },
     methods: {
-        deleted(info){
+        deleted(){
           this.info.isshown = false;
         },
 

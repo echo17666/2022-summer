@@ -5,7 +5,6 @@
              :key="index">
 
        <DesignItem :info="info">
-     
        </DesignItem>
      
 
@@ -34,7 +33,7 @@ export default {
     },
     methods: {
        
-      addh1(){
+      add(){
         let a={width:200,height:200,top:200,left:200,isshown:true}
         this.info.push(a);
       },
@@ -45,7 +44,6 @@ export default {
                 this.top = newRect.top;
                 this.left = newRect.left;
             }
+    
     }
     }
-
-</script>
