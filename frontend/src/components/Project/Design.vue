@@ -126,7 +126,7 @@
 export default {
   name: 'Design',
    components: {
-            DesignItem,
+            
             Inputbox,
             ButtonBox,
             RadioBox,
