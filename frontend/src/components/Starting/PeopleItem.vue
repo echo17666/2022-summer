@@ -11,9 +11,13 @@
           <v-card-text>
             {{people.introduction}}
           </v-card-text>
-          <v-img v-bind:src="people.profile" alt=""> </v-img>
+          <v-card-text>
+            {{people.email}}
+          </v-card-text>
+          <v-card-text>
+            {{people.status}}
+          </v-card-text>
             <v-card-actions>
-
             </v-card-actions>
         </v-col>
 

@@ -53,12 +53,13 @@ export default {
       newPeople:{
         name:"",
         introduction:"",
-        profile:"",
+        email:"",
+        status:"",
       },
       people:[
-        {name:"aaa",introduction:"yyds",profile:"../assets/logo.png"},
-        {name:"bbb",introduction:"hello",profile:"../assets/logo.png"},
-        {name:"ccc",introduction:"hi",profile:"../assets/logo.png"},
+        {name:"aaa",introduction:"yyds",email:"12345@qq.com",status:"admin"},
+        {name:"bbb",introduction:"hello",email:"12345@qq.com",status:"admin"},
+        {name:"ccc",introduction:"hi",email:"12345@qq.com",status:"admin"},
       ],
       model: "",
     }
