@@ -4,7 +4,7 @@
       <v-col cols="12" md="2">
      <v-navigation-drawer
       permanent
-      height="90vh"
+      height="100vh"
     >
      
 

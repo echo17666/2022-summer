@@ -1,13 +1,13 @@
 <template>
-  <div class="main">
+  <div class="text">
 
-    <h1>假装有个主页</h1>
+     <h1 class="mx-auto">文档主页</h1>
 
   </div>
 </template>
 <script>
 export default {
-  name: 'Main',
+  name: 'Text',
   data () {
       return {
        

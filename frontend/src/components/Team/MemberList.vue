@@ -2,58 +2,34 @@
   <div class="memberlist">
     <h1>人员列表</h1>
     <v-row>
-      <v-col cols="12" md="4" v-for="(project,index) in project" :key="index">
-        <proitem :project="project"></proitem>
+      <v-col cols="12" md="4" v-for="(people,index) in people" :key="index">
+        <peoitem :people="people"></peoitem>
       </v-col>
     </v-row>
 
     <v-dialog v-model="dialog" persistent max-width="600px">
-      <v-card color="blue lighten-4" light>
-        <v-card-title class="headline white--text">
+      <v-card>
+        <v-card-title>
+          <span class="headline">添加成员</span>
         </v-card-title>
         <v-card-text>
-          搜索成员列表
+          <v-container>
+            <v-row>
+              <v-col col="12" md="12">
+                <v-text-field
+                    v-model="newPeople.name"
+                    :counter="10"
+                    label="人员名称"
+                    required
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
         </v-card-text>
-        <v-card-text>
-          <v-autocomplete
-              v-model="model"
-              :items="items"
-              :loading="isLoading"
-              :search-input.sync="search"
-              color="white"
-              hide-no-data
-              hide-selected
-              item-text="Description"
-              item-value="API"
-              label="search"
-              placeholder="Start typing to Search"
-              prepend-icon="mdi-database-search"
-              return-object
-          ></v-autocomplete>
-        </v-card-text>
-        <v-divider></v-divider>
-        <v-expand-transition>
-          <v-list v-if="model" class="red lighten-3">
-            <v-list-item
-                v-for="(field, i) in fields"
-                :key="i"
-            >
-              <v-list-item-content>
-                <v-list-item-title v-text="field.value"></v-list-item-title>
-                <v-list-item-subtitle v-text="field.key"></v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-expand-transition>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn
-              color="blue lighten-4"
-              @click="cancel()"
-          >
-            Cancel
-            <v-icon right>mdi-close-circle</v-icon>
-          </v-btn>
+          <v-btn color="blue darken-1" text @click="cancel()">取消</v-btn>
+          <v-btn color="blue darken-1" text @click="addPeople()">创建</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -65,49 +41,49 @@
   </div>
 </template>
 <script>
-import ProjectItem from '@/components/Starting/ProjectItem.vue'
+import PeopleItem from "@/components/Starting/PeopleItem";
 export default {
   name: 'MemberList',
   components: {
-    proitem:ProjectItem
+    peoitem:PeopleItem
   },
   data(){
     return{
       dialog: false,
-      newProject:{
+      newPeople:{
         name:"",
         introduction:"",
         profile:"",
       },
-      project:[
-        {name:"aaa",introduction:"yyds",profile:".../assets/logo.png"},
-        {name:"bbb",introduction:"hello",profile:".../assets/logo.png"},
-        {name:"ccc",introduction:"hi",profile:".../assets/logo.png"},
-      ]
-
+      people:[
+        {name:"aaa",introduction:"yyds",profile:"../assets/logo.png"},
+        {name:"bbb",introduction:"hello",profile:"../assets/logo.png"},
+        {name:"ccc",introduction:"hi",profile:"../assets/logo.png"},
+      ],
+      model: "",
     }
   },
   methods: {
-    addProject(){
-      const newpro={name:this.newProject.name,introduction:this.newProject.introduction,profile: this.newProject.profile};
-      this.project.push(newpro);
-      console.log(this.project)
+    addPeople(){
+      const newpro={name:this.newPeople.name,introduction:this.newPeople.introduction,profile: this.newPeople.profile};
+      this.people.push(newpro);
+      console.log(this.people)
 
 
       this.$notify({
         title: '人员添加成功',
         type: 'success'
       })
-      this.newProject.name='';
-      this.newProject.introduction="";
-      this.newProject.profile="";
+      this.newPeople.name='';
+      this.newPeople.introduction="";
+      this.newPeople.profile="";
       this.dialog = false;
     },
     cancel(){
 
-      this.newProject.name='';
-      this.newProject.introduction="";
-      this.newProject.profile="";
+      this.newPeople.name='';
+      this.newPeople.introduction="";
+      this.newPeople.profile="";
       this.dialog=false;
 
     }

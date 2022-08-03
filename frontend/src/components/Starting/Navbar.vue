@@ -1,63 +1,118 @@
 <template>
-    
 
-<v-app-bar
+
+    <v-navigation-drawer
+      permanent
+      height="100vh"
+      width="280px"
+      expand-on-hover
+
+      :style="{'background-color':'#bdd5ed'}"
       app
-      color="primary"
-      dark
     >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+      <template v-slot:prepend >
+        <v-list-item two-line >
+          <v-list-item-avatar :style="{'maargin-left':'-250px'}">
+            <img src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png" :style="{'width':'30px','height':'30px'}">
+          </v-list-item-avatar>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+          <v-list-item-content v-if="state.islogin==true">
+            <v-list-item-title>（没法获取名字）</v-list-item-title>
+            <v-list-item-subtitle>已登录</v-list-item-subtitle>
+          </v-list-item-content>
 
-      <v-spacer></v-spacer>
-       <router-link :to="{name:'Main'}">
-      <v-btn
-        text
-      >
-        <span class="mr-2">Main</span>
+          <v-list-item-content v-else>
+            <v-list-item-title>请先登录</v-list-item-title>
 
-      </v-btn>
-      </router-link>
-      <router-link :to="{name:'Login'}">
-      <v-btn
-        text
-      >
-        <span class="mr-2">Login</span>
+          </v-list-item-content>
+        </v-list-item>
+      </template>
 
-      </v-btn>
-      </router-link>
+      <v-divider></v-divider>
 
-      <router-link :to="{path:'/'}">
-      <v-btn
-        text
-      >
-        <span class="mr-2">Home</span>
+      <v-list dense >
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          @click="turn(item.link)"
+        >
+          <v-list-item-icon>
+            <span class="material-icons-outlined">
+                {{item.icon}}</span>
+          </v-list-item-icon>
 
-      </v-btn>
-      </router-link>
-     
-    </v-app-bar>
+
+          <v-list-item-content >
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item
+          @click="logout()"
+          v-if="state.islogin==true"
+        >
+          <v-list-item-icon>
+            <span class="material-icons-outlined" >
+                logout</span>
+          </v-list-item-icon>
+
+
+          <v-list-item-content >
+            <v-list-item-title >登出</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item
+          @click="$router.push('/login')"
+          v-else
+        >
+          <v-list-item-icon>
+            <span class="material-icons-outlined" >
+                login</span>
+          </v-list-item-icon>
+
+
+          <v-list-item-content >
+            <v-list-item-title >登录</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+
+      </v-list>
+    </v-navigation-drawer>
+
+
 </template>
-    
 <script>
 export default {
-  name: 'Navbar'
-}
+  name: 'Main',
+  data () {
+      return {
+        state:this.$store.state,
+        items: [
+          { title: '团队管理', icon: 'home' ,link:'/teams'},
+          { title: '项目管理', icon: 'home',link:'/project' },
+          { title: '文档编辑', icon: 'home',link:'/document' },
+          { title: '回到主页', icon: 'home',link:'/main' },
+          
+        ],
+      }
+    },
+    methods: {
+      turn(link){
+        this.$router.push(link)
+      },
+      logout(){
+        this.$store.commit('logout')
+        this.$router.push('/login')
+      }
+    }
+    }
+
 </script>
+<style scoped>
+.v-list-item.v-list-item--two-line.theme--light {
+    margin-left: -6px;
+    /* color:#bdd5ed */
+}
+</style>

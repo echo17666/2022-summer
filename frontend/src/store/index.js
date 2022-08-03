@@ -8,13 +8,22 @@ export default new Vuex.Store({
   state: {
     islogin:false,
     username:'',
-    token:''
+    token:'',
+    listTemp:null,
+    content:''
   },
   getters: {
   },
   mutations: {
+    content(state,val){
+      state.content = val
+    },
     login(state){
       state.islogin=true;
+    },
+    changeList(state,n){
+      debugger
+      state.listTemp = n;
     },
     logout(state){
       state.islogin=false;
