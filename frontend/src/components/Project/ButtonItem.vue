@@ -1,7 +1,8 @@
 <template>
   <div class="design">
 
-
+<v-row>
+  <v-col cols="12" md="9">
 
         <VueDragResize  v-show="info.isshown" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
            <div :style="{'position':'relative'}">
@@ -17,9 +18,12 @@
         </VueDragResize>
 
 
-
+ </v-col>
+ <v-col cols="12" md="3">
+  <v-card height="100vh">设计区域</v-card>
     
-
+</v-col>
+</v-row>
   </div>
 </template>
 <script>
