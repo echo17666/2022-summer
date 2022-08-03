@@ -1,5 +1,12 @@
 <template>
   <div class="design">
+    <div class="components">
+      <el-form label-width="80px">
+        <el-form-item label="活动名称">
+            <el-button @click="addinput()"></el-button>
+        </el-form-item>
+      </el-form>
+    </div>
 <v-btn @click="add()">add</v-btn>
      <div v-for="(info,index) in info"
              :key="index">
