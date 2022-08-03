@@ -1,10 +1,12 @@
 <template>
   <div class="teamproject" :style="{'margin-left':'10px','margin-right':'10px'}">
     <h1>团队项目列表</h1>
+    <div style="height: 10px"></div>
     <v-row>
       <v-col cols="12" md="4" v-for="(project,index) in project"
              :key="index"
              v-if="project.deleted===false"
+             style="background-color: lightblue;"
       >
         <proitem :project="project"></proitem>
       </v-col>
