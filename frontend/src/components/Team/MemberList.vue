@@ -45,7 +45,7 @@ import PeopleItem from "@/components/Starting/PeopleItem";
 export default {
   name: 'MemberList',
   components: {
-    peoitem:PeopleItem
+    peoitem:PeopleItem,
   },
   data(){
     return{
@@ -66,10 +66,9 @@ export default {
   },
   methods: {
     addPeople(){
-      const newpro={name:this.newPeople.name,introduction:this.newPeople.introduction,profile: this.newPeople.profile};
+      const newpro={name:this.newPeople.name,introduction:this.newPeople.introduction,email: this.newPeople.email,status:this.newPeople.status};
       this.people.push(newpro);
       console.log(this.people)
-
 
       this.$notify({
         title: '人员添加成功',
@@ -77,14 +76,14 @@ export default {
       })
       this.newPeople.name='';
       this.newPeople.introduction="";
-      this.newPeople.profile="";
+      this.newPeople.email="";
       this.dialog = false;
     },
     cancel(){
 
       this.newPeople.name='';
       this.newPeople.introduction="";
-      this.newPeople.profile="";
+      this.newPeople.email="";
       this.dialog=false;
 
     }

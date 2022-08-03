@@ -48,6 +48,7 @@
       </v-card>
     </v-dialog>
 
+    <div style="height: 20px"></div>
     <v-btn  @click="dialog=!dialog" class="mx-2" fab dark color="indigo">
       <span class="material-icons-outlined">add</span>
     </v-btn>
