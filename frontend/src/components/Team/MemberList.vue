@@ -29,7 +29,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="cancel()">取消</v-btn>
-          <v-btn color="blue darken-1" text @click="addPeople()">创建</v-btn>
+          <v-btn color="blue darken-1" text @click="addPeople()">添加</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -61,23 +61,41 @@ export default {
         {name:"bbb",introduction:"hello",email:"12345@qq.com",status:"admin"},
         {name:"ccc",introduction:"hi",email:"12345@qq.com",status:"admin"},
       ],
+      list:[
+        {name:"aaa",introduction:"yyds",email:"12345@qq.com",status:"admin"},
+        {name:"bbb",introduction:"hello",email:"12345@qq.com",status:"admin"},
+        {name:"ccc",introduction:"hi",email:"12345@qq.com",status:"admin"},
+      ],
       model: "",
     }
   },
   methods: {
     addPeople(){
-      const newpro={name:this.newPeople.name,introduction:this.newPeople.introduction,email: this.newPeople.email,status:this.newPeople.status};
-      this.people.push(newpro);
-      console.log(this.people)
+      let index = this.list.findIndex(o => o.name === this.newPeople.name);
+      // const newpro={name:this.newPeople.name,introduction:this.newPeople.introduction,email: this.newPeople.email,status:this.newPeople.status};
+      if(index===-1) {
+        this.$notify({
+          title: '该成员不存在',
+          type: 'failed'
+        });
+        this.newPeople.name='';
+        this.newPeople.introduction="";
+        this.newPeople.email="";
+        this.dialog = false;
+      }
+      else{
+        const obj = this.list[index];
+        this.people.push(obj);
+        this.$notify({
+          title: '人员添加成功',
+          type: 'success'
+        })
+        this.newPeople.name='';
+        this.newPeople.introduction="";
+        this.newPeople.email="";
+        this.dialog = false;
+      }
 
-      this.$notify({
-        title: '人员添加成功',
-        type: 'success'
-      })
-      this.newPeople.name='';
-      this.newPeople.introduction="";
-      this.newPeople.email="";
-      this.dialog = false;
     },
     cancel(){
 
