@@ -1,58 +1,99 @@
 <template>
   <div class="design">
     <div class="components">
-      <el-form label-width="40px">
-        <el-form-item>
-            <el-button @click="addinput()">添加输入框</el-button>
-        </el-form-item>
-        <el-form-item>
-            <el-button @click="addbutton()">添加按钮</el-button>
-        </el-form-item>
-        <el-form-item>
-            <el-button @click="addradio()">添加单选框</el-button>
-        </el-form-item>
-        <el-form-item>
-            <el-button @click="addcheckbox()">添加多选框</el-button>
-        </el-form-item>
-        <el-form-item>
-            <el-button @click="addswitch()">添加开关</el-button>
-        </el-form-item>
-        <el-form-item>
-            <el-button @click="addoption()">添加选择器</el-button>
-        </el-form-item>
-        <el-form-item>
-            <el-button @click="addimg()">添加图片</el-button>
-        </el-form-item>
-        <el-form-item>
-            <el-button @click="addrect()">添加矩形</el-button>
-        </el-form-item>
-        <el-form-item>
-            <el-button @click="addcircle()">添加圆</el-button>
-        </el-form-item>
-        <el-form-item>
-            <el-button @click="addtriangle()">添加三角形</el-button>
-        </el-form-item>
-        <el-form-item>
-            <el-button @click="addavatar()">添加头像</el-button>
-        </el-form-item>
-        <el-form-item>
-            <el-button @click="addtag()">添加标签</el-button>
-        </el-form-item>
-        <el-form-item>
-            <el-button @click="addbread()">添加面包屑</el-button>
-        </el-form-item>
-      </el-form>
-    </div>
-    <div class="save" >
-      <el-button @click="save()">
+        <v-row >
+          <v-col cols="12" md="3">
+            <v-card outlined :style="{'padding':'10px','height':'100vh'}">
+        <v-row :style="{'margin-left':'5px','margin-top':'5px'}">
+          <v-col cols="12" md="4">
+
+            <el-button @click="addinput()">输入框</el-button>
+
+          </v-col>
+         <v-col cols="12" md="4">
+
+            <el-button @click="addbutton()">按钮</el-button>
+
+          </v-col>
+        <v-col cols="12" md="4">
+
+            <el-button @click="addradio()">单选框</el-button>
+
+          </v-col>
+         <v-col cols="12" md="4">
+
+            <el-button @click="addcheckbox()">多选框</el-button>
+
+        </v-col>
+         <v-col cols="12" md="4">
+
+            <el-button @click="addswitch()">开关</el-button>
+
+         </v-col>
+         <v-col cols="12" md="4">
+
+            <el-button @click="addoption()">选择器</el-button>
+
+         </v-col>
+         <v-col cols="12" md="4">
+
+            <el-button @click="addimg()">图片</el-button>
+
+         </v-col>
+         <v-col cols="12" md="4">
+
+            <el-button @click="addrect()">矩形</el-button>
+
+         </v-col>
+         <v-col cols="12" md="4">
+
+            <el-button @click="addcircle()">圆</el-button>
+
+         </v-col>
+         <v-col cols="12" md="4">
+
+            <el-button @click="addtriangle()">三角形</el-button>
+
+         </v-col>
+         <v-col cols="12" md="4">
+
+            <el-button @click="addavatar()">头像</el-button>
+
+         </v-col>
+         <v-col cols="12" md="4">
+
+            <el-button @click="addtag()">标签</el-button>
+
+         </v-col>
+         <v-col cols="12" md="4">
+
+            <el-button @click="addbread()">面包屑</el-button>
+
+         </v-col>
+<v-col cols="12" md="12">
+         <div class="save" >
+      <el-button :style="{'width':'100px','height':'45px'}" @click="save()">
         保存页面
       </el-button>
     </div>
+    </v-col>
+    <v-col cols="12" md="12">
     <div class="saveAsOthers" >
-      <el-button @click="saveAsOthers()">
+      <el-button :style="{'width':'100px','height':'45px'}" @click="saveAsOthers()">
         导出页面
       </el-button>
     </div>
+    </v-col>
+        </v-row>
+        </v-card>
+    </v-col>
+<v-col cols="12" md="9">
+    
+      
+   
+    
+    
+    
     <div v-for="(info,index) in inputinfo"
              :key="index">
        <Inputbox :info="info"></Inputbox>
@@ -105,7 +146,10 @@
              :key="index">
        <BreadBox :info="info"></BreadBox>
     </div>
+    </v-col>
+        </v-row>
   </div>
+   </div>
 </template>
 <script>
   import { Account } from "@/api/account.js";
@@ -258,3 +302,17 @@ export default {
     }
 
 </script>
+<style scoped>
+.el-button{
+  width:90px;
+  height:90px
+}
+.col-md-4.col-12{
+  padding-left:4px;
+  padding-right:4px;
+  padding-top:2px;
+  padding-bottom:2px;
+  max-width:100px;
+  height:100px
+}
+</style>

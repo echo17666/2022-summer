@@ -2,8 +2,7 @@
   <div class="design">
         <VueDragResize  v-show="info.isshown" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
              <div :style="{'position':'relative'}" :width="info.width" :height="info.height">
-                <img id="img" src="../../assets/rectangle.png" width="100%">
-                </img>
+                <img id="img" src="../../assets/rectangle.png" width="100%"/>
                 <v-btn @click="deleted(info)" :style="{'position':'absolute','top':'0px','right':'0px'}" icon> <span class="material-icons-outlined">
                         close</span></v-btn>
             </div>
