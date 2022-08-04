@@ -126,19 +126,9 @@ export default {
         this.intro=this.team.team_intro,
         this.dialog = false;
     },
-    // toTeam(){
-        
-    //     this.id=this.creator_username+this.team.team_id;
-    //     console.log(this.id)
-    //     for(let i=0;i<id.length;i++){
-    //         console.log(id[i],"xxx");
-    //     }
-    //     // :to="{ name: 'ShowProfile', params: { id: sharedState.user_id } }"
-    // }
+    
   },
-  mounted(){
-    this.toTeam();
-  }
+ 
 
 };
 </script>

@@ -17,7 +17,8 @@
           </v-list-item-avatar>
 
           <v-list-item-content v-if="state.islogin==true">
-            <v-list-item-title>（没法获取名字）</v-list-item-title>
+            <v-list-item-title>{{
+              state.username}}</v-list-item-title>
             <v-list-item-subtitle>已登录</v-list-item-subtitle>
           </v-list-item-content>
 
