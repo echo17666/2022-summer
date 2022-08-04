@@ -1,5 +1,5 @@
 <template>
-  <div class="design">
+  <div class="design" ref="app">
     <div class="components">
         <v-row >
           <v-col cols="12" md="3">
@@ -87,12 +87,14 @@
       <el-button :style="{'width':'100px','height':'45px'}" @click="saveAsOthers()">
         导出页面
       </el-button>
+      <img :src="imgUrl" alt="" />
     </div>
     </v-col>
         </v-row>
         </v-card>
     </v-col>
 <v-col cols="12" md="9">
+  <div class="prototype" ref="prototype"> 
     <div v-for="(info,index) in inputinfo"
              :key="index">
        <Inputbox :info="info"></Inputbox>
@@ -145,19 +147,21 @@
              :key="index">
        <BreadBox :info="info"></BreadBox>
     </div>
-    </v-col>
-        </v-row>
-  <div v-for="(info,index) in boardinfo"
+    <div v-for="(info,index) in boardinfo"
              :key="index">
        <BoardBox :info="info"></BoardBox>
     </div>
+    </div>
+    </v-col>
+        </v-row>
+  
   </div>
    </div>
 </template>
 <script>
   import { Account } from "@/api/account.js";
   import VueDragResize from 'vue-drag-resize'
-
+  import html2canvas from 'html2canvas'
    import Inputbox from '../com/inputbox.vue'
    import ButtonBox from '../com/button.vue'
    import RadioBox from '../com/radio.vue'
@@ -196,24 +200,25 @@ export default {
 
   data () {
       return {
-        inputinfo:[{}],
-        buttoninfo:[{}],
-        radioinfo:[{}],
-        checkboxinfo:[{}],
-        switchinfo:[{}],
-        optioninfo:[{}],
-        imginfo:[{}],
-        avatarinfo:[{}],
-        rectinfo:[{}],
-        circleinfo:[{}],
-        taginfo:[{}],
-        triangleinfo:[{}],
-        breadinfo:[{}],
-        boardinfo:[{}],
+        inputinfo:[],
+        buttoninfo:[],
+        radioinfo:[],
+        checkboxinfo:[],
+        switchinfo:[],
+        optioninfo:[],
+        imginfo:[],
+        avatarinfo:[],
+        rectinfo:[],
+        circleinfo:[],
+        taginfo:[],
+        triangleinfo:[],
+        breadinfo:[],
+        boardinfo:[],
         drawwidth:500,
         drawheight:500,
         drawtop:100,
-        drawleft:500
+        drawleft:500,
+        imgUrl: null,
 
       }
     },
@@ -299,15 +304,28 @@ export default {
 
       },
       saveAsOthers(){
-
+          // 第一个参数是需要生成截图的元素,第二个是自己需要配置的参数,宽高等
+          html2canvas(this.$refs.prototype, {
+            width: 1000, //截图宽度
+            height: 1000, //截图高度
+            backgroundColor: null, //画出来的图片有白色的边框,不要可设置背景为透明色（null）
+            useCORS: true, //支持图片跨域
+            scale: 1, //设置放大的倍数
+          }).then((canvas) => {
+            // 把生成的base64位图片上传到服务器,生成在线图片地址
+            let url = canvas.toDataURL("image/png"); // toDataURL: 图片格式转成 base64
+            this.fileDownload(url);
+          });
       },
-      resize1(newRect) {
-                this.drawwidth = newRect.width;
-                this.drawheight = newRect.height;
-                this.drawtop = newRect.top;
-                this.drawleft = newRect.left;
-               
-      },
+      fileDownload(downloadUrl) {
+        		let aCreate = document.createElement("a");//创建a元素
+       			 aCreate.style.display = "none";//隐藏a元素
+        		 aCreate.href = downloadUrl;//把dataURL给a元素的href属性
+       			 aCreate.download = "设计原型.png";
+       			 document.body.appendChild(aCreate);//触发点击
+        		 aCreate.click();
+        		 document.body.removeChild(aCreate);//移除
+     		},
       addboard(){
         let a={width:500,height:500,top:100,left:500,isshown:true}
         this.boardinfo.push(a);
