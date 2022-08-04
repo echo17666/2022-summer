@@ -11,26 +11,21 @@
           label="文件名"
           prop="document_name">
       </el-table-column>
-      <el-table-column
-          label="日期"
-          prop="time">
-      </el-table-column>
+
       <el-table-column
           align="right">
-        <template slot="header" slot-scope="scope">
-          <el-input
-              v-model="search"
-              size="mini"
-              placeholder="输入关键字搜索"/>
+           <template slot="header" >
+         <el-button type="primary" @click="dialogVisible = true">新建</el-button>
         </template>
+         
         <template slot-scope="scope">
           <el-button
               size="mini"
-              @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+              @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
           <el-button
               size="mini"
               type="danger"
-              @click="deleteFile(scope.row)">Delete</el-button>
+              @click="deleteFile(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -53,6 +48,17 @@
         <el-button type="primary" @click="editFile">确 定</el-button>
       </span>
     </el-dialog>
+
+     <el-dialog
+      title="提示"
+      :visible.sync="dialogVisible"
+      width="30%">
+      <el-input v-model="value" placeholder="文档名称"></el-input>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="addFile">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 
 </template>
@@ -65,7 +71,9 @@ export default {
   data(){
     return{
       search: '',
+      value:'',
       documentlist: [],
+       dialogVisible: false,
       fileList: [],
       isshowEdit: false,
       formData: undefined,
@@ -112,9 +120,23 @@ export default {
 this.getprojectdocument()
   },
   methods:{
+    addFile() {
+      let id=this.$route.params.id
+
+      let s=id.split('JQ');
+      let project_id=s[1];
+      document.createdocument({document_name: this.value,project_id:project_id}).then(res => {
+        console.log(res)
+        if (res.data.errno == 0) {
+          this.dialogVisible = false
+        }
+      })
+      this.$router.go(0)
+    },
     handleEdit(index, row) {
       console.log(index, row);
-      this.$router.push({name:'NewDocument', query: {row: row}})
+
+      this.$router.push({name:'NewDocument', params:{id:row.id}})
     },
     handleDelete(index, row) {
       console.log(index, row);
@@ -125,7 +147,10 @@ this.getprojectdocument()
       })
     },
     getprojectdocument() {
-      document.projectdocument({project_id: 1}).then(res => {
+      let id=this.$route.params.id
+      let s=id.split('JQ');
+      let project_id=s[1];
+      document.projectdocument({project_id:project_id}).then(res => {
         this.documentlist = res.data.documents
       })
     },

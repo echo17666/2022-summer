@@ -6,6 +6,7 @@ const url={
     projectdocument:'/document/projectdocument',
     updatedocument:'/document/updatedocument',
     deletedocument:'/document/deletedocument',
+    getcontent:'/document/documentcontent'
 }
 export class document{
    
@@ -41,6 +42,16 @@ export class document{
     };
     static async deletedocument(data){
         return service(url.deletedocument, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data:data,          
+        })
+    };
+    static async getContent(data){
+        return service(url.getcontent, {
             method: 'post',
             headers: {
                 'Content-Type': 'multipart/form-data'

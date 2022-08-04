@@ -8,6 +8,7 @@ const url={
     finishProject:'/project/finishproject',
     deleteProject:'/project/deleteproject',
     reviveproject:'/project/reviveproject',
+    updateProject:'/project/updateproject'
 }
 export class Project{
 
@@ -63,6 +64,16 @@ export class Project{
     };
     static async reviveproject(data){
         return service(url.reviveproject, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data:data,
+        })
+    };
+    static async UpdateProject(data){
+        return service(url.updateProject, {
             method: 'post',
             headers: {
                 'Content-Type': 'multipart/form-data'

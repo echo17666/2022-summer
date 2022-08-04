@@ -80,7 +80,7 @@ const routes = [
     children: [
       {path: '', component: ViewAll},
       {path: 'viewall', name:'ViewAll',component: ViewAll},
-      {path: 'doc', name:'Text',component: Text},
+      {path: 'newdocument',name:'DocumentEdit', component: documentEdit}
   ]
   },
   {
@@ -121,21 +121,8 @@ const routes = [
    
 ]
 },
-{
-  path: '/document',
-  name: 'Document',
-  component: documentmanage,
-  children: [
-      {path: '/newdocument', name: 'NewDocument', component: newDocument},
-      {path: 'newdocument',name:'DocumentEdit', component: documentEdit}
-  ]
-},
-{
-  path: '/test',
-  name: 'Test',
-  component: Test,
- 
-},
+{path: '/newdocument/:id', name: 'NewDocument', component: newDocument},
+
 
 ]
 

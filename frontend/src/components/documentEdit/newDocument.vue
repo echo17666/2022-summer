@@ -3,18 +3,9 @@
     <el-tiptap v-model="content" :extensions="extensions" placeholder="Write something ..."/>
     <div style="height: 15px"></div>
     <el-row >
-      <el-button style="float: right;margin-right: 15px" @click="saveFile">保存</el-button>
-      <el-button style="float: right" @click="clearTiptap">清空内容</el-button>
+      <el-button style="float: right;margin-right: 15px" @click="saveFile()">保存</el-button>
+      <el-button style="float: right" @click="clearTiptap()">清空内容</el-button>
     </el-row>
-    <div style="height: 20vh;width: 50vw;border:1px seashell solid;display: flex;justify-items: center;align-items: center;position: absolute;top: 30%;left:30%;background-color: white;box-shadow: 3px 3px 3px 3px #888888;"
-      v-show="stats">
-      <el-form style="width: 30vw">
-        <el-form-item label="文件名称" label-width="100px">
-          <el-input v-model="title" placeholder="请输入文件名称（enter结束)" ></el-input>
-          <el-button @click="search">保存</el-button>
-        </el-form-item>
-      </el-form>
-    </div>
   </div>
 </template>
 
@@ -75,7 +66,6 @@ export default {
     return{
       stats:false,
       gettime:'',
-      row: undefined,
       extensions: [
         new Doc(),
         new Text(),
@@ -159,10 +149,21 @@ export default {
     clearTiptap(){
       this.content = ''
     },
+    getContent(){
+      let id = this.$route.params.id;
+      let formdata=new FormData();
+      formdata.append('document_id',id)
+      document.getContent(formdata)
+       .then((response) => {
+         this.content=response.data.document.document_content;
+        })
+        .catch((error) => {
+          console.log(error)
+        });
+    },
     saveFile(){
-
       console.log("保存文档");
-      this.stats = true
+      this.search()
     },
     search(){
       let temp = {
@@ -173,14 +174,18 @@ export default {
       }
       let file =  new File([this.content], this.title + '.txt', {type: 'text/plain'})
       let formData = new FormData
-      formData.append('document_id', this.row.id)
+      formData.append('document_id', this.$route.params.id)
       formData.append('document_content', this.content)
       document.updatedocument(formData).then(res => {
+        console.log(res)
       })
-      this.$store.commit('changeList',temp)
-      console.log(this.$store.state.listTemp)
-      this.stats = false
+      
+
+
     }
+  },
+  mounted(){
+    this.getContent()
   }
 }
 </script>
