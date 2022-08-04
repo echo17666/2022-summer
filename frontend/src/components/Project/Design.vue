@@ -172,7 +172,7 @@
    import TriangleBox from '../com/triangle.vue'
    import BreadBox from '../com/bread.vue'
    import BoardBox from '../com/drawboard.vue'
-import { ListItem } from 'element-tiptap';
+
 export default {
   name: 'draw',
    components: {
@@ -222,9 +222,9 @@ export default {
     },
     methods: {
       show(){
-        // let id=this.$route.params.id
-        // let s=id.split('ZY');
-        // let prototype_id=s[1];
+        let id=this.$route.params.id
+        let s=id.split('ZY');
+        let prototype_id=s[1];
 
         let list=[]
         let formdata =new FormData()
@@ -252,9 +252,9 @@ export default {
         })
       },       
       save(){
-        // let id=this.$route.params.id
-        // let s=id.split('ZY');
-        // let prototype_id=s[1];
+        let id=this.$route.params.id
+        let s=id.split('ZY');
+        let prototype_id=s[1];
 
         let list=new Array()
         list.push(this.inputinfo)
