@@ -38,20 +38,8 @@
             <v-list-item-title>创建团队</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item
         
-        >
-          <v-list-item-icon>
-            <span class="material-icons-outlined">
-                home</span>
-          </v-list-item-icon>
-          
-
-          <v-list-item-content>
-            <v-list-item-title>加入团队</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-divider/>
+       
         
       </v-list>
     </v-navigation-drawer>
@@ -81,5 +69,14 @@ export default {
 </script>
 
 <style>
+.router-link-active {
+  text-decoration: none;
+  color: yellow;
+  color: #4cabeb;
+}
 
+a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
 </style>

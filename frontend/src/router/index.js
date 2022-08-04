@@ -24,6 +24,7 @@ import ProjectManage from '../components/Project/Manage.vue'
 import Design from '../components/Project/Design.vue'
 
 import Text from '../components/Project/Text.vue'
+import ViewAll from '../components/Project/ViewAll.vue'
 
 import documentEdit from "@/components/documentEdit/documentEdit";
 import newDocument from "@/components/documentEdit/newDocument";
@@ -73,9 +74,14 @@ const routes = [
     component: Text
   },
   {
-    path: '/project',
+    path: '/project/:id',
     name: 'ProjectManage',
-    component: ProjectManage
+    component: ProjectManage,
+    children: [
+      {path: '', component: ViewAll},
+      {path: 'viewall', name:'ViewAll',component: ViewAll},
+      {path: 'doc', name:'Text',component: Text},
+  ]
   },
   {
     path: '/myproject',

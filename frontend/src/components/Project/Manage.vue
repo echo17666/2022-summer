@@ -10,22 +10,8 @@
 
       <v-list dense>
 
-         <v-list-item
-          
-        >
-          <v-list-item-icon>
-            <span class="material-icons-outlined">
-                home</span>
-          </v-list-item-icon>
-          
-
-          <v-list-item-content>
-            <v-list-item-title>总览</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
         <v-list-item
-        
+          @click="router.push('/viewall')"
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
@@ -59,9 +45,7 @@
     </v-col>
     
     <v-col cols="12" md="10" >
-            <h1>这里把原型设计和文档一条条罗列，左边作筛选作用</h1>
-            <v-btn @click="$router.push('/design')">一个原型</v-btn>
-            <v-btn @click="$router.push('/text')">一个文档</v-btn>
+           <router-view/>
     </v-col>
     
   </div>

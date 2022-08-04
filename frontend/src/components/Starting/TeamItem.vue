@@ -3,7 +3,7 @@
     <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'200px'}">
       <v-row>
         <v-col cols="12" md="10" sm="10">
-            <router-link @click="toTeam()" :to="{ name: 'TeamProject', params: { id: team.url } }">
+            <router-link :to="{ name: 'TeamProject', params: { id: team.url } }">
             <v-card-title>
               <h1>
              {{team.team_name}}
