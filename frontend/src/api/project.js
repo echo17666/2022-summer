@@ -6,7 +6,7 @@ const url={
     addProject:'/project/createproject',
     showrubbishProject:'/project/rubbishproject',
     finishProject:'/project/finishproject',
-    deleteProject:'/api/project/deleteproject',
+    deleteProject:'/project/deleteproject',
 }
 export class Project{
 
