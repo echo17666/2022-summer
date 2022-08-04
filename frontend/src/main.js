@@ -8,7 +8,7 @@ import material from 'material-icons/iconfont/material-icons.css';
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import VueDragResize from 'vue-drag-resize'
-
+import html2canvas from "html2canvas";
 
 Vue.config.productionTip = false
 import { ElementTiptapPlugin } from "element-tiptap";
@@ -16,6 +16,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 // 引入 import element-tiptap 样式
 import 'element-tiptap/lib/index.css';
 Vue.use(ElementUI)
+
 Vue.component('vue-drag-resize', VueDragResize)
 Vue.prototype.$axios = axios;
 Vue.use( ElementTiptapPlugin, {

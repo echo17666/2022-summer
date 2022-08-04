@@ -27,7 +27,9 @@ import Text from '../components/Project/Text.vue'
 
 import documentEdit from "@/components/documentEdit/documentEdit";
 import newDocument from "@/components/documentEdit/newDocument";
-import documentmanage from "@/components/documentEdit/Manage"
+import documentmanage from "@/components/documentEdit/Manage";
+
+import Test from "@/components/Project/ScreenShotTest.vue";
 
 
 
@@ -121,6 +123,12 @@ const routes = [
       {path: '/newdocument', name: 'NewDocument', component: newDocument},
       {path: 'newdocument',name:'DocumentEdit', component: documentEdit}
   ]
+},
+{
+  path: '/test',
+  name: 'Test',
+  component: Test,
+ 
 },
 
 ]
