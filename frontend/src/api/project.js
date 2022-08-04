@@ -4,9 +4,9 @@ import service from '@/http/request.js'
 const url={
     showProject:'/project/userproject',
     addProject:'/project/createproject',
-    // showrubbishProject:'/project/rubbishproject',
-    // finishProject:'/project/finishproject',
-    // deleteProject:'/api/project/deleteproject',
+    showrubbishProject:'/project/rubbishproject',
+    finishProject:'/project/finishproject',
+    deleteProject:'/api/project/deleteproject',
 }
 export class Project{
 
@@ -30,5 +30,34 @@ export class Project{
             data:data,
         })
     };
-
+    static async ShowRubbish(data){
+        return service(url.showrubbishProject, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data:data,
+        })
+    };
+    static async finishProject(data){
+        return service(url.finishProject, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data:data,
+        })
+    };
+    static async deleteProject(data){
+        return service(url.deleteProject, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data:data,
+        })
+    };
 }
