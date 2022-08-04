@@ -104,7 +104,7 @@ export default {
       let team_id=s[1];
       let formdata = new FormData();
       formdata.append("team_id",team_id)
-      formdata.append("user_id",this.people.user_id)
+      formdata.append("user_id",this.people.id)
       formdata.append("user_identity","out")
       Member.SetIdentity(formdata)
       .then((response) => {
@@ -112,6 +112,7 @@ export default {
           title: '成功移除用户',
           type: 'success'
         })
+        this.$router.push({'name':'MemberList'})
       })
       .catch((error)=>{
         console.log(error)
@@ -123,11 +124,12 @@ export default {
       let team_id=s[1];
       let formdata = new FormData();
       formdata.append("team_id",team_id)
-      formdata.append("user_id",this.people.user_id)
+      formdata.append("user_id",this.people.id)
       formdata.append("user_identity","administrator")
       console.log(formdata)
       Member.SetIdentity(formdata)
       .then((response) => {
+          this.people.user_identity='administrator'
          this.$notify({
           title: '成功设置管理',
           type: 'success'
@@ -143,10 +145,13 @@ export default {
       let team_id=s[1];
       let formdata = new FormData();
       formdata.append("team_id",team_id)
-      formdata.append("user_id",this.people.user_id)
+      formdata.append("user_id",this.people.id)
       formdata.append("user_identity","member")
+      
       Member.SetIdentity(formdata)
+
       .then((response) => {
+          this.people.user_identity='member'
          this.$notify({
           title: '成功撤销管理',
           type: 'success'
