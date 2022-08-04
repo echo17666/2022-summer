@@ -38,7 +38,7 @@ export default {
       let formdata = new FormData();
       formdata.append("team_id",team_id)
 
-      Project.ShowProject(formdata)
+      Project.ShowRubbish(formdata)
           .then((response) => {
             this.projects = response.data.Teams;
           })
