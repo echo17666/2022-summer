@@ -228,7 +228,7 @@ export default {
     methods: {
       show(){
         let id=this.$route.params.id
-        let s=id.split('ZY');
+        let s=id.split('DS');
         let prototype_id=s[1];
 
         let list=[]
@@ -258,7 +258,7 @@ export default {
       },       
       save(){
         let id=this.$route.params.id
-        let s=id.split('ZY');
+        let s=id.split('DS');
         let prototype_id=s[1];
 
         let list=new Array()
