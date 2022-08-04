@@ -5,10 +5,10 @@
     <v-row>
       <v-col cols="12" md="4" v-for="(project,index) in projects"
              :key="index"
-             
+
              style="background-color: lightblue;"
       >
-        <proitem v-show="project.project_status!=0" :project="project"></proitem>
+        <proitem v-if="project.project_status!==0" :project="project"></proitem>
       </v-col>
     </v-row>
     <v-dialog v-model="dialog" persistent max-width="600px">
@@ -93,7 +93,7 @@ export default {
               let b = id.charCodeAt(j);
               s+=a[b%36];
             }
-            
+
             s+="JQ"
             s+=this.projects[i].id;
             this.projects[i]["url"]=s;
