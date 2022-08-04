@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    islogin:false,
+    islogin:window.localStorage.getItem('token') ? true : false,
     username:'',
     token:'',
     listTemp:null,
