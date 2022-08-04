@@ -3,7 +3,7 @@
     <h1>团队项目列表</h1>
     <div style="height: 10px"></div>
     <v-row>
-      <v-col cols="12" md="4" v-for="(project,index) in project"
+      <v-col cols="12" md="4" v-for="(project,index) in projects"
              :key="index"
              v-if="project.deleted===false"
              style="background-color: lightblue;"
@@ -21,7 +21,7 @@
             <v-row>
               <v-col col="12" md="12">
                 <v-text-field
-                    v-model="newProject.name"
+                    v-model="name"
                     :counter="10"
                     label="项目名称"
                     required
@@ -29,7 +29,7 @@
               </v-col>
               <v-col col="12" md="12">
                 <v-textarea
-                    v-model="newProject.introduction"
+                    v-model="description"
                     outlined
                     label="项目简介"
                     rows="4"
@@ -58,49 +58,69 @@
 </template>
 <script>
 import ProjectItem from '@/components/Starting/ProjectItem.vue'
+import { Project } from "@/api/project.js";
 export default {
   name: 'TeamProject',
   components: {
-    proitem:ProjectItem
+    proitem: ProjectItem
   },
-  data(){
-    return{
+  data() {
+    return {
       dialog: false,
-      newProject:{
-        name:"",
-        introduction:"",
-        completed:false,
-        deleted:false,
-      },
-      project:[
-        {name:"aaa",introduction:"yyds",completed:false, deleted:false},
-        {name:"bbb",introduction:"hello",completed:true, deleted:false},
-        {name:"ccc",introduction:"hi",completed:false, deleted:false},
-      ]
+      name: "",
+      description: "",
+      projects: []
     }
   },
   methods: {
-    addProject(){
-      const newpro={name:this.newProject.name,introduction:this.newProject.introduction,completed:false,deleted:false};
-      this.project.push(newpro);
-      console.log(this.project)
-      this.$notify({
-        title: '项目创建成功',
-        type: 'success'
-      })
-      this.newProject.name='';
-      this.newProject.introduction="";
-          this.dialog = false;
+    getProject() {
+      let id=this.$route.params.id
+
+      let s=id.split('ZY');
+      let team_id=s[1];
+      let formdata = new FormData();
+      formdata.append("team_id",team_id)
+
+      Project.ShowProject(formdata)
+          .then((response) => {
+            this.projects = response.data.projects
+          })
+          .catch((error) => {
+            console.log(error)
+          });
     },
-    cancel(){
-
-      this.newProject.name='';
-      this.newProject.introduction="";
-
-      this.dialog=false;
-
+    cancel() {
+      this.name = "";
+      this.introduction = "";
+      this.dialog = false;
     },
+    addProject() {
+      let id = this.$route.params.id;
+      let s = id.split('ZY');
+      let team_id = s[1];
+      let formdata = new FormData();
+      formdata.append("team_id", team_id)
+      formdata.append("project_name", this.name)
+      formdata.append("project_description", this.description)
 
+      Project.AddProject(formdata)
+          .then((response) => {
+            console.log(response.data)
+            this.$notify({
+              title: '添加项目成功',
+              type: 'success'
+            })
+            })
+          .catch((error) => {
+            console.log(error)
+          });
+      this.name = "";
+      this.introduction = "";
+      this.dialog = false;
+    },
+  },
+  mounted() {
+    this.getProject();
   }
 }
 </script>

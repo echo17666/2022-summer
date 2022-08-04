@@ -5,16 +5,16 @@
         <v-col cols="12" md="7">
             <v-card-title>
               <h1>
-             {{project.name}}
+             {{project.project_name}}
              </h1>
             </v-card-title>
           <v-card-text>
-             {{project.introduction}}
+             {{project.project_description}}
           </v-card-text>
-          <v-card-text v-if="project.completed===true">
+          <v-card-text v-if="project.project_status===2">
             项目已完成
           </v-card-text>
-          <v-card-text v-else>
+          <v-card-text v-else-if="project.project_status===1">
             项目进行中
           </v-card-text>
           <v-card-actions>
@@ -22,7 +22,7 @@
                 class="ma-2"
                 color="secondary"
                 @click="Completed"
-                v-if="this.project.deleted===false"
+                v-if="project.project_status!==0"
             >
               完成项目
             </v-btn>
@@ -31,7 +31,7 @@
                 class="ma-2"
                 color="secondary"
                 @click="Delete"
-                v-if="this.project.deleted===false"
+                v-if="project.project_status!==0"
             >
               删除
             </v-btn>
@@ -40,7 +40,7 @@
                 class="ma-2"
                 color="secondary"
                 @click="Restore"
-                v-if="this.project.deleted===true"
+                v-if="project.project_status===0"
             >
               恢复
             </v-btn>
