@@ -83,7 +83,7 @@ export default {
 
       Project.ShowProject(formdata)
           .then((response) => {
-            this.projects = response.data.projects
+            this.projects = response.data.Teams;
           })
           .catch((error) => {
             console.log(error)
