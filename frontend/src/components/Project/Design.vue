@@ -70,6 +70,11 @@
             <el-button @click="addbread()">面包屑</el-button>
 
          </v-col>
+         <v-col cols="12" md="4">
+
+            <el-button @click="addboard()">画布</el-button>
+
+         </v-col>
 <v-col cols="12" md="12">
          <div class="save" >
       <el-button :style="{'width':'100px','height':'45px'}" @click="save()">
@@ -81,11 +86,6 @@
     <div class="saveAsOthers" >
       <el-button :style="{'width':'100px','height':'45px'}" @click="saveAsOthers()">
         导出页面
-      </el-button>
-    </div>
-    <div class="saveAsOthers" >
-      <el-button :style="{'width':'100px','height':'45px'}" @click="show()">
-        获取页面{{this.drawwidth}}
       </el-button>
     </div>
     </v-col>
@@ -147,12 +147,10 @@
     </div>
     </v-col>
         </v-row>
-  <div id="draw">
-      <VueDragResize :isActive="true" v-on:resizing="resize1" v-on:dragging="resize1"
-      :w="drawwidth" :h="drawheight" :x="drawleft" :y="drawtop" :z="1">
-          <div class="drawboard" ></div>
-      </VueDragResize>
-  </div>
+  <div v-for="(info,index) in boardinfo"
+             :key="index">
+       <BoardBox :info="info"></BoardBox>
+    </div>
   </div>
    </div>
 </template>
@@ -173,6 +171,7 @@
    import TagBox from '../com/tag.vue'
    import TriangleBox from '../com/triangle.vue'
    import BreadBox from '../com/bread.vue'
+   import BoardBox from '../com/drawboard.vue'
 import { ListItem } from 'element-tiptap';
 export default {
   name: 'draw',
@@ -190,7 +189,8 @@ export default {
             CircleBox,
             TagBox,
             TriangleBox,
-            BreadBox
+            BreadBox,
+            BoardBox
 
         },
 
@@ -209,6 +209,7 @@ export default {
         taginfo:[{}],
         triangleinfo:[{}],
         breadinfo:[{}],
+        boardinfo:[{}],
         drawwidth:500,
         drawheight:500,
         drawtop:100,
@@ -227,16 +228,13 @@ export default {
 
         let list=[]
         let formdata =new FormData()
-        // formdata.append('design_id',prototype_id)
-        formdata.append('design_id',2)
+        formdata.append('design_id',prototype_id)
+        // formdata.append('design_id',2)
         Account.getProtype(formdata)
         .then((res)=>{
           console.log(res)
           list=res.data.list;
-          this.drawwidth=res.data.design.design_a;
-          this.drawheight=res.data.design.design_b;
-          this.drawtop=res.data.design.design_y;
-          this.drawleft=res.data.design.design_x;
+          
           this.inputinfo=list[0]
           this.buttoninfo=list[1]
           this.radioinfo=list[2]
@@ -250,7 +248,7 @@ export default {
           this.taginfo=list[10]
           this.triangleinfo=list[11]
           this.breadinfo=list[12]
-
+          this.boardinfo=list[13]
         })
       },       
       save(){
@@ -272,6 +270,7 @@ export default {
         list.push(this.taginfo)
         list.push(this.triangleinfo)
         list.push(this.breadinfo)
+        list.push(this.boardinfo)
       
 
         let formdata=new FormData()
@@ -280,11 +279,22 @@ export default {
         formdata.append('design_b',this.drawheight)
         formdata.append('design_x',this.drawleft)
         formdata.append('design_y',this.drawtop)
-        // formdata.append('design_id',prototype_id)
-        formdata.append('design_id',2)
+        formdata.append('design_id',prototype_id)
+        // formdata.append('design_id',2)
         Account.saveProtype(formdata)
         .then((res)=>{
           console.log(res)
+          if(res.data.code==200){
+            this.$notify({
+              title: '保存成功',
+              type: 'success'
+            })
+          }else{
+            this.$notify({
+              title: '保存失败',
+              type: 'error'
+            })
+          }
         })
 
       },
@@ -297,6 +307,10 @@ export default {
                 this.drawtop = newRect.top;
                 this.drawleft = newRect.left;
                
+      },
+      addboard(){
+        let a={width:500,height:500,top:100,left:500,isshown:true}
+        this.boardinfo.push(a);
       },
       addinput(){
         let a={width:200,height:100,top:200,left:400,isshown:true}
@@ -374,8 +388,5 @@ export default {
   max-width:100px;
   height:100px
 }
-.drawboard{
-  background-color:rgb(235, 233, 233);
-  height:100%
-}
+
 </style>
