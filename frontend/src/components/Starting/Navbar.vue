@@ -17,7 +17,8 @@
           </v-list-item-avatar>
 
           <v-list-item-content v-if="state.islogin==true">
-            <v-list-item-title>（没法获取名字）</v-list-item-title>
+            <v-list-item-title>{{
+              state.username}}</v-list-item-title>
             <v-list-item-subtitle>已登录</v-list-item-subtitle>
           </v-list-item-content>
 
@@ -88,6 +89,7 @@ export default {
   name: 'Main',
   data () {
       return {
+        timer: 0,
         state:this.$store.state,
         items: [
           { title: '团队管理', icon: 'home' ,link:'/teams'},
@@ -100,13 +102,35 @@ export default {
     },
     methods: {
       turn(link){
+        if(this.state.islogin){
         this.$router.push(link)
+        }
+        else{
+           this.$notify({
+              title: '请先登录',
+              type: 'warning'
+            })
+            this.$router.push('/login')
+        }
       },
       logout(){
         this.$store.commit('logout')
         this.$router.push('/login')
       }
+    },
+    watch: {
+    user: {
+      handler() {
+        clearInterval(this.timer);
+        this.timer = setInterval(() => {
+          if (this.state.islogin==true) {
+            this.state.username=window.localStorage.getItem("username")
+          }
+        }, 1000);
+      },
+      immediate: true
     }
+  },
     }
 
 </script>

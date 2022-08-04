@@ -10,20 +10,7 @@
 
       <v-list dense>
 
-         <v-list-item
-        @click="$router.push({name:'Main'})"
-        >
-          <v-list-item-icon>
-            <span class="material-icons-outlined">
-                stars</span>
-          </v-list-item-icon>
-          
-
-          <v-list-item-content>
-            <v-list-item-title>返回主页</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
+        
         <v-list-item
         @click="$router.push({name:'AllTeams'})"
         >

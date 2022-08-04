@@ -6,8 +6,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    islogin:false,
-    username:'',
+    islogin:window.localStorage.getItem('token') ? true : false,
+    username:window.localStorage.getItem('username'),
     token:'',
     listTemp:null,
     content:'',
@@ -31,6 +31,7 @@ export default new Vuex.Store({
       state.username=''
       state.token='';
       window.localStorage.removeItem("token");
+      window.localStorage.removeItem("username");
     },
   },
   actions: {
