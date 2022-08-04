@@ -89,6 +89,7 @@ export default {
   name: 'Main',
   data () {
       return {
+        timer: 0,
         state:this.$store.state,
         items: [
           { title: '团队管理', icon: 'home' ,link:'/teams'},
@@ -116,7 +117,20 @@ export default {
         this.$store.commit('logout')
         this.$router.push('/login')
       }
+    },
+    watch: {
+    user: {
+      handler() {
+        clearInterval(this.timer);
+        this.timer = setInterval(() => {
+          if (this.state.islogin==true) {
+            this.state.username=window.localStorage.getItem("username")
+          }
+        }, 1000);
+      },
+      immediate: true
     }
+  },
     }
 
 </script>
