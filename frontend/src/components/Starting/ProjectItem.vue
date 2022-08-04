@@ -62,6 +62,7 @@
 <script>
 
 import {Project} from "@/api/project";
+
 export default {
   name: "ProjectItem",
   props: ["project"],
@@ -73,6 +74,8 @@ export default {
   methods: {
     Restore()
     {
+      if(this.project.status===0)
+        this.project.status=1;
       let formdata = new FormData();
       formdata.append("project_id",this.project.id);
 
@@ -87,9 +90,12 @@ export default {
           .catch((error) => {
             console.log(error)
           });
+      this.$forceUpdate();
     },
     Completed()
     {
+      if(this.project.status===1)
+        this.project.status=2;
       let formdata = new FormData();
       formdata.append("project_id",this.project.id);
 
@@ -104,9 +110,12 @@ export default {
           .catch((error) => {
             console.log(error)
           });
+      this.$forceUpdate();
     },
     Delete()
     {
+      if(this.project.status!==0)
+        this.project.status=0;
       let formdata = new FormData();
       formdata.append("project_id",this.project.id);
 
@@ -121,9 +130,9 @@ export default {
           .catch((error) => {
             console.log(error)
           });
+      this.$forceUpdate();
     }
   },
-
 };
 
 </script>

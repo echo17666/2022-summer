@@ -6,7 +6,7 @@
              :key="index"
              v-if="project.project_status===0"
               >
-        <proitem :project="project" ></proitem>
+        <proitem :project="project" v-if="project.project_status===0"></proitem>
       </v-col>
     </v-row>
 
@@ -16,6 +16,7 @@
 
 import ProjectItem from '@/components/Starting/ProjectItem.vue'
 import {Project} from "@/api/project";
+
 export default {
   name: 'Deleted',
   components: {
@@ -31,12 +32,12 @@ export default {
 
   methods: {
     getProject() {
-      let id=this.$route.params.id
+      let id = this.$route.params.id
 
-      let s=id.split('ZY');
-      let team_id=s[1];
+      let s = id.split('ZY');
+      let team_id = s[1];
       let formdata = new FormData();
-      formdata.append("team_id",team_id)
+      formdata.append("team_id", team_id)
 
       Project.ShowRubbish(formdata)
           .then((response) => {
