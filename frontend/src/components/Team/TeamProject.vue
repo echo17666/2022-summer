@@ -5,7 +5,7 @@
     <v-row>
       <v-col cols="12" md="4" v-for="(project,index) in project"
              :key="index"
-             v-if="project.deleted===false"
+             v-if="project.deleted==false"
              style="background-color: lightblue;"
       >
         <proitem :project="project"></proitem>
