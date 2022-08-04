@@ -91,7 +91,7 @@ export default {
     },
     cancel() {
       this.name = "";
-      this.introduction = "";
+      this.description = "";
       this.dialog = false;
     },
     addProject() {
