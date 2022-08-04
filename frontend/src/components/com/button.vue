@@ -2,7 +2,7 @@
   <div class="design">
         <VueDragResize  v-show="info.isshown" :z="10" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
             <div :style="{'position':'relative'}">
-                <v-btn  outlined @click="show()" :width="info.width" :height="info.height" >按钮</v-btn>
+                <v-btn class="button"  outlined @click="show()" :width="info.width" :height="info.height" >按钮</v-btn>
                 <v-btn @click="deleted(info)" :style="{'position':'absolute','top':'0px','right':'0px'}" icon> <span class="material-icons-outlined">
                         close</span></v-btn>
             </div>
@@ -43,3 +43,8 @@ export default {
     }
 
 </script>
+<style>
+.button{
+  background-color: rgb(151, 151, 151);
+}
+</style>

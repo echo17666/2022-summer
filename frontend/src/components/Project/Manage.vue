@@ -11,7 +11,7 @@
       <v-list dense>
 
         <v-list-item
-          @click="router.push('/viewall')"
+          @click="$router.push({name:'ViewAll'})"
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">

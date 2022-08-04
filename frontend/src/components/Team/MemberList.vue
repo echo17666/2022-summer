@@ -1,7 +1,7 @@
 <template>
   <div class="memberlist">
     <span><h1>人员列表
-      <el-button  @click="dialog=!dialog" class="mx-2" >
+      <el-button  @click="dialog=true" class="mx-2" >
       <span class="material-icons-outlined" v-show="identity=='creator'||identity=='administrator'">添加成员</span>
     </el-button> </h1> </span>
     <br/>
