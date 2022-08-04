@@ -83,17 +83,16 @@
         导出页面
       </el-button>
     </div>
+    <div class="saveAsOthers" >
+      <el-button :style="{'width':'100px','height':'45px'}" @click="show()">
+        获取页面{{this.drawwidth}}
+      </el-button>
+    </div>
     </v-col>
         </v-row>
         </v-card>
     </v-col>
 <v-col cols="12" md="9">
-    
-      
-   
-    
-    
-    
     <div v-for="(info,index) in inputinfo"
              :key="index">
        <Inputbox :info="info"></Inputbox>
@@ -148,11 +147,18 @@
     </div>
     </v-col>
         </v-row>
+  <div id="draw">
+      <VueDragResize :isActive="true" v-on:resizing="resize1" v-on:dragging="resize1"
+      :w="drawwidth" :h="drawheight" :x="drawleft" :y="drawtop" :z="1">
+          <div class="drawboard" ></div>
+      </VueDragResize>
+  </div>
   </div>
    </div>
 </template>
 <script>
   import { Account } from "@/api/account.js";
+  import VueDragResize from 'vue-drag-resize'
 
    import Inputbox from '../com/inputbox.vue'
    import ButtonBox from '../com/button.vue'
@@ -167,10 +173,11 @@
    import TagBox from '../com/tag.vue'
    import TriangleBox from '../com/triangle.vue'
    import BreadBox from '../com/bread.vue'
+import { ListItem } from 'element-tiptap';
 export default {
-  name: 'Design',
+  name: 'draw',
    components: {
-            
+            VueDragResize,
             Inputbox,
             ButtonBox,
             RadioBox,
@@ -201,19 +208,57 @@ export default {
         circleinfo:[{}],
         taginfo:[{}],
         triangleinfo:[{}],
-        breadinfo:[{}]
+        breadinfo:[{}],
+        drawwidth:500,
+        drawheight:500,
+        drawtop:100,
+        drawleft:500
 
       }
     },
     mounted:function(){
-      show()
+      this.show();
     },
     methods: {
       show(){
-        let list=new list()
+        // let id=this.$route.params.id
+        // let s=id.split('ZY');
+        // let prototype_id=s[1];
+
+        let list=[]
+        let formdata =new FormData()
+        // formdata.append('design_id',prototype_id)
+        formdata.append('design_id',2)
+        Account.getProtype(formdata)
+        .then((res)=>{
+          console.log(res)
+          list=res.data.list;
+          this.drawwidth=res.data.design.design_a;
+          this.drawheight=res.data.design.design_b;
+          this.drawtop=res.data.design.design_y;
+          this.drawleft=res.data.design.design_x;
+          this.inputinfo=list[0]
+          this.buttoninfo=list[1]
+          this.radioinfo=list[2]
+          this.checkboxinfo=list[3]
+          this.switchinfo=list[4]
+          this.optioninfo=list[5]
+          this.imginfo=list[6]
+          this.avatarinfo=list[7]
+          this.rectinfo=list[8]
+          this.circleinfo=list[9]
+          this.taginfo=list[10]
+          this.triangleinfo=list[11]
+          this.breadinfo=list[12]
+
+        })
       },       
       save(){
-        let list=new list()
+        // let id=this.$route.params.id
+        // let s=id.split('ZY');
+        // let prototype_id=s[1];
+
+        let list=new Array()
         list.push(this.inputinfo)
         list.push(this.buttoninfo)
         list.push(this.radioinfo)
@@ -227,9 +272,16 @@ export default {
         list.push(this.taginfo)
         list.push(this.triangleinfo)
         list.push(this.breadinfo)
+      
 
         let formdata=new FormData()
-        formdata.append('list',list)
+        formdata.append('list',JSON.stringify(list))
+        formdata.append('design_a',this.drawwidth)
+        formdata.append('design_b',this.drawheight)
+        formdata.append('design_x',this.drawleft)
+        formdata.append('design_y',this.drawtop)
+        // formdata.append('design_id',prototype_id)
+        formdata.append('design_id',2)
         Account.saveProtype(formdata)
         .then((res)=>{
           console.log(res)
@@ -239,56 +291,63 @@ export default {
       saveAsOthers(){
 
       },
+      resize1(newRect) {
+                this.drawwidth = newRect.width;
+                this.drawheight = newRect.height;
+                this.drawtop = newRect.top;
+                this.drawleft = newRect.left;
+               
+      },
       addinput(){
-        let a={width:200,height:100,top:200,left:200,isshown:true}
+        let a={width:200,height:100,top:200,left:400,isshown:true}
         this.inputinfo.push(a);
       },
       addbutton(){
-        let a={width:100,height:50,top:200,left:200,isshown:true}
+        let a={width:100,height:50,top:200,left:400,isshown:true}
         this.buttoninfo.push(a);
       },
       addradio(){
-        let a={width:100,height:50,top:200,left:200,isshown:true}
+        let a={width:100,height:50,top:200,left:400,isshown:true}
         this.radioinfo.push(a);
       },
       addcheckbox(){
-        let a={width:100,height:50,top:200,left:200,isshown:true}
+        let a={width:100,height:50,top:200,left:400,isshown:true}
         this.checkboxinfo.push(a);
       },
       addswitch(){
-        let a={width:100,height:50,top:200,left:200,isshown:true}
+        let a={width:50,height:50,top:200,left:400,isshown:true}
         this.switchinfo.push(a);
       },
       addoption(){
-        let a={width:240,height:50,top:200,left:200,isshown:true}
+        let a={width:240,height:50,top:200,left:400,isshown:true}
         this.optioninfo.push(a);
       },
       addimg(){
-        let a={width:200,height:100,top:200,left:200,isshown:true}
+        let a={width:200,height:100,top:200,left:400,isshown:true}
         this.imginfo.push(a);
       },
       addavatar(){
-        let a={width:100,height:50,top:200,left:200,isshown:true}
+        let a={width:100,height:50,top:200,left:400,isshown:true}
         this.avatarinfo.push(a);
       },
       addrect(){
-        let a={width:100,height:100,top:200,left:200,isshown:true}
+        let a={width:100,height:100,top:200,left:400,isshown:true}
         this.rectinfo.push(a);
       },
       addcircle(){
-        let a={width:200,height:200,top:200,left:200,isshown:true}
+        let a={width:200,height:200,top:200,left:400,isshown:true}
         this.circleinfo.push(a);
       },
       addtag(){
-        let a={width:100,height:50,top:200,left:200,isshown:true}
+        let a={width:100,height:50,top:200,left:400,isshown:true}
         this.taginfo.push(a);
       },
       addtriangle(){
-        let a={width:200,height:150,top:200,left:200,isshown:true}
+        let a={width:200,height:150,top:200,left:400,isshown:true}
         this.triangleinfo.push(a);
       },
       addbread(){
-        let a={width:250,height:50,top:200,left:200,isshown:true}
+        let a={width:250,height:50,top:200,left:400,isshown:true}
         this.breadinfo.push(a);
       },
 
@@ -314,5 +373,9 @@ export default {
   padding-bottom:2px;
   max-width:100px;
   height:100px
+}
+.drawboard{
+  background-color:rgb(235, 233, 233);
+  height:100%
 }
 </style>

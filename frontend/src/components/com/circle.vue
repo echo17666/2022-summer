@@ -1,6 +1,6 @@
 <template>
   <div class="design">
-        <VueDragResize  v-show="info.isshown" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
+        <VueDragResize  v-show="info.isshown" :z="10" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
             <div :style="{'position':'relative'}" style="height:100%">
                 <img id="img" src="../../assets/circle.png" width="100%" height="100%"/>
              
@@ -22,7 +22,7 @@ export default {
       
   data () {
       return {
-        url:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.51yuansu.com%2Fpic2%2Fcover%2F00%2F46%2F42%2F5815750beed51_610.jpg&refer=http%3A%2F%2Fpic.51yuansu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1662106732&t=618dea8c8ce828b0eb032f337911441f'
+      
        
       }
     },
@@ -44,3 +44,8 @@ export default {
     }
 
 </script>
+<style>
+/* .vdr.active:before {
+  display:none;
+} */
+</style>

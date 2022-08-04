@@ -10,7 +10,8 @@ export default new Vuex.Store({
     username:'',
     token:'',
     listTemp:null,
-    content:''
+    content:'',
+
   },
   getters: {
   },

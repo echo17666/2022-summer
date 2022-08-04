@@ -3,7 +3,8 @@ import service from '@/http/request.js'
 const url={
     login:'/user/login',
     register:'/user/register',
-    prototype:'/'
+    saveprototype:'/design/savedesign',
+    getprototype:'/design/getdesign'
 }
 
 export class Account{
@@ -40,7 +41,7 @@ export class Account{
         })
     };
     static async saveProtype(data){
-        return service(url.prototype, {
+        return service(url.saveprototype, {
             method: 'post',
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -50,6 +51,25 @@ export class Account{
         }, {
             auth: {
                 list: data.get('list'),
+                design_a: data.get('design_a'),
+                design_b: data.get('design_b'),
+                design_x: data.get('design_x'),
+                design_y: data.get('design_y'),
+                design_id: data.get('design_id')
+            }
+        })
+    };
+    static async getProtype(data){
+        return service(url.getprototype, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data: data
+        }, {
+            auth: {
+                design_id: data.get('design_id'),
             }
         })
     };
