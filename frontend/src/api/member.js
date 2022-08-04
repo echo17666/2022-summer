@@ -3,7 +3,8 @@ import service from '@/http/request.js'
 //之后接口啥的就写这里就好了
 const url={
     showMember:'/team/showmembers',
-    addMember:'/team/sendinvitation'
+    addMember:'/team/sendinvitation',
+    setIdentity:'/team/setidentity'
 }
 export class Member{
    
@@ -19,6 +20,16 @@ export class Member{
     };
     static async AddMember(data){
         return service(url.addMember, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data:data,          
+        })
+    };
+    static async SetIdentity(data){
+        return service(url.setIdentity, {
             method: 'post',
             headers: {
                 'Content-Type': 'multipart/form-data'
