@@ -7,6 +7,7 @@ const url={
     showrubbishProject:'/project/rubbishproject',
     finishProject:'/project/finishproject',
     deleteProject:'/project/deleteproject',
+    reviveproject:'/project/reviveproject',
 }
 export class Project{
 
@@ -52,6 +53,16 @@ export class Project{
     };
     static async deleteProject(data){
         return service(url.deleteProject, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data:data,
+        })
+    };
+    static async reviveprojectt(data){
+        return service(url.reviveproject, {
             method: 'post',
             headers: {
                 'Content-Type': 'multipart/form-data'
