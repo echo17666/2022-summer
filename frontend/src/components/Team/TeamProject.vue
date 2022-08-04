@@ -5,7 +5,7 @@
     <v-row>
       <v-col cols="12" md="4" v-for="(project,index) in projects"
              :key="index"
-             v-if="project.deleted===false"
+             v-if="project.project_status!==0"
              style="background-color: lightblue;"
       >
         <proitem :project="project"></proitem>
@@ -114,8 +114,8 @@ export default {
           .catch((error) => {
             console.log(error)
           });
-      this.name = "";
-      this.introduction = "";
+      // this.name = "";
+      // this.introduction = "";
       this.dialog = false;
     },
   },

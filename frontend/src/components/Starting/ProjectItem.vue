@@ -22,7 +22,7 @@
                 class="ma-2"
                 color="secondary"
                 @click="Completed"
-                v-if="project.project_status!==0"
+                v-if="project.project_status===1"
             >
               完成项目
             </v-btn>
@@ -71,18 +71,18 @@ export default {
   methods: {
     Restore()
     {
-      if(this.project.deleted===true)
-        this.project.deleted =! this.project.deleted;
+      if(this.project.project_status===0)
+        this.project.project_status = 1;
     },
     Completed()
     {
-      if(this.project.completed===false)
-      this.project.completed =! this.project.completed;
+      if(this.project.project_status===1)
+        this.project.project_status = 2;
     },
     Delete()
     {
-      if(this.project.deleted===false)
-        this.project.deleted =! this.project.deleted;
+      if(this.project.project_status!==0)
+        this.project.project_status = 0;
     }
   },
 };
