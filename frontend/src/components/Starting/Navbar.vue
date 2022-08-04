@@ -100,7 +100,16 @@ export default {
     },
     methods: {
       turn(link){
+        if(this.state.islogin){
         this.$router.push(link)
+        }
+        else{
+           this.$notify({
+              title: '请先登录',
+              type: 'warning'
+            })
+            this.$router.push('/login')
+        }
       },
       logout(){
         this.$store.commit('logout')
