@@ -2,8 +2,8 @@
 import service from '@/http/request.js'
 //之后接口啥的就写这里就好了
 const url={
-    showProject:'/team/showproject',
-    addProject:'/team/addproject'
+    showProject:'/project/userproject',
+    addProject:'/project/createproject'
 }
 export class Project{
 

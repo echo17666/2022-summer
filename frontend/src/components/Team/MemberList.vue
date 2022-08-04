@@ -60,7 +60,6 @@ export default {
   methods: {
     getMember(){
       let id=this.$route.params.id
-      console.log(id)
       let s=id.split('ZY');
       let team_id=s[1];
       let formdata = new FormData();
