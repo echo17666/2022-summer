@@ -3,7 +3,7 @@
     <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'200px'}">
       <v-row>
         <v-col cols="12" md="7">
-            <router-link :to="{ name: 'ProjectManage', params: { id: project.url } }">
+            <router-link :to="{ name: 'ViewAll', params: { id: project.url } }">
             <v-card-title>
               <h1>
              {{project.project_name}}
