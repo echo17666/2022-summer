@@ -90,7 +90,6 @@ export default {
           .catch((error) => {
             console.log(error)
           });
-      this.$forceUpdate();
     },
     Completed()
     {
@@ -110,7 +109,6 @@ export default {
           .catch((error) => {
             console.log(error)
           });
-      this.$forceUpdate();
     },
     Delete()
     {
@@ -130,7 +128,6 @@ export default {
           .catch((error) => {
             console.log(error)
           });
-      this.$forceUpdate();
     }
   },
 };
