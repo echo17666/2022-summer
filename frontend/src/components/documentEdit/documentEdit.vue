@@ -5,11 +5,11 @@
       <div style="height: 20px"></div>
     </el-row>
     <el-table
-        :data="list.filter(data => !search || data.title.toLowerCase().includes(search.toLowerCase()))"
+        :data="documentlist"
         style="width: 100%">
       <el-table-column
           label="文件名"
-          prop="title">
+          prop="document_name">
       </el-table-column>
       <el-table-column
           label="日期"
@@ -30,21 +30,46 @@
           <el-button
               size="mini"
               type="danger"
-              @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+              @click="deleteFile(scope.row)">Delete</el-button>
         </template>
       </el-table-column>
     </el-table>
+    <el-dialog
+      title="提示"
+      :visible.sync="isshowEdit"
+      width="30%">
+      <!-- <el-input v-model="form.document_name" placeholder="文档名称"></el-input> -->
+      <el-upload
+  class="upload-demo"
+  action=""
+  :auto-upload="false"
+  :on-change="beforeupload"
+  :limit="1"
+  :file-list="fileList">
+  <el-button size="small" type="primary">点击上传</el-button>
+</el-upload>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="isshowEdit = false">取 消</el-button>
+        <el-button type="primary" @click="editFile">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { document } from "@/api/document.js";
+import { createLogger, mapState } from 'vuex'
 export default {
   name: "documentEdit",
   data(){
     return{
       search: '',
+      documentlist: [],
+      fileList: [],
+      isshowEdit: false,
+      formData: undefined,
+      form: {},
       list:[
           {
             title:'名称',
@@ -78,22 +103,18 @@ export default {
       immediate:true
     },
     getList(n){
-      debugger
       console.log(this.$store.state.listTemp)
       console.log(n);
       this.list.push(n)
     }
   },
+  created() {
+this.getprojectdocument()
+  },
   methods:{
     handleEdit(index, row) {
       console.log(index, row);
-      this.list.forEach((ite,idx)=>{
-        if(ite.title == row.title){
-          console.log(ite.content);
-          this.$router.push({name:'NewDocument'})
-          this.$store.commit('content',ite.content)
-        }
-      })
+      this.$router.push({name:'NewDocument', query: {row: row}})
     },
     handleDelete(index, row) {
       console.log(index, row);
@@ -102,6 +123,33 @@ export default {
           this.list.splice(idx,1)
         }
       })
+    },
+    getprojectdocument() {
+      document.projectdocument({project_id: 1}).then(res => {
+        this.documentlist = res.data.documents
+      })
+    },
+    showEdit(row) {
+      this.form = JSON.parse(JSON.stringify(row))
+      this.isshowEdit = true
+    },
+    editFile() {
+      console.log(this.formData)
+      this.formData.append('document_id', this.form.id)
+      document.updatedocument(this.formData).then(res => {
+        this.isshowEdit = false
+        this.getprojectdocument()
+      })
+    },
+    deleteFile(row) {
+      document.deletedocument({document_id: row.id}).then(res => {
+        this.getprojectdocument()
+      })
+    },
+    beforeupload(file) {
+      this.formData = new FormData
+      console.log(file)
+      this.formData.append('document_file', file.raw)
     }
   }
 }

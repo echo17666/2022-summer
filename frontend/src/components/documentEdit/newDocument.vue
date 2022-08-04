@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { document } from "@/api/document.js";
 import {
   // all extensions
   Doc,
@@ -59,13 +60,13 @@ import {
   CodeView
   // SelectAll,
 } from "element-tiptap";
-
+import axios from 'axios'
 import codemirror from "codemirror";
 import "codemirror/lib/codemirror.css"; // import base style
 import "codemirror/mode/xml/xml.js"; // language
 import "codemirror/addon/selection/active-line.js"; // require active-line.js
 import "codemirror/addon/edit/closetag.js";
-import {mapState} from "vuex"; // autoCloseTags
+import {createLogger, mapState} from "vuex"; // autoCloseTags
 
 export default {
 
@@ -74,6 +75,7 @@ export default {
     return{
       stats:false,
       gettime:'',
+      row: undefined,
       extensions: [
         new Doc(),
         new Text(),
@@ -120,7 +122,26 @@ export default {
         this.content = n;
       },
       immediate:true
-    }
+    },
+    $route:{
+      handler(n){
+        this.row = n.query.row;
+        // const service = axios.create({
+        //     // baseURL: 'http://127.0.0.1:8000',//本地
+        //     baseURL: 'https://document-1310787519.cos.ap-beijing.myqcloud.com',//服务器
+        //     // baseURL:'', 这里之后是部署的后端地址
+        //     timeout: 50000 //超时时间
+        // });
+        // service(this.row.document_key, {
+        //     method: 'get',
+        // }).then(res => {
+        //   console.log(res)
+        // })
+        this.content = this.row.document_content
+        console.log(this.row)
+      },
+      immediate:true
+    },
   },
   methods:{
     getCurrentTime() {
@@ -139,17 +160,23 @@ export default {
       this.content = ''
     },
     saveFile(){
+
       console.log("保存文档");
       this.stats = true
     },
     search(){
-      debugger
       let temp = {
         title:this.title,
         time:this.getCurrentTime,
         status:'保存',
         content:this.content
       }
+      let file =  new File([this.content], this.title + '.txt', {type: 'text/plain'})
+      let formData = new FormData
+      formData.append('document_id', this.row.id)
+      formData.append('document_content', this.content)
+      document.updatedocument(formData).then(res => {
+      })
       this.$store.commit('changeList',temp)
       console.log(this.$store.state.listTemp)
       this.stats = false
