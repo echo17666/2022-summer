@@ -61,7 +61,7 @@ export class Project{
             data:data,
         })
     };
-    static async reviveprojectt(data){
+    static async reviveproject(data){
         return service(url.reviveproject, {
             method: 'post',
             headers: {
