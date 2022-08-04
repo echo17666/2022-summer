@@ -61,7 +61,7 @@
 
 <script>
 
-
+import {Project} from "@/api/project";
 export default {
   name: "ProjectItem",
   props: ["project"],
@@ -73,18 +73,54 @@ export default {
   methods: {
     Restore()
     {
-      if(this.project.project_status===0)
-        this.project.project_status = 1;
+      let formdata = new FormData();
+      formdata.append("project_id",this.project.id);
+
+      Project.reviveproject(formdata)
+          .then((response) => {
+            console.log(response.data)
+            this.$notify({
+              title: '恢复成功',
+              type: 'success'
+            })
+          })
+          .catch((error) => {
+            console.log(error)
+          });
     },
     Completed()
     {
-      if(this.project.project_status===1)
-        this.project.project_status = 2;
+      let formdata = new FormData();
+      formdata.append("project_id",this.project.id);
+
+      Project.finishProject(formdata)
+          .then((response) => {
+            console.log(response.data)
+            this.$notify({
+              title: '项目已完成',
+              type: 'success'
+            })
+          })
+          .catch((error) => {
+            console.log(error)
+          });
     },
     Delete()
     {
-      if(this.project.project_status!==0)
-        this.project.project_status = 0;
+      let formdata = new FormData();
+      formdata.append("project_id",this.project.id);
+
+      Project.deleteProject(formdata)
+          .then((response) => {
+            console.log(response.data)
+            this.$notify({
+              title: '删除成功',
+              type: 'success'
+            })
+          })
+          .catch((error) => {
+            console.log(error)
+          });
     }
   },
 
