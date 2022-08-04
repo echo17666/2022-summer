@@ -73,7 +73,7 @@ const routes = [
     component: Text
   },
   {
-    path: '/project',
+    path: '/project/:id',
     name: 'ProjectManage',
     component: ProjectManage
   },

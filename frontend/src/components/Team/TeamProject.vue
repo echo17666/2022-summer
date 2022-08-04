@@ -5,10 +5,10 @@
     <v-row>
       <v-col cols="12" md="4" v-for="(project,index) in projects"
              :key="index"
-             v-if="project.project_status!==0"
+             
              style="background-color: lightblue;"
       >
-        <proitem :project="project"></proitem>
+        <proitem v-show="project.project_status!=0" :project="project"></proitem>
       </v-col>
     </v-row>
     <v-dialog v-model="dialog" persistent max-width="600px">
@@ -84,6 +84,28 @@ export default {
       Project.ShowProject(formdata)
           .then((response) => {
             this.projects = response.data.Teams;
+            console.log(response.data)
+          var key = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+          var a = key.split("");
+          for(let i=0;i<this.projects.length;i++){
+            let s="";
+            for(let j=0;j<id.length;j++){
+              let b = id.charCodeAt(j);
+              s+=a[b%36];
+            }
+            
+            s+="JQ"
+            s+=this.projects[i].id;
+            this.projects[i]["url"]=s;
+          }
+
+          console.log(this.projects)
+
+
+
+
+
+
           })
           .catch((error) => {
             console.log(error)

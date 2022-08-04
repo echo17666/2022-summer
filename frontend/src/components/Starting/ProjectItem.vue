@@ -3,11 +3,13 @@
     <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'200px'}">
       <v-row>
         <v-col cols="12" md="7">
+            <router-link :to="{ name: 'ProjectManage', params: { id: project.url } }">
             <v-card-title>
               <h1>
              {{project.project_name}}
              </h1>
             </v-card-title>
+              </router-link>
           <v-card-text>
              {{project.project_description}}
           </v-card-text>
@@ -85,7 +87,9 @@ export default {
         this.project.project_status = 0;
     }
   },
+
 };
+
 </script>
 <style scoped>
 

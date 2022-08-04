@@ -35,7 +35,7 @@ export default {
               s+=a[b%36];
             }
             s+="ZY"
-            s+=a[this.teams[i].team_id];
+            s+=this.teams[i].team_id;
             this.teams[i]["url"]=s;
           }
           console.log(this.teams)
