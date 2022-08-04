@@ -80,7 +80,7 @@ const routes = [
     children: [
       {path: '', component: ViewAll},
       {path: 'viewall', name:'ViewAll',component: ViewAll},
-      {path: 'doc', name:'Text',component: Text},
+      {path: 'viewall', name:'Text',component: Text},
   ]
   },
   {

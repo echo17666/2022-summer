@@ -26,7 +26,7 @@
     
        
         <v-list-item
-    
+          @click="$router.push({name:'Text'})"
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
