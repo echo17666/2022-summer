@@ -50,6 +50,9 @@ export default {
   },
   mounted() {
     this.getProject();
+  },
+  updated() {
+    this.getProject();
   }
 }
 </script>
