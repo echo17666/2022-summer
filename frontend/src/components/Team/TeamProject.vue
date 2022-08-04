@@ -139,6 +139,7 @@ export default {
       // this.name = "";
       // this.introduction = "";
       this.dialog = false;
+      this.$router.go(0)
     },
   },
   mounted() {

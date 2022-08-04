@@ -12,10 +12,10 @@
             {{people.user_identity}}
           </v-card-text>
           <v-card-text>
-            email<!-- {{people.user_email}} -->
+           {{people.user_email}}
           </v-card-text>
           <v-card-text>
-            true_name<!-- {{people.user_true_name}} -->
+            {{people.user_true_name}}
           </v-card-text>
             <v-card-actions>
             </v-card-actions>
@@ -112,7 +112,7 @@ export default {
           title: '成功移除用户',
           type: 'success'
         })
-        this.$router.push({'name':'MemberList'})
+          this.$router.go(0)
       })
       .catch((error)=>{
         console.log(error)
