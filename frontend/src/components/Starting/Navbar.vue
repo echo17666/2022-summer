@@ -93,7 +93,6 @@ export default {
         state:this.$store.state,
         items: [
           { title: '团队管理', icon: 'home' ,link:'/teams'},
-          { title: '项目管理', icon: 'home',link:'/project' },
           { title: '文档编辑', icon: 'home',link:'/document' },
           { title: '回到主页', icon: 'home',link:'/main' },
           
