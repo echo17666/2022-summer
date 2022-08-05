@@ -300,6 +300,7 @@ export default {
               title: '保存成功',
               type: 'success'
             })
+            this.$router.go(-1)
           }else{
             this.$notify({
               title: '保存失败',

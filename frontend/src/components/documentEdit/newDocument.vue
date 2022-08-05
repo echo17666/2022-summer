@@ -1,5 +1,5 @@
 <template>
-  <div :style="{'background-color':'#EEEEEE'}">
+  <div :style="{'background-color':'#EEEEEE' ,width:'100vw' ,height:'100%'}">
     <v-container width="80vw">
     <el-tiptap  v-model="content" :extensions="extensions" placeholder="Write something ..."/>
     <div style="height: 15px"></div>
@@ -180,6 +180,11 @@ export default {
       formData.append('document_content', this.content)
       document.updatedocument(formData).then(res => {
         console.log(res)
+        this.$notify({
+              title: '保存成功',
+              type: 'success'
+            })
+        this.$router.go(-1)
       })
       
 

@@ -4,7 +4,8 @@ import service from '@/http/request.js'
 const url={
     allDesign:'/design/alldesign',
     createDesign:'/design/createdesign',
-    rename:'/design/renamedesign'
+    rename:'/design/renamedesign',
+    deleteDesign:'/design/deletedesign'
 }
 
 export class Design{
@@ -30,6 +31,17 @@ export class Design{
     };
     static async updatedesign(data){
         return service(url.rename, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data:data,
+            
+        })
+    };
+    static async deleteDesign(data){
+        return service(url.deleteDesign, {
             method: 'post',
             headers: {
                 'Content-Type': 'multipart/form-data'
