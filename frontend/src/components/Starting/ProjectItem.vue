@@ -13,9 +13,9 @@
             </v-card-title>
               </router-link>
               </v-col>
-            
+
         <v-col cols="12" md="12" sm="9">
-          <v-card-text> 
+          <v-card-text>
             <h3>
              简介：{{project.project_description}}</h3>
           </v-card-text>
@@ -38,7 +38,7 @@
     </v-btn>
 
      <v-btn icon :style="{'margin-top':'10px'}"
-               
+
                 @click="Completed"
                 v-if="project.project_status===1"
             >
@@ -46,7 +46,7 @@
             </v-btn>
 
    <v-btn icon :style="{'margin-top':'10px'}"
-               
+
                 @click="Delete"
                 v-if="project.project_status!==0"
             >
@@ -54,7 +54,7 @@
             </v-btn>
 
             <v-btn icon :style="{'margin-top':'10px'}"
-                
+
                 @click="Restore"
                 v-if="project.project_status===0"
             >
@@ -161,6 +161,7 @@ export default {
         this.intro=this.project.project_description
         this.dialog=false;
     },
+
     Restore()
     {
       let formdata = new FormData();
@@ -177,13 +178,15 @@ export default {
           .catch((error) => {
             console.log(error)
           });
+      if(this.project.status===0)
+        this.project.status=1;
+      this.$parent.getProjects();
       this.$parent.getProject();
       // this.$router.go(0);
     },
     Completed()
     {
-      // if(this.project.status===1)
-      //   this.project.status=2;
+
       let formdata = new FormData();
       formdata.append("project_id",this.project.id);
 
@@ -199,12 +202,14 @@ export default {
             console.log(error)
           });
       // this.$router.go(0);
+      if(this.project.status===1)
+        this.project.status=2;
       this.$parent.getProject();
+      this.$parent.getProjects();
     },
     Delete()
     {
-      // if(this.project.status!==0)
-      //   this.project.status=0;
+
       let formdata = new FormData();
       formdata.append("project_id",this.project.id);
 
@@ -220,7 +225,10 @@ export default {
             console.log(error)
           });
       // this.$router.go(0);
+      if(this.project.status!==0)
+        this.project.status=0;
       this.$parent.getProject();
+      this.$parent.getProjects();
     }
   },
 

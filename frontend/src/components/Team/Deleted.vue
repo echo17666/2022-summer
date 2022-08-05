@@ -4,7 +4,7 @@
     <v-row style="margin-top:10px">
       <v-col cols="12" md="4" v-for="(project,index) in projects"
              :key="index"
-              
+
               >
         <proitem :project="project" v-if="project.project_status===0"></proitem>
       </v-col>
@@ -28,10 +28,14 @@ export default {
       dialog:false
   }
   },
-
-
+  watch:
+  {
+    projects(){
+      this.getProjects();
+    }
+  },
   methods: {
-    getProject() {
+    getProjects() {
       let id = this.$route.params.id
 
       let s = id.split('ZY');
@@ -49,8 +53,9 @@ export default {
     },
   },
   mounted() {
-    this.getProject();
+    this.getProjects();
   },
+
   // updated() {
   //   this.getProject();
   // }

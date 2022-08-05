@@ -72,6 +72,12 @@ export default {
       projects: []
     }
   },
+  watch:
+      {
+        projects(){
+          this.getProject();
+        }
+      },
   methods: {
     getProject() {
       let id=this.$route.params.id
