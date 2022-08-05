@@ -96,59 +96,59 @@
 <v-col cols="12" md="9">
   <div class="prototype" ref="prototype"> 
     <div v-for="(info,index) in inputinfo"
-             :key="index">
+             :key="index+'1'">
        <Inputbox :info="info"></Inputbox>
     </div>
     <div v-for="(info,index) in buttoninfo"
-             :key="index">
+             :key="index+'2'">
        <ButtonBox :info="info"></ButtonBox>
     </div>
     <div v-for="(info,index) in radioinfo"
-             :key="index">
+             :key="index+'3'">
        <RadioBox :info="info"></RadioBox>
     </div>
     <div v-for="(info,index) in checkboxinfo"
-             :key="index">
+             :key="index+'4'">
        <CheckBox :info="info"></CheckBox>
     </div>
     <div v-for="(info,index) in switchinfo"
-             :key="index">
+             :key="index+'5'">
        <SwitchBox :info="info"></SwitchBox>
     </div>
     <div v-for="(info,index) in avatarinfo"
-             :key="index">
+             :key="index+'6'">
        <AvatarBox :info="info"></AvatarBox>
     </div>
     <div v-for="(info,index) in imginfo"
-             :key="index">
+             :key="index+'7'">
        <ImgBox :info="info"></ImgBox>
     </div>
     <div v-for="(info,index) in rectinfo"
-             :key="index">
+             :key="index+'8'">
        <RectBox :info="info"></RectBox>
     </div>
     <div v-for="(info,index) in optioninfo"
-             :key="index">
+             :key="index+'9'">
        <OptionBox :info="info"></OptionBox>
     </div>
     <div v-for="(info,index) in circleinfo"
-             :key="index">
+             :key="index+'10'">
        <CircleBox :info="info"></CircleBox>
     </div>
     <div v-for="(info,index) in triangleinfo"
-             :key="index">
+             :key="index+'11'">
        <TriangleBox :info="info"></TriangleBox>
     </div>
     <div v-for="(info,index) in taginfo"
-             :key="index">
+             :key="index+'12'">
        <TagBox :info="info"></TagBox>
     </div>
     <div v-for="(info,index) in breadinfo"
-             :key="index">
+             :key="index+'13'">
        <BreadBox :info="info"></BreadBox>
     </div>
     <div v-for="(info,index) in boardinfo"
-             :key="index">
+             :key="index+'14'">
        <BoardBox :info="info"></BoardBox>
     </div>
     </div>
@@ -277,7 +277,13 @@ export default {
         list.push(this.breadinfo)
         list.push(this.boardinfo)
       
-
+        for(var i=0;i<this.boardinfo.length;i++){
+          if(this.boardinfo[i].isshown==true){
+            this.drawwidth=this.boardinfo[i].width;
+            this.drawheight=this.boardinfo[i].height;
+            break;
+          }
+        }
         let formdata=new FormData()
         formdata.append('list',JSON.stringify(list))
         formdata.append('design_a',this.drawwidth)

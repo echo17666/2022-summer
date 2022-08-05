@@ -90,7 +90,13 @@ export default {
         this.dialog=true;
     },
     update(){
-        
+        if(this.name.length>10){
+          this.$notify({
+              title: '字数过多',
+              type: 'warning'
+            })
+            return
+        }
         let formdata = new FormData()
         formdata.append('design_name',this.name)
         

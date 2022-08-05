@@ -11,7 +11,7 @@
       <v-list dense>
 
         <v-list-item
-          @click="$router.push({name:'ViewAll'})"
+          @click="jumpPrototype"
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
@@ -26,7 +26,7 @@
     
        
         <v-list-item
-    @click="$router.push({name:'DocumentEdit'})"
+    @click="jumpEdit"
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
@@ -62,6 +62,22 @@ export default {
       }
   },
     methods: {
+      jumpEdit(){
+        var url=window.location.href.split('/')
+        var urle=url[5]
+        if(urle!="newdocument"){
+          this.$router.push({name:'DocumentEdit'})
+        }
+      },
+      jumpPrototype(){
+        var url=window.location.href.split('/')
+        // console.log(url)
+        var urle=url[5]
+        // console.log(urle)
+        if(urle!="viewall"){
+          this.$router.push({name:'ViewAll'})
+        }
+      }
        
   }
 }
