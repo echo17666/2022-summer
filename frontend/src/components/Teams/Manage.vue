@@ -30,7 +30,7 @@
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
-                home</span>
+                add_circle_outline</span>
           </v-list-item-icon>
           
 

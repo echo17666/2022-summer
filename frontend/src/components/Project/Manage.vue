@@ -15,7 +15,7 @@
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
-                home</span>
+                architecture</span>
           </v-list-item-icon>
           
 
@@ -30,7 +30,7 @@
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
-                home</span>
+               description</span>
           </v-list-item-icon>
           
 

@@ -105,7 +105,7 @@ export default {
         timer: 0,
         state:this.$store.state,
         items: [
-          { title: '团队管理', icon: 'home' ,link:'/teams'},
+          { title: '团队管理', icon: 'group' ,link:'/teams'},
          
           
         ],

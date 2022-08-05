@@ -15,7 +15,7 @@
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
-                home</span>
+                format_list_bulleted</span>
           </v-list-item-icon>
           
 
@@ -29,7 +29,7 @@
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
-                home</span>
+                person</span>
           </v-list-item-icon>
           
 
@@ -44,7 +44,7 @@
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
-                home</span>
+                delete</span>
           </v-list-item-icon>
           
 
