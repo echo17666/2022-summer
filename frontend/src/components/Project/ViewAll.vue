@@ -1,10 +1,13 @@
 <template>
-  <div class="viewall">
-    <span><h1>所有原型
-      <el-button  @click="dialog=true" class="mx-2" >
-      <span class="material-icons-outlined" >添加原型</span>
-    </el-button> </h1> </span>
-    <v-row>
+  <div class="viewall" style="margin-top:10px">
+    <span>
+      <h1>所有原型 
+      <v-btn  @click="dialog=true" class="mx-2" fab dark color="indigo">
+      <span class="material-icons-outlined">add</span>
+      </v-btn>
+      
+     </h1></span>
+    <v-row style="margin-top:10px">
     <v-col cols="12" md="4" v-for="(design,index) in designs" :key="index">
         <DesignItem :design="design"></DesignItem>
       </v-col>

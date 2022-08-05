@@ -1,5 +1,5 @@
 <template>
-  <div class="createTeam">
+  <div class="createTeam" style="margin-top:10px">
     <h1>创建团队</h1>
     <v-container>
      <v-text-field
