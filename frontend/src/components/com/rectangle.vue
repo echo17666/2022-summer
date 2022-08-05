@@ -50,4 +50,12 @@ img{
   width:100%;
   height:100%
 }
+.vdr-stick{
+  color: rgba(68, 68, 68, 0);
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  width: 4px !important;
+  height: 4px !important;
+}
+
 </style>

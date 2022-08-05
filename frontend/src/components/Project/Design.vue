@@ -413,5 +413,11 @@ export default {
   max-width:100px;
   height:100px
 }
-
+.vdr-stick{
+  color: rgba(136, 136, 136, 0);
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  width: 4px !important;
+  height: 4px !important;
+}
 </style>

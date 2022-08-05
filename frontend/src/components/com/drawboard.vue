@@ -45,8 +45,8 @@ export default {
 .vdr-stick{
   color: rgba(68, 68, 68, 0);
   background-color: rgba(255, 255, 255, 0);
-  /* border: none; */
-  width: 5px !important;
-  height: 5px !important;
+  border: none;
+  width: 4px !important;
+  height: 4px !important;
 }
 </style>
