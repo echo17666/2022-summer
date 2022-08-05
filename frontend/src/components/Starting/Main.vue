@@ -1,10 +1,10 @@
 <template>
   <div class="main d-flex justify-center" width="100vw" height="100vh" >
 
-
-  <div id="logo" :style="{ width: '100vw', height: '100vh' }"></div>
-
-
+<v-row>
+  <div id="logo" :style="{ width: '100vw', height: '80vh' }"></div>
+  <v-btn outlined @click="start()" class="mx-auto" :style="{'width':'120px','height':'60px','font-size':'20px'}"> 开始使用</v-btn>
+</v-row>
 
   </div>
 </template>
@@ -14,10 +14,22 @@ export default {
   name: 'Main',
   data () {
       return {
-       
+        state:this.$store.state,
       }
     },
     methods: {
+      start(){
+          if(this.state.islogin){
+            this.$router.push('/teams');
+          }
+          else{
+            this.$router.push('/login');
+          }
+      },
+
+
+
+
       drawLogo() {
         var chartDom = document.getElementById('logo');
 var myChart = echarts.init(chartDom);

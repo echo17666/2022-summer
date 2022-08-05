@@ -11,15 +11,8 @@
             </v-card-title>
             </router-link>
           <v-card-text>
-             简介：{{team.team_intro}}
+             <h3>简介：{{team.team_intro}}</h3>
           </v-card-text>
-          <v-spacer></v-spacer>
-     
-           
-       
-          <v-card-actions>
-                
-          </v-card-actions>
             
         </v-col>
         <v-col cols="12" md="2" sm="10">
@@ -28,7 +21,7 @@
     </v-btn>
         </v-col>
         <v-col cols="12" md="12" sm="2">
-            <v-card-text>创始人：{{team.creator_username}}
+            <v-card-text><h3>创始人：{{team.creator_username}}</h3>
                 </v-card-text>
             </v-col>
 
