@@ -1,7 +1,7 @@
 <template>
   <div class="peoplemanage">
     <div class="row">
-      <v-col cols="12" md="2">
+      <v-col cols="12" md="2" :style="{'padding-right':'0px'}">
      <v-navigation-drawer
       permanent
       height="100vh"
@@ -45,7 +45,7 @@
     </v-navigation-drawer>
     </v-col>
     
-    <v-col cols="12" md="10">
+    <v-col cols="12" md="10" :style="{'background-color':'#EEEEEE'}">
             <router-view/>
             </v-col>
     

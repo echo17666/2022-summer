@@ -1,5 +1,5 @@
-<template>
-  <div class="allteams" style="margin-top:15px">
+<template >
+  <div class="allteams" style="margin-top:15px" >
     <h1>所有团队列表</h1>
     <v-row style="margin-top:10px">
     <v-col cols="12" md="4" v-for="(team,index) in teams" :key="index">
