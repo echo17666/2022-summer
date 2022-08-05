@@ -30,8 +30,6 @@
              大小:{{design.design_a}}x{{design.design_b}}
           </v-card-text>
             </v-col>
-
-
       </v-row>
 
     </v-card>

@@ -1,6 +1,6 @@
 <template>
   <div class="design">
-        <VueDragResize  v-show="info.isshown" :z="1" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
+        <VueDragResize v-show="info.isshown" :z="1" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
             <div :style="{'position':'relative'}" style="height:100%">
                 <img src="../../assets/background.png"
                 width="100%" height="100%" />
@@ -41,3 +41,12 @@ export default {
     }
 
 </script>
+<style>
+.vdr-stick{
+  color: rgba(68, 68, 68, 0);
+  background-color: rgba(255, 255, 255, 0);
+  /* border: none; */
+  width: 5px !important;
+  height: 5px !important;
+}
+</style>
