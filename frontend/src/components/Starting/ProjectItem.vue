@@ -135,7 +135,7 @@ export default {
         this.dialog=true;
     },
     update(){
-
+        this.$parent.getProject();
         let formdata = new FormData()
         formdata.append('project_name',this.name)
         formdata.append('project_description',this.intro)
@@ -164,64 +164,70 @@ export default {
 
     Restore()
     {
+      this.$parent.getProject();
       let formdata = new FormData();
       formdata.append("project_id",this.project.id);
 
       Project.reviveproject(formdata)
           .then((response) => {
+            this.$parent.getProject();
             console.log(response.data)
             this.$notify({
               title: '恢复成功',
               type: 'success'
             })
+            this.$parent.getProject();
           })
           .catch((error) => {
             console.log(error)
           });
-      this.$router.go(0);
       this.$parent.getProject();
     },
     Completed()
     {
-
+      this.$parent.getProject();
       let formdata = new FormData();
       formdata.append("project_id",this.project.id);
 
       Project.finishProject(formdata)
           .then((response) => {
+            this.$parent.getProject();
             console.log(response.data)
             this.$notify({
               title: '项目已完成',
               type: 'success'
             })
+            this.$parent.getProject();
           })
           .catch((error) => {
             console.log(error)
           });
-      this.$router.go(0);
       this.$parent.getProject();
     },
     Delete()
     {
-
+      this.$parent.getProject();
       let formdata = new FormData();
       formdata.append("project_id",this.project.id);
 
       Project.deleteProject(formdata)
           .then((response) => {
+            this.$parent.getProject();
             console.log(response.data)
             this.$notify({
               title: '删除成功',
               type: 'success'
             })
+            this.$parent.getProject();
           })
+
           .catch((error) => {
             console.log(error)
           });
-      this.$router.go(0);
       this.$parent.getProject();
     }
   },
+
 };
 
 </script>
