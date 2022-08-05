@@ -30,7 +30,7 @@
 <v-col cols="12" md="6" sm="3">
           <v-card-actions class="d-flex justify-end">
             <v-row>
-            
+
             <v-btn
                 class="ma-2"
                 color="secondary"
@@ -39,7 +39,7 @@
             >
               完成项目
             </v-btn>
-       
+
    <v-btn
                 class="ma-2"
                 color="secondary"
@@ -62,7 +62,7 @@
           </v-card-actions>
 </v-col>
 
-        
+
 
 
       </v-row>
@@ -70,7 +70,7 @@
     </v-card>
 
    <v-dialog v-model="dialog" persistent max-width="600px">
-     
+
       <v-card>
         <v-card-title >
           <span class="headline mx-auto">重命名</span>
@@ -131,13 +131,13 @@ export default {
         this.dialog=true;
     },
     update(){
-        
+
         let formdata = new FormData()
         formdata.append('project_name',this.name)
         formdata.append('project_description',this.intro)
         formdata.append('project_id',this.project.id)
         Project.UpdateProject(formdata)
-        .then((response) => { 
+        .then((response) => {
             this.$notify({
               title: '重命名成功',
               type: 'success'
@@ -148,8 +148,8 @@ export default {
             this.project.project_description=this.intro
 
         })
-        .catch((error) => {    
-          console.log(error) 
+        .catch((error) => {
+          console.log(error)
         });
     },
     cancel(){
@@ -159,8 +159,6 @@ export default {
     },
     Restore()
     {
-      if(this.project.status===0)
-        this.project.status=1;
       let formdata = new FormData();
       formdata.append("project_id",this.project.id);
 
@@ -175,11 +173,13 @@ export default {
           .catch((error) => {
             console.log(error)
           });
+      this.$parent.getProject();
+      // this.$router.go(0);
     },
     Completed()
     {
-      if(this.project.status===1)
-        this.project.status=2;
+      // if(this.project.status===1)
+      //   this.project.status=2;
       let formdata = new FormData();
       formdata.append("project_id",this.project.id);
 
@@ -194,11 +194,13 @@ export default {
           .catch((error) => {
             console.log(error)
           });
+      // this.$router.go(0);
+      this.$parent.getProject();
     },
     Delete()
     {
-      if(this.project.status!==0)
-        this.project.status=0;
+      // if(this.project.status!==0)
+      //   this.project.status=0;
       let formdata = new FormData();
       formdata.append("project_id",this.project.id);
 
@@ -213,8 +215,11 @@ export default {
           .catch((error) => {
             console.log(error)
           });
+      // this.$router.go(0);
+      this.$parent.getProject();
     }
   },
+
 };
 
 </script>

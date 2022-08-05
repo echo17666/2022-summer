@@ -6,7 +6,7 @@
       <v-col cols="12" md="4" v-for="(project,index) in projects"
              :key="index"
 
-            
+
       >
         <proitem v-if="project.project_status!==0" :project="project"></proitem>
       </v-col>
@@ -145,8 +145,8 @@ export default {
   mounted() {
     this.getProject();
   },
-  updated() {
-    this.getProject();
-  }
+  // updated() {
+  //   this.getProject();
+  // }
 }
 </script>
