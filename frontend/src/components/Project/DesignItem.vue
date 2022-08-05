@@ -24,6 +24,9 @@
              <v-btn  @click="open()"  icon :style="{'margin-top':'10px'}" >
       <span class="material-icons-outlined">edit</span>
     </v-btn>
+    <v-btn  @click="open1()"  icon :style="{'margin-top':'10px'}" >
+      <span class="material-icons-outlined">delete</span>
+    </v-btn>
         </v-col>
         <v-col cols="12" md="12" sm="2">
             <v-card-text>
@@ -64,6 +67,20 @@
       </v-card>
     </v-dialog>
 
+    <v-dialog v-model="dialog1" persistent max-width="600px">
+     
+      <v-card>
+        <v-card-title >
+          <span class="headline mx-auto">是否删除</span>
+        </v-card-title>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="cancel1()">手滑了</v-btn>
+          <v-btn color="blue darken-1" text @click="deleteDesign()">狠心删除</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
   </div>
 </template>
 
@@ -76,6 +93,7 @@ export default {
   data() {
     return {
         dialog:false,
+        dialog1:false,
         name:"",
         intro:"",
         id:"xxx",
@@ -84,8 +102,31 @@ export default {
   methods: {
     open(){
         this.name=this.design.design_name
-        
         this.dialog=true;
+    },
+     open1(){
+        this.dialog1=true;
+    },
+    deleteDesign(){
+        let formdata = new FormData()
+        formdata.append('design_id',this.design.id)
+        
+        Design.deleteDesign(formdata)
+        .then((response) => { 
+          
+            this.$notify({
+              title: '删除成功',
+              type: 'success'
+            })
+            this.dialog1 = false;
+            this.$parent.getDesigns();
+          
+         
+         
+        })
+        .catch((error) => {    
+          console.log(error) 
+        });
     },
     update(){
         if(this.name.length>10){
@@ -129,6 +170,9 @@ export default {
         this.name=this.design.design_name,
 
         this.dialog = false;
+    },
+     cancel1(){
+        this.dialog1 = false;
     },
     
   },

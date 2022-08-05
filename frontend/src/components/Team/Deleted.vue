@@ -4,7 +4,7 @@
     <v-row style="margin-top:10px">
       <v-col cols="12" md="4" v-for="(project,index) in projects"
              :key="index"
-             v-if="project.project_status===0"
+              
               >
         <proitem :project="project" v-if="project.project_status===0"></proitem>
       </v-col>

@@ -2,7 +2,9 @@
   <div>
     <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'200px'}">
       <v-row>
-        <v-col cols="12" md="10" sm="1">
+        <v-col cols="12" md="10">
+          <v-row>
+            <v-col cols="12" md="12" sm="3">
             <router-link :to="{ name: 'ViewAll', params: { id: project.url } }">
             <v-card-title>
               <h1>
@@ -11,56 +13,58 @@
             </v-card-title>
               </router-link>
               </v-col>
-              <v-col cols="12" md="2" sm="2">
+            
+        <v-col cols="12" md="12" sm="9">
+          <v-card-text> 
+            <h3>
+             简介：{{project.project_description}}</h3>
+          </v-card-text>
+          <v-card-text v-if="project.project_status===2">
+              <h3>
+            项目已完成
+              </h3>
+          </v-card-text>
+          <v-card-text v-else-if="project.project_status===1">
+              <h3>
+            项目进行中
+              </h3>
+          </v-card-text>
+          </v-col>
+          </v-row>
+          </v-col>
+  <v-col cols="12" md="2">
              <v-btn  @click="open()"  icon :style="{'margin-top':'10px'}" >
       <span class="material-icons-outlined">edit</span>
     </v-btn>
-        </v-col>
-        <v-col cols="12" md="6" sm="6">
-          <v-card-text>
-             {{project.project_description}}
-          </v-card-text>
-          <v-card-text v-if="project.project_status===2">
-            项目已完成
-          </v-card-text>
-          <v-card-text v-else-if="project.project_status===1">
-            项目进行中
-          </v-card-text>
-          </v-col>
-<v-col cols="12" md="6" sm="3">
-          <v-card-actions class="d-flex justify-end">
-            <v-row>
 
-            <v-btn
-                class="ma-2"
-                color="secondary"
+     <v-btn icon :style="{'margin-top':'10px'}"
+               
                 @click="Completed"
                 v-if="project.project_status===1"
             >
-              完成项目
+                <span class="material-icons-outlined">done</span>
             </v-btn>
 
-   <v-btn
-                class="ma-2"
-                color="secondary"
+   <v-btn icon :style="{'margin-top':'10px'}"
+               
                 @click="Delete"
                 v-if="project.project_status!==0"
             >
-              删除项目
+                <span class="material-icons-outlined">delete</span>
             </v-btn>
 
-            <v-btn
-                class="ma-2"
-                color="secondary"
+            <v-btn icon :style="{'margin-top':'10px'}"
+                
                 @click="Restore"
                 v-if="project.project_status===0"
             >
-              恢复
+                <span class="material-icons-outlined">restore</span>
             </v-btn>
 
-            </v-row>
-          </v-card-actions>
-</v-col>
+
+
+
+        </v-col>
 
 
 
