@@ -1,5 +1,5 @@
 <template>
-  <div class="teamproject" style="margin-top:10px" :style="{'margin-left':'10px','margin-right':'10px'}">
+  <div class="teamproject" style="margin-top:15px" :style="{'margin-left':'10px','margin-right':'10px'}">
     <h1>团队项目列表</h1>
     <div style="height: 10px; margin-top:10px" ></div>
     <v-row>
