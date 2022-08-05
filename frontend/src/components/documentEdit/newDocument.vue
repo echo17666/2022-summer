@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <el-tiptap v-model="content" :extensions="extensions" placeholder="Write something ..."/>
+  <div :style="{'background-color':'#EEEEEE'}">
+    <v-container width="80vw">
+    <el-tiptap  v-model="content" :extensions="extensions" placeholder="Write something ..."/>
     <div style="height: 15px"></div>
     <el-row >
       <el-button style="float: right;margin-right: 15px" @click="saveFile()">保存</el-button>
       <el-button style="float: right" @click="clearTiptap()">清空内容</el-button>
     </el-row>
+    </v-container>
   </div>
 </template>
 

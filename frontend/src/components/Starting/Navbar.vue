@@ -4,7 +4,7 @@
     <v-navigation-drawer
       permanent
       height="100vh"
-      width="280px"
+      width="290px"
       expand-on-hover
 
       :style="{'background-color':'#bdd5ed'}"
