@@ -1,21 +1,37 @@
 <template>
   <div>
-    <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'200px'}">
+    <v-row>
+      <v-col cols="12" md="1"/>
+      <v-col cols="12" md="10">
+    <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'190px'}">
       <v-row>
         <v-col cols="12" md="8">
           <v-card-title>
-            <h1>
+            <h1 v-show="people.user_identity=='creator'" :style="{'color':'orange'}">
+              
+              {{people.user_name}}
+            </h1>
+             <h1 v-show="people.user_identity=='administrator'" :style="{'color':'blue'}">
+              
+              {{people.user_name}}
+            </h1>
+            <h1 v-show="people.user_identity=='member'" >
+              
               {{people.user_name}}
             </h1>
           </v-card-title>
           <v-card-text>
-            {{people.user_identity}}
-          </v-card-text>
-          <v-card-text>
-           {{people.user_email}}
-          </v-card-text>
-          <v-card-text>
-            {{people.user_true_name}}
+            <h3>
+            身份：{{people.user_identity}}
+            </h3>
+            <br/>
+            <h3>
+           邮箱：{{people.user_email}}
+            </h3>
+            <br/>
+          <h3>
+            真实姓名：{{people.user_true_name}}
+          </h3>
           </v-card-text>
             <v-card-actions>
             </v-card-actions>
@@ -64,6 +80,9 @@
       </v-row>
 
     </v-card>
+    </v-col>
+    <v-col cols="12" md="1"/>
+    </v-row>
 
   </div>
 </template>

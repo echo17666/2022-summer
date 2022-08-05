@@ -6,11 +6,16 @@
     </el-button> </h1> </span>
     <br/>
     <v-row>
-      <v-col cols="12" md="6" v-for="(people,index) in members" :key="index">
+    <v-col cols="12" md="12">
+    <v-row>
+      
+      <v-col cols="12" md="12" v-for="(people,index) in members" :key="index">
         <peoitem :people="people"></peoitem>
       </v-col>
-    </v-row>
 
+    </v-row>
+</v-col>
+            </v-row>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card>
         <v-card-title>
@@ -27,6 +32,7 @@
                 ></v-text-field>
               </v-col>
             </v-row>
+          
           </v-container>
         </v-card-text>
         <v-card-actions>
@@ -93,6 +99,8 @@ export default {
           title: '邀请成功',
           type: 'success'
         })
+        this.dialog=false
+        this.email=""
         })
         .catch((error) => {
           console.log(error)
