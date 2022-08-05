@@ -173,7 +173,8 @@ export default {
           .catch((error) => {
             console.log(error)
           });
-      this.$router.go(0);
+      this.$parent.getProject();
+      // this.$router.go(0);
     },
     Completed()
     {
@@ -193,7 +194,8 @@ export default {
           .catch((error) => {
             console.log(error)
           });
-      this.$router.go(0);
+      // this.$router.go(0);
+      this.$parent.getProject();
     },
     Delete()
     {
@@ -213,7 +215,8 @@ export default {
           .catch((error) => {
             console.log(error)
           });
-      this.$router.go(0);
+      // this.$router.go(0);
+      this.$parent.getProject();
     }
   },
 
