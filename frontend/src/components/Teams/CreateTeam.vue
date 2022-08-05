@@ -45,7 +45,7 @@ export default {
               title: '团队创建成功',
               type: 'success'
             })
-            this.$router.push('/teams/allteam')
+            this.$router.push('/teams/allteams')
        })  
 
      
