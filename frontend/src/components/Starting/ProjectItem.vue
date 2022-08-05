@@ -178,11 +178,8 @@ export default {
           .catch((error) => {
             console.log(error)
           });
-      if(this.project.status===0)
-        this.project.status=1;
-      this.$parent.getProjects();
+      this.$router.go(0);
       this.$parent.getProject();
-      // this.$router.go(0);
     },
     Completed()
     {
@@ -201,11 +198,8 @@ export default {
           .catch((error) => {
             console.log(error)
           });
-      // this.$router.go(0);
-      if(this.project.status===1)
-        this.project.status=2;
+      this.$router.go(0);
       this.$parent.getProject();
-      this.$parent.getProjects();
     },
     Delete()
     {
@@ -224,14 +218,10 @@ export default {
           .catch((error) => {
             console.log(error)
           });
-      // this.$router.go(0);
-      if(this.project.status!==0)
-        this.project.status=0;
+      this.$router.go(0);
       this.$parent.getProject();
-      this.$parent.getProjects();
     }
   },
-
 };
 
 </script>

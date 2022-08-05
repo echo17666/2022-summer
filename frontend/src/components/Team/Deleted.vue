@@ -28,14 +28,16 @@ export default {
       dialog:false
   }
   },
-  watch:
-  {
-    projects(){
-      this.getProjects();
-    }
-  },
+  // watch:
+  //     {
+  //       projects:{
+  //         handler(newValue, oldValue) {
+  //           this.getProject()
+  //         },
+  //       }
+  //     },
   methods: {
-    getProjects() {
+    getProject() {
       let id = this.$route.params.id
 
       let s = id.split('ZY');
@@ -53,7 +55,7 @@ export default {
     },
   },
   mounted() {
-    this.getProjects();
+    this.getProject();
   },
 
   // updated() {
