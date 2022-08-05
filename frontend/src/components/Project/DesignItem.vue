@@ -98,6 +98,7 @@ export default {
         
         Design.updatedesign(formdata)
         .then((response) => { 
+          if(response.code==200){
             this.$notify({
               title: '重命名成功',
               type: 'success'
@@ -105,6 +106,15 @@ export default {
             this.dialog = false;
             console.log(response.data)
             this.design.design_name=this.name
+          }
+          else{
+            this.$notify({
+              title: '名字重复，换一个吧',
+              type: 'warning'
+            })
+            this.dialog = false;
+            console.log(response.data)
+          }
          
         })
         .catch((error) => {    
