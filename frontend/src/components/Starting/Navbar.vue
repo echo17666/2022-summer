@@ -13,7 +13,7 @@
       <template v-slot:prepend >
         <v-list-item two-line >
           <v-list-item-avatar :style="{'maargin-left':'-250px'}">
-            <img src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png" :style="{'width':'30px','height':'30px'}">
+            <img src="../../assets/avatar.png" :style="{'width':'30px','height':'30px'}">
           </v-list-item-avatar>
 
           <v-list-item-content v-if="state.islogin==true">
