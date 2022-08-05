@@ -1,5 +1,5 @@
 <template>
-  <div class="memberlist" style="margin-top:10px">
+  <div class="memberlist" style="margin-top:15px">
     <span><h1>人员列表
       <v-btn v-show="identity=='creator'||identity=='administrator'" @click="dialog=true" class="mx-2" fab dark color="indigo">
       <span class="material-icons-outlined">add</span>
