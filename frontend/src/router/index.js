@@ -36,6 +36,8 @@ import documentmanage from "@/components/documentEdit/Manage";
 
 import Test from "@/components/Project/ScreenShotTest.vue";
 
+import UML from  "@/components/UML/UML.vue"
+
 
 
    
@@ -85,6 +87,11 @@ const routes = [
     path: '/text',
     name: 'Text',
     component: Text
+  },
+  {
+    path: '/uml',
+    name: 'UML',
+    component: UML
   },
   {
     path: '/project/:id',
