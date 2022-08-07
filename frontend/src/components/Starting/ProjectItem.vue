@@ -37,7 +37,7 @@
       <span class="material-icons-outlined">edit</span>
     </v-btn>
 
-     <v-btn icon :style="{'margin-top':'10px'}"
+    <v-btn icon :style="{'margin-top':'10px'}"
 
                 @click="Completed"
                 v-if="project.project_status===1"
@@ -45,7 +45,7 @@
                 <span class="material-icons-outlined">done</span>
             </v-btn>
 
-   <v-btn icon :style="{'margin-top':'10px'}"
+    <v-btn icon :style="{'margin-top':'10px'}"
 
                 @click="Delete"
                 v-if="project.project_status!==0"
@@ -53,14 +53,20 @@
                 <span class="material-icons-outlined">delete</span>
             </v-btn>
 
-            <v-btn icon :style="{'margin-top':'10px'}"
+    <v-btn icon :style="{'margin-top':'10px'}"
 
                 @click="Restore"
                 v-if="project.project_status===0"
             >
                 <span class="material-icons-outlined">restore</span>
             </v-btn>
+    <v-btn icon :style="{'margin-top':'10px'}"
 
+           @click="copy"
+           v-if="project.project_status!==0"
+    >
+      <span class="material-icons-outlined">copy</span>
+    </v-btn>
 
 
 
@@ -216,6 +222,28 @@ export default {
             console.log(response.data)
             this.$notify({
               title: '删除成功',
+              type: 'success'
+            })
+            this.$parent.getProject();
+          })
+
+          .catch((error) => {
+            console.log(error)
+          });
+      this.$parent.getProject();
+    },
+    copy()
+    {
+      this.$parent.getProject();
+      let formdata = new FormData();
+      formdata.append("project_id",this.project.id);
+
+      Project.copyProject(formdata)
+          .then((response) => {
+            this.$parent.getProject();
+            console.log(response.data)
+            this.$notify({
+              title: '复制成功',
               type: 'success'
             })
             this.$parent.getProject();

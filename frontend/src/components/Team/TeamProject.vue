@@ -2,10 +2,25 @@
   <div class="teamproject" style="margin-top:15px" :style="{'margin-left':'10px','margin-right':'10px'}">
     <h1>团队项目列表</h1>
     <div style="height: 10px; margin-top:10px" ></div>
+    <v-select
+        :items="sorts"
+        v-model="type"
+        label="排序依据"
+        outlined
+        @change="sort1();getProject();"
+    >
+    </v-select>
+    <v-text-field
+        v-model="keyword"
+        label="搜索文档"
+        placeholder="输入后按回车搜索"
+        outlined
+        @change="getProject"
+    ></v-text-field>
+
     <v-row>
       <v-col cols="12" md="4" v-for="(project,index) in projects"
              :key="index"
-
 
       >
         <proitem v-if="project.project_status!==0" :project="project"></proitem>
@@ -69,18 +84,35 @@ export default {
       dialog: false,
       name: "",
       description: "",
-      projects: []
+      keyword:"",
+      sorts:["按时间升序","按名称升序","按名称降序","按时间降序"],
+      sort:"0",
+      type:"",
+      projects: [],
     }
   },
+
   methods: {
+    sort1(){
+      if(this.type==="按时间升序")
+        this.sort="1";
+      else if(this.type==="按名称升序")
+        this.sort="2";
+      else if(this.type==="按名称降序")
+        this.sort="3";
+      else if(this.type==="按时间降序")
+        this.sort="0";
+
+    },
     getProject() {
       let id=this.$route.params.id
-
       let s=id.split('ZY');
       let team_id=s[1];
       let formdata = new FormData();
+      console.log(this.sort+"sort2");
       formdata.append("team_id",team_id)
-
+      formdata.append("sort",this.sort)
+      formdata.append("keyword", this.keyword)
       Project.ShowProject(formdata)
           .then((response) => {
             this.projects = response.data.Teams;
@@ -98,18 +130,13 @@ export default {
             s+=this.projects[i].id;
             this.projects[i]["url"]=s;
           }
-
           console.log(this.projects)
-
-
-
-
-
-
           })
           .catch((error) => {
             console.log(error)
           });
+      // this.keyword="";
+
     },
     cancel() {
       this.name = "";
@@ -117,6 +144,7 @@ export default {
       this.dialog = false;
     },
     addProject() {
+
       let id = this.$route.params.id;
       let s = id.split('ZY');
       let team_id = s[1];
@@ -138,8 +166,11 @@ export default {
           });
       // this.name = "";
       // this.introduction = "";
+      this.getProject();
       this.dialog = false;
-      this.$router.go(0)
+      this.name="";
+      this.description="";
+      this.getProject();
     },
   },
   mounted() {

@@ -1,8 +1,11 @@
 <template>
   <div class="design">
-        <VueDragResize  v-show="info.isshown" :z="10" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
+        <VueDragResize  v-show="info.isshown" :z="10" :isActive="true" :w="info.width" :h="info.height" 
+        :x="info.left" :y="info.top" 
+        v-on:resizing="resize" v-on:dragging="resize" v-on:clicked="showinformation"
+        >
             <div :style="{'position':'relative'}">
-                <v-textarea outlined  :width="info.width" :height="info.height" ></v-textarea>
+                <v-textarea outlined v-model="text" :width="info.width" :height="info.height" ></v-textarea>
                 <v-btn @click="deleted(info)" :style="{'position':'absolute','top':'0px','right':'0px'}" icon> <span class="material-icons-outlined">
                         close</span></v-btn>
             </div>
@@ -20,7 +23,7 @@ export default {
 
   data () {
       return {
-
+        text:''
        
       }
     },
@@ -35,6 +38,15 @@ export default {
                 this.info.top = newRect.top;
                 this.info.left = newRect.left;
             },
+        showinformation(newRect){
+          this.$parent.comwidth=newRect.width;
+          this.$parent.comheight = newRect.height;
+          this.$parent.comtop = newRect.top;
+          this.$parent.comleft = newRect.left;
+          this.$parent.comid=this.info.comid;
+          // this.$store.state.comcontent =this.text;
+          // this.$store.state.content_disabled=false;
+        }
        
     }
     }
