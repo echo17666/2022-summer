@@ -13,7 +13,9 @@
       <template v-slot:prepend >
         <v-list-item two-line >
           <v-list-item-avatar :style="{'maargin-left':'-250px'}">
+            <router-link :to="{'name':'Profile'}">
             <img src="../../assets/avatar.png" :style="{'width':'30px','height':'30px'}">
+            </router-link>
           </v-list-item-avatar>
 
           <v-list-item-content v-if="state.islogin==true">
@@ -106,6 +108,7 @@ export default {
         state:this.$store.state,
         items: [
           { title: '团队管理', icon: 'group' ,link:'/teams'},
+          { title: '个人中心', icon: 'account_circle' ,link:'/profile'},
          
           
         ],

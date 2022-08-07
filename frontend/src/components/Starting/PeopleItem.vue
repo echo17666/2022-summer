@@ -21,8 +21,14 @@
             </h1>
           </v-card-title>
           <v-card-text>
-            <h3>
-            身份：{{people.user_identity}}
+            <h3 v-show="people.user_identity=='creator'">
+            身份：创造者
+            </h3>
+             <h3 v-show="people.user_identity=='administrator'">
+            身份：管理员
+            </h3>
+             <h3 v-show="people.user_identity=='member'">
+            身份：成员
             </h3>
             <br/>
             <h3>

@@ -5,6 +5,8 @@ import Login from '../components/Starting/Login.vue'
 import Register from '../components/Starting/Register.vue'
 import Reset from '../components/Starting/Reset.vue'
 import Main from '../components/Starting/Main.vue'
+import Profile from '../components/Starting/Profile.vue'
+
 import Project from '../components/MyProject/Manage.vue'
 import ShowAll from '../components/MyProject/ShowAll.vue'
 import MeAttend from '../components/MyProject/MeAttend.vue'
@@ -62,6 +64,11 @@ const routes = [
     path: '/main',
     name: 'Main',
     component: Main
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   },
   {
     path: '/design/:id',
