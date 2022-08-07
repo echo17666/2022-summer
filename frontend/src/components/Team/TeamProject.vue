@@ -80,7 +80,8 @@ export default {
       let team_id=s[1];
       let formdata = new FormData();
       formdata.append("team_id",team_id)
-
+      formdata.append("sort",0)
+      formdata.append("keyword","")
       Project.ShowProject(formdata)
           .then((response) => {
             this.projects = response.data.Teams;
