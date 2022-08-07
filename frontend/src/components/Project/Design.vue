@@ -93,7 +93,7 @@
         </v-row>
         </v-card>
     </v-col>
-<v-col cols="12" md="9">
+<v-col cols="12" md="6">
   <div class="prototype" ref="prototype"> 
     <div v-for="(info,index) in inputinfo"
              :key="index+'1'">
@@ -153,6 +153,28 @@
     </div>
     </div>
     </v-col>
+  <v-col cols="12" md="3">
+    <div>
+      <el-form>
+        <el-form-item label="宽度:">
+          <el-input v-model="this.comwidth">
+            </el-input>
+        </el-form-item>
+        <el-form-item label="高度:">
+          <el-input v-model="this.comheight">
+            </el-input>
+        </el-form-item>
+        <el-form-item label="x:">
+          <el-input v-model="this.comleft">
+            </el-input>
+        </el-form-item>
+        <el-form-item label="y:">
+          <el-input v-model="this.comtop">
+            </el-input>
+        </el-form-item>
+      </el-form>
+    </div>
+  </v-col>
         </v-row>
   
   </div>
@@ -219,6 +241,14 @@ export default {
         drawtop:100,
         drawleft:500,
         imgUrl: null,
+        comid:-1,
+        comnumber:0,
+        comwidth:0,
+        comheight:0,
+        comleft:0,
+        comtop:0,
+        comcontent:'',
+        content_disabled:false
 
       }
     },
@@ -226,6 +256,35 @@ export default {
       this.show();
     },
     methods: {
+      updatecom(){
+        let list=new Array()
+        list.push(this.inputinfo)
+        list.push(this.buttoninfo)
+        list.push(this.radioinfo)
+        list.push(this.checkboxinfo)
+        list.push(this.switchinfo)
+        list.push(this.optioninfo)
+        list.push(this.imginfo)
+        list.push(this.avatarinfo)
+        list.push(this.rectinfo)
+        list.push(this.circleinfo)
+        list.push(this.taginfo)
+        list.push(this.triangleinfo)
+        list.push(this.breadinfo)
+        list.push(this.boardinfo)
+
+        for(var i=0;i<14;i++){
+          for(var j=0;j<list[i].length;j++){
+            if(list[i][j].comid==this.comid){
+              list[i][j].width=this.comwidth
+              list[i][j].height=this.comheight
+              list[i][j].left=this.comleft
+              list[i][j].top=this.comtop
+              break;
+            }
+          }
+        }
+      },
       show(){
         let id=this.$route.params.id
         let s=id.split('DS');
@@ -334,8 +393,9 @@ export default {
         		 document.body.removeChild(aCreate);//移除
      		},
       addboard(){
-        let a={width:500,height:500,top:100,left:500,isshown:true}
+        let a={width:500,height:500,top:100,left:500,isshown:true,comid:this.comnumber}
         this.boardinfo.push(a);
+        this.comnumber+=1
       },
       addinput(){
         let a={width:200,height:100,top:200,left:400,isshown:true}

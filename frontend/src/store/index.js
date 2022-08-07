@@ -11,6 +11,12 @@ export default new Vuex.Store({
     token:'',
     listTemp:null,
     content:'',
+    comwidth:0,
+    comheight:0,
+    comleft:0,
+    comtop:0,
+    comcontent:'',
+    content_disabled:false
 
   },
   getters: {
