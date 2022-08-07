@@ -85,7 +85,7 @@ export default {
       name: "",
       description: "",
       keyword:"",
-      sorts:["按时间升序","按名称升序"],
+      sorts:["按时间升序","按名称升序","按名称降序","按时间降序"],
       sort:"0",
       type:"",
       projects: [],
@@ -97,10 +97,12 @@ export default {
       if(this.type==="按时间升序")
         this.sort="1";
       else if(this.type==="按名称升序")
+        this.sort="2";
+      else if(this.type==="按名称降序")
         this.sort="3";
-      else this.sort="0";
+      else if(this.type==="按时间降序")
+        this.sort="0";
 
-      console.log(this.sort+"sort1");
     },
     getProject() {
       let id=this.$route.params.id
@@ -142,6 +144,7 @@ export default {
       this.dialog = false;
     },
     addProject() {
+
       let id = this.$route.params.id;
       let s = id.split('ZY');
       let team_id = s[1];
@@ -163,8 +166,11 @@ export default {
           });
       // this.name = "";
       // this.introduction = "";
+      this.getProject();
       this.dialog = false;
-      this.$router.go(0)
+      this.name="";
+      this.description="";
+      this.getProject();
     },
   },
   mounted() {
