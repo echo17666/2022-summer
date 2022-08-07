@@ -2,19 +2,25 @@
   <div class="teamproject" style="margin-top:15px" :style="{'margin-left':'10px','margin-right':'10px'}">
     <h1>团队项目列表</h1>
     <div style="height: 10px; margin-top:10px" ></div>
-
+    <v-select
+        :items="sorts"
+        v-model="type"
+        label="排序依据"
+        outlined
+        @change="sort1();getProject();"
+    >
+    </v-select>
     <v-text-field
         v-model="keyword"
         label="搜索文档"
         placeholder="输入后按回车搜索"
         outlined
-        @keyup.enter="getProject"
+        @change="getProject"
     ></v-text-field>
 
     <v-row>
       <v-col cols="12" md="4" v-for="(project,index) in projects"
              :key="index"
-
 
       >
         <proitem v-if="project.project_status!==0" :project="project"></proitem>
@@ -79,18 +85,31 @@ export default {
       name: "",
       description: "",
       keyword:"",
-      projects: []
+      sorts:["按时间升序","按名称升序"],
+      sort:"0",
+      type:"",
+      projects: [],
     }
   },
+
   methods: {
+    sort1(){
+      if(this.type==="按时间升序")
+        this.sort="1";
+      else if(this.type==="按名称升序")
+        this.sort="3";
+      else this.sort="0";
+
+      console.log(this.sort+"sort1");
+    },
     getProject() {
       let id=this.$route.params.id
-
       let s=id.split('ZY');
       let team_id=s[1];
       let formdata = new FormData();
+      console.log(this.sort+"sort2");
       formdata.append("team_id",team_id)
-      formdata.append("sort",0)
+      formdata.append("sort",this.sort)
       formdata.append("keyword", this.keyword)
       Project.ShowProject(formdata)
           .then((response) => {
@@ -115,6 +134,7 @@ export default {
             console.log(error)
           });
       // this.keyword="";
+
     },
     cancel() {
       this.name = "";
