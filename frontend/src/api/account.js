@@ -4,7 +4,10 @@ const url={
     login:'/user/login',
     register:'/user/register',
     saveprototype:'/design/savedesign',
-    getprototype:'/design/getdesign'
+    getprototype:'/design/getdesign',
+    uploadImage:'/user/userprofile',
+    changeUser:'/user/changeuser',
+    getUser:'/user/userinfo'
 }
 
 export class Account{
@@ -73,4 +76,35 @@ export class Account{
             }
         })
     };
+    static async UploadImage(data){
+        return service(url.uploadImage, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data: data
+        })
+    };
+    static async changeUser(data){
+        return service(url.changeUser, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data: data
+        })
+    };
+    static async getUser(data){
+        return service(url.getUser, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data: data
+        })
+    };
+
 }

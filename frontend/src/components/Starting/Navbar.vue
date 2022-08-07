@@ -14,7 +14,7 @@
         <v-list-item two-line >
           <v-list-item-avatar :style="{'maargin-left':'-250px'}">
             <router-link :to="{'name':'Profile'}">
-            <img src="../../assets/avatar.png" :style="{'width':'30px','height':'30px'}">
+            <img :src="userUrl" :style="{'width':'50px','height':'50px'}">
             </router-link>
           </v-list-item-avatar>
 
@@ -100,21 +100,39 @@
 
 </template>
 <script>
+import { Account } from "@/api/account.js";
 export default {
   name: 'Main',
   data () {
       return {
         timer: 0,
         state:this.$store.state,
+        username:'',
+        truename:'',
+        email:'',
+        userUrl:'',
         items: [
           { title: '团队管理', icon: 'group' ,link:'/teams'},
-          { title: '个人中心', icon: 'account_circle' ,link:'/profile'},
+          { title: '个人中心', icon: 'account_circle' ,link:'/profilemanage'},
          
           
         ],
       }
     },
     methods: {
+       getUser(){
+    Account.getUser()
+    .then(res => {
+      this.username = res.data.user.user_name;
+      this.email = res.data.user.user_email;
+      this.truename = res.data.user.user_true_name;
+      this.userUrl = res.data.user.user_profile_url;
+    })
+     .catch((error) => {    
+          console.log(error) 
+        });
+      
+    },
       turn(link){
         if(this.state.islogin){
         this.$router.push(link)
@@ -139,6 +157,7 @@ export default {
         this.timer = setInterval(() => {
           if (this.state.islogin==true) {
             this.state.username=window.localStorage.getItem("username")
+            this.getUser()
           }
         }, 1000);
       },
