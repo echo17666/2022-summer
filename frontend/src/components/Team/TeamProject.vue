@@ -2,6 +2,15 @@
   <div class="teamproject" style="margin-top:15px" :style="{'margin-left':'10px','margin-right':'10px'}">
     <h1>团队项目列表</h1>
     <div style="height: 10px; margin-top:10px" ></div>
+
+    <v-text-field
+        v-model="keyword"
+        label="搜索文档"
+        placeholder="输入后按回车搜索"
+        outlined
+        @keyup.enter="getProject"
+    ></v-text-field>
+
     <v-row>
       <v-col cols="12" md="4" v-for="(project,index) in projects"
              :key="index"
@@ -69,6 +78,7 @@ export default {
       dialog: false,
       name: "",
       description: "",
+      keyword:"",
       projects: []
     }
   },
@@ -81,7 +91,7 @@ export default {
       let formdata = new FormData();
       formdata.append("team_id",team_id)
       formdata.append("sort",0)
-      formdata.append("keyword","")
+      formdata.append("keyword", this.keyword)
       Project.ShowProject(formdata)
           .then((response) => {
             this.projects = response.data.Teams;
@@ -99,18 +109,12 @@ export default {
             s+=this.projects[i].id;
             this.projects[i]["url"]=s;
           }
-
           console.log(this.projects)
-
-
-
-
-
-
           })
           .catch((error) => {
             console.log(error)
           });
+      // this.keyword="";
     },
     cancel() {
       this.name = "";
