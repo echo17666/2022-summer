@@ -9,7 +9,10 @@
 
 
       <v-list dense>
-
+        <v-card
+            class="mx-auto"
+            width="300"
+        >
          <v-list-item
            @click="$router.push({name:'TeamProject'})"
         >
@@ -55,21 +58,63 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item
-            @click="$router.push({name:'Documents'})"
+        <v-list-group
+            prepend-icon="folder"
         >
-          <v-list-item-icon>
-            <span class="material-icons-outlined">
-               folder</span>
-          </v-list-item-icon>
-
-
-          <v-list-item-content>
+          <template v-slot:activator>
             <v-list-item-title>文档中心</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+          </template>
+
+          <v-list-group
+              no-action
+              sub-group
+              prepend-icon="folder_open"
+              style="margin-left: 6px"
+          >
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title>项目文档区</v-list-item-title>
+              </v-list-item-content>
+            </template>
+
+            <v-list-item
+                v-for="(title,i) in ProjectDocuments"
+                :key="i"
+                link
+                style="padding-left: 40px"
+            >
+              <v-list-item-title v-text="title"></v-list-item-title>
+
+            </v-list-item>
+          </v-list-group>
+
+          <v-list-group
+              no-action
+              sub-group
+              prepend-icon="folder_open"
+              style="margin-left: 6px"
+          >
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title>其他文档</v-list-item-title>
+              </v-list-item-content>
+            </template>
+
+            <v-list-item
+                v-for="(title, i) in otherDocuments"
+                :key="i"
+                link
+                style="padding-left: 40px"
+            >
+              <v-list-item-title v-text="title"></v-list-item-title>
+
+
+            </v-list-item>
+          </v-list-group>
+        </v-list-group>
 
         <v-divider/>
+      </v-card>
       </v-list>
     </v-navigation-drawer>
     </v-col>
@@ -88,7 +133,16 @@ export default {
   name: 'Team',
   data(){
     return {
-
+      ProjectDocuments: [
+        'Management', 'account-multiple',
+        'Settings', 'cog-outline',
+      ],
+      otherDocuments: [
+        'Create', 'plus-outline',
+        'Read', 'file',
+        'Update', 'update',
+        'Delete', 'delete',
+      ],
       }
   },
     methods: {
