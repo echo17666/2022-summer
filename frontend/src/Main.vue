@@ -1,4 +1,4 @@
-<template>
+<template >
   <div class="main d-flex justify-center" width="100vw" height="100vh" >
 
 <v-row>

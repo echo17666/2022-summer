@@ -4,7 +4,7 @@ import Home from '../components/Starting/Home.vue'
 import Login from '../components/Starting/Login.vue'
 import Register from '../components/Starting/Register.vue'
 import Reset from '../components/Starting/Reset.vue'
-import Main from '../components/Starting/Main.vue'
+import Main from '../Main.vue'
 import Profile from '../components/Starting/Profile.vue'
 import ProfileManage from '../components/Starting/ProfileManage.vue'
 import ChangePassword from '../components/Starting/ChangePassword.vue'
@@ -48,7 +48,10 @@ const routes = [
   {
     path: '/',
     name: 'Main',
-    component: Main
+    component: Main,
+    meta:{
+      showNav: true
+    }
   },
   {
     path: '/login',
