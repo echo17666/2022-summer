@@ -40,6 +40,10 @@ import UML from  "@/components/UML/UML.vue"
 import Documents from "@/components/Team/Documents";
 
 
+import DocManage from "@/components/Docs/Manage.vue";
+import AllDocs from "@/components/Docs/AllDocs.vue";
+import ShowDoc from "@/components/Docs/ShowDoc.vue";
+
 
 
 Vue.use(VueRouter)
@@ -147,7 +151,12 @@ const routes = [
 ]
 },
 {path: '/newdocument/:id', name: 'NewDocument', component: newDocument},
-
+{path: '/docs/:id', name: 'DocManage', component: DocManage,
+children: [
+  {path: '', name:'AllDocs',component: AllDocs},
+  {path: 'show/:docid', name:'ShowDoc',component: ShowDoc},
+]
+},
 
 ]
 

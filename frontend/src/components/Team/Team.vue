@@ -58,80 +58,20 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-group
-            prepend-icon="folder"
-            @click="$router.push({name:'Documents'})"
+   <v-list-item
+        @click="$router.push({name:'AllDocs',params:{id:$route.params.id}})"
         >
-          <template v-slot:activator>
+          <v-list-item-icon>
+            <span class="material-icons-outlined">
+                person</span>
+          </v-list-item-icon>
+
+
+          <v-list-item-content>
             <v-list-item-title>文档中心</v-list-item-title>
-          </template>
+          </v-list-item-content>
+        </v-list-item>
 
-          <v-list-group
-              no-action
-              sub-group
-              prepend-icon="folder_open"
-              style="margin-left: 6px"
-          >
-            <template v-slot:activator>
-              <v-list-item-content>
-                <v-list-item-title>项目文档区</v-list-item-title>
-              </v-list-item-content>
-            </template>
-
-            <v-list-group
-                no-action
-                sub-group
-                prepend-icon="folder_open"
-                style="margin-left: 6px"
-                v-for="(title,i) in Projects"
-                :key="i"
-                link
-            >
-              <template v-slot:activator>
-                <v-list-item-content>
-                  <v-list-item-title v-text="title"></v-list-item-title>
-                </v-list-item-content>
-              </template>
-
-              <v-list-item
-                  v-for="(title,i) in ProjectDocuments"
-                  :key="i"
-                  link
-                  style="padding-left: 40px"
-              >
-                <v-list-item-title v-text="title"></v-list-item-title>
-
-              </v-list-item>
-
-            </v-list-group>
-
-
-          </v-list-group>
-
-          <v-list-group
-              no-action
-              sub-group
-              prepend-icon="folder_open"
-              style="margin-left: 6px"
-          >
-            <template v-slot:activator>
-              <v-list-item-content>
-                <v-list-item-title>其他文档</v-list-item-title>
-              </v-list-item-content>
-            </template>
-
-            <v-list-item
-                v-for="(title, i) in otherDocuments"
-                :key="i"
-                link
-                style="padding-left: 46px"
-            >
-              <v-list-item-title v-text="title"></v-list-item-title>
-
-
-            </v-list-item>
-          </v-list-group>
-        </v-list-group>
 
         <v-divider/>
       </v-card>
@@ -153,19 +93,7 @@ export default {
   name: 'Team',
   data(){
     return {
-      Projects:[
-        '项目1','项目2','项目3'
-      ],
-      ProjectDocuments: [
-        'Management', 'account-multiple',
-        'Settings', 'cog-outline',
-      ],
-      otherDocuments: [
-        'Create', 'plus-outline',
-        'Read', 'file',
-        'Update', 'update',
-        'Delete', 'delete',
-      ],
+     
       }
   },
     methods: {
