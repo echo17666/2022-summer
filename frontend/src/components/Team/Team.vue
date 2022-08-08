@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div class="team">
     <div class="row">
       <v-col cols="12" md="2" :style="{'padding-right':'0px'}">
@@ -6,7 +6,7 @@
       permanent
       height="100vh"
     >
-     
+
 
       <v-list dense>
 
@@ -17,12 +17,29 @@
             <span class="material-icons-outlined">
                 format_list_bulleted</span>
           </v-list-item-icon>
-          
+
 
           <v-list-item-content>
             <v-list-item-title>团队项目列表</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+
+
+
+        <v-list-item
+            @click="$router.push({name:'Deleted'})"
+        >
+          <v-list-item-icon>
+            <span class="material-icons-outlined">
+                delete</span>
+          </v-list-item-icon>
+
+
+          <v-list-item-content>
+            <v-list-item-title>项目回收站</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
 
         <v-list-item
         @click="$router.push({name:'MemberList'})"
@@ -31,37 +48,36 @@
             <span class="material-icons-outlined">
                 person</span>
           </v-list-item-icon>
-          
+
 
           <v-list-item-content>
             <v-list-item-title>人员列表</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-    
-       
+
         <v-list-item
-          @click="$router.push({name:'Deleted'})"
+            @click="$router.push({name:'Documents'})"
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
-                delete</span>
+               folder</span>
           </v-list-item-icon>
-          
+
 
           <v-list-item-content>
-            <v-list-item-title>回收站</v-list-item-title>
+            <v-list-item-title>文档中心</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+
         <v-divider/>
-       
       </v-list>
     </v-navigation-drawer>
     </v-col>
-    
+
     <v-col cols="12" md="10" :style="{'background-color':'#EEEEEE'}">
             <router-view/>
     </v-col>
-    
+
   </div>
   </div>
 </template>
@@ -72,11 +88,11 @@ export default {
   name: 'Team',
   data(){
     return {
-        
+
       }
   },
     methods: {
-       
+
   }
 }
 </script>

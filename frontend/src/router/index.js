@@ -37,10 +37,11 @@ import documentmanage from "@/components/documentEdit/Manage";
 import Test from "@/components/Project/ScreenShotTest.vue";
 
 import UML from  "@/components/UML/UML.vue"
+import Documents from "@/components/Team/Documents";
 
 
 
-   
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -125,7 +126,7 @@ const routes = [
     {path: 'allteams',name:'AllTeams', component: AllTeams},
     {path: 'create',name:'CreateTeam', component: CreateTeam},
 
-   
+
 ]
 },
 
@@ -138,7 +139,8 @@ const routes = [
     {path: 'list',name:'MemberList', component: MemberList},
     {path: 'deleted', name:'Deleted',component: Deleted},
     {path: 'project', name:'TeamProject',component: TeamProject},
-   
+    {path:'documents',name:'Documents',component: Documents},
+
 ]
 },
 {path: '/newdocument/:id', name: 'NewDocument', component: newDocument},
