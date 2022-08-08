@@ -10,7 +10,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 import VueDragResize from 'vue-drag-resize'
 import html2canvas from "html2canvas";
 import * as echarts from 'echarts';
-
+import VueDrawioPreview from 'vue-drawio-preview'
+Vue.use(VueDrawioPreview)
 Vue.config.productionTip = false
 import { ElementTiptapPlugin } from "element-tiptap";
 import 'element-ui/lib/theme-chalk/index.css';

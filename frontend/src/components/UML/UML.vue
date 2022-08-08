@@ -1,13 +1,16 @@
 <template>
     <div>
         <iframe src="https://www.draw.io/index.html" id="mobsf" scrolling="no" frameborder="0" style="position:absolute;top:0px;left: 0px;right:0px;bottom:0px;"></iframe>
+    
     </div>
+    
 </template>
  
  
 <script>
     export default {
           name: 'UML',
+      
         data () {
             return {
             }

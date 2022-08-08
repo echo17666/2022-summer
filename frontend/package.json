@@ -19,6 +19,7 @@
     "pnpm": "^7.8.0",
     "vue": "^2.6.14",
     "vue-drag-resize": "^1.5.4",
+    "vue-drawio-preview": "^1.0.2",
     "vue-router": "^3.5.1",
     "vuetify": "^2.6.0",
     "vuex": "^3.6.2"
