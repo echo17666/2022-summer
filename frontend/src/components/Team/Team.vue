@@ -78,15 +78,34 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item
-                v-for="(title,i) in ProjectDocuments"
+            <v-list-group
+                no-action
+                sub-group
+                prepend-icon="folder_open"
+                style="margin-left: 6px"
+                v-for="(title,i) in Projects"
                 :key="i"
                 link
-                style="padding-left: 40px"
             >
-              <v-list-item-title v-text="title"></v-list-item-title>
+              <template v-slot:activator>
+                <v-list-item-content>
+                  <v-list-item-title v-text="title"></v-list-item-title>
+                </v-list-item-content>
+              </template>
 
-            </v-list-item>
+              <v-list-item
+                  v-for="(title,i) in ProjectDocuments"
+                  :key="i"
+                  link
+                  style="padding-left: 40px"
+              >
+                <v-list-item-title v-text="title"></v-list-item-title>
+
+              </v-list-item>
+
+            </v-list-group>
+
+
           </v-list-group>
 
           <v-list-group
@@ -105,7 +124,7 @@
                 v-for="(title, i) in otherDocuments"
                 :key="i"
                 link
-                style="padding-left: 40px"
+                style="padding-left: 46px"
             >
               <v-list-item-title v-text="title"></v-list-item-title>
 
@@ -134,6 +153,9 @@ export default {
   name: 'Team',
   data(){
     return {
+      Projects:[
+        '项目1','项目2','项目3'
+      ],
       ProjectDocuments: [
         'Management', 'account-multiple',
         'Settings', 'cog-outline',
