@@ -6,7 +6,8 @@ const url={
     projectdocument:'/document/projectdocument',
     updatedocument:'/document/updatedocument',
     deletedocument:'/document/deletedocument',
-    getcontent:'/document/documentcontent'
+    getcontent:'/document/documentcontent',
+    getalldocs:'/document/teamdocument'
 }
 export class document{
    
@@ -52,6 +53,16 @@ export class document{
     };
     static async getContent(data){
         return service(url.getcontent, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data:data,          
+        })
+    };
+    static async getAllDocs(data){
+        return service(url.getalldocs, {
             method: 'post',
             headers: {
                 'Content-Type': 'multipart/form-data'

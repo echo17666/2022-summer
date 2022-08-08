@@ -42,7 +42,7 @@
             >
               <template v-slot:activator>
                 <v-list-item-content>
-                  <v-list-item-title v-text="title.name"></v-list-item-title>
+                  <v-list-item-title v-text="title.project_name"></v-list-item-title>
                 </v-list-item-content>
               </template>
 
@@ -53,7 +53,7 @@
                   style="padding-left: 40px"
                   @click="$router.push({name:'ShowDoc',params:{docid:title.id}})"
               >
-                <v-list-item-title v-text="title.name"></v-list-item-title>
+                <v-list-item-title v-text="title.document_name"></v-list-item-title>
                 {{title.id}}
               </v-list-item>
 
@@ -100,18 +100,14 @@
 
 
 <script>
+import {document} from '@/api/document.js'
 export default {
   name: 'DocManage',
   data(){
     return {
-     Projects:[
-        {name:'项目1',list:[
-          {name:'Management',id:1}, {name:'account-multiple',id:2}
-        ]},
-        {name:'项目2',list:[
-           {name:'Management',id:3},{name:'plus-outlin',id:4},{name:'fffff',id:5},{name:'tttt',id:6},
-        ]}
-      ],
+     Projects: [
+
+    ],
       ProjectDocuments: [
         'Management', 'account-multiple',
         'Settings', 'cog-outline',
@@ -125,8 +121,20 @@ export default {
       }
   },
     methods: {
-     
+     getContext(){
+      let id = this.$route.params.id
+      let s=id.split('ZY');
+      let team_id=s[1];
+      let formdata = new FormData()
+      formdata.append('team_id',team_id)
+      document.getAllDocs(formdata).then(res=>{
+        this.Projects = res.data.documents
+      })
+     }
        
+  },
+  mounted(){
+    this.getContext();
   }
 }
 </script>
