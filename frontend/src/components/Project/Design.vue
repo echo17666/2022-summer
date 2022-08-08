@@ -40,9 +40,9 @@
                 <v-col cols="12" md="4">
                   <el-button class="imgbox" @click="addimg()"></el-button>
                 </v-col>
-                <v-col cols="12" md="4">
+                <!-- <v-col cols="12" md="4">
                   <el-button class="avator" @click="addavatar()"></el-button>
-                </v-col>
+                </v-col> -->
                 <v-col cols="12" md="4">
                   <el-button class="tag" @click="addtag()"></el-button>
                 </v-col>
@@ -573,11 +573,12 @@ export default {
 
 </script>
 <style scoped>
-@import "../../assets/com/com.css";
+
 .el-button{
   width:65px;
-  height:65px
+  height:65px;
 }
+@import "../../assets/com/com.css";
 .col-md-4.col-12{
   padding-left:4px;
   padding-right:4px;
