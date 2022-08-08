@@ -6,14 +6,15 @@
       permanent
       height="100vh"
     >
-     
+
 
       <v-list dense>
 
               <v-list-group
+                  :value="true"
             prepend-icon="folder"
              @click="$router.push({name:'AllDocs'})"
-           
+
         >
           <template v-slot:activator>
             <v-list-item-title>文档中心</v-list-item-title>
@@ -24,6 +25,7 @@
               sub-group
               prepend-icon="folder_open"
               style="margin-left: 6px"
+              :value="true"
           >
             <template v-slot:activator>
               <v-list-item-content>
@@ -39,7 +41,7 @@
                 v-for="(title,i) in Projects"
                 :key="i"
                 link
-            >
+                >
               <template v-slot:activator>
                 <v-list-item-content>
                   <v-list-item-title v-text="title.project_name"></v-list-item-title>
@@ -89,11 +91,11 @@
       </v-list>
     </v-navigation-drawer>
     </v-col>
-    
+
     <v-col cols="12" md="10" >
            <router-view/>
     </v-col>
-    
+
   </div>
   </div>
 </template>
@@ -130,8 +132,8 @@ export default {
       document.getAllDocs(formdata).then(res=>{
         this.Projects = res.data.documents
       })
-     }
-       
+     },
+
   },
   mounted(){
     this.getContext();
