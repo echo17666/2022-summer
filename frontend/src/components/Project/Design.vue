@@ -3,96 +3,77 @@
     <div class="components">
         <v-row >
           <v-col cols="15" md="3">
-            <v-card outlined :style="{'padding':'10px','height':'100vh'}">
-        <v-row :style="{'margin-left':'5px','margin-top':'5px'}">
-          <v-col cols="12" md="4">
-
-            <el-button @click="addinput()">输入框</el-button>
-
+          <el-collapse v-model="activeNames" style="margin-left:15px;margin-top:10px">
+            <el-collapse-item title="图形" name="1">
+              <v-row style="margin-top:10px;margin-left:10px">
+                <v-col cols="12" md="4">
+                  <el-button class="rect" @click="addrect()"></el-button>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <el-button class="circle" @click="addcircle()"></el-button>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <el-button class="triangle" @click="addtriangle()"></el-button>
+                </v-col>
+              </v-row>
+            </el-collapse-item>
+            <el-collapse-item title="组件" name="2">
+              <v-row style="margin-top:10px;margin-left:10px">
+                <v-col cols="12" md="4">
+                  <el-button class="input" @click="addinput()"></el-button>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <el-button class="button" @click="addbutton()"></el-button>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <el-button class="radio" @click="addradio()"></el-button>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <el-button class="checkbox" @click="addcheckbox()"></el-button>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <el-button class="option" @click="addoption()"></el-button>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <el-button class="switch" @click="addswitch()"></el-button>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <el-button class="imgbox" @click="addimg()"></el-button>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <el-button class="avator" @click="addavatar()"></el-button>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <el-button class="tag" @click="addtag()"></el-button>
+                </v-col>
+              </v-row>
+            </el-collapse-item>
+            <el-collapse-item title="模板" name="3">
+              <v-row style="margin-top:10px;margin-left:10px">
+                <v-col cols="12" md="4">
+                  <el-button @click="addboard()">画布</el-button>
+                </v-col>
+                <v-col cols="12" md="4">
+                  
+                </v-col>
+              </v-row>
+              
+            </el-collapse-item>
+          </el-collapse>
+          <v-row style="text-align:center;margin-top:10px">
+            <v-col cols="12" md="6">
+              <el-button :style="{'width':'100px','height':'40px'}" round type="primary" @click="save()">
+                保存页面
+              </el-button>
+            </v-col>
+            <v-col cols="12" md="6">
+              <el-button :style="{'width':'100px','height':'40px'}" round type="primary" @click="saveAsOthers()">
+              导出页面
+              </el-button>
+            </v-col>
+          </v-row>
+          
           </v-col>
-         <v-col cols="12" md="4">
-
-            <el-button @click="addbutton()">按钮</el-button>
-
-          </v-col>
-        <v-col cols="12" md="4">
-
-            <el-button @click="addradio()">单选框</el-button>
-
-          </v-col>
-         <v-col cols="12" md="4">
-
-            <el-button @click="addcheckbox()">多选框</el-button>
-
-        </v-col>
-         <v-col cols="12" md="4">
-
-            <el-button @click="addswitch()">开关</el-button>
-
-         </v-col>
-         <v-col cols="12" md="4">
-
-            <el-button @click="addoption()">选择器</el-button>
-
-         </v-col>
-         <v-col cols="12" md="4">
-
-            <el-button @click="addimg()">图片</el-button>
-
-         </v-col>
-         <v-col cols="12" md="4">
-
-            <el-button @click="addrect()">矩形</el-button>
-
-         </v-col>
-         <v-col cols="12" md="4">
-
-            <el-button @click="addcircle()">圆</el-button>
-
-         </v-col>
-         <v-col cols="12" md="4">
-
-            <el-button @click="addtriangle()">三角形</el-button>
-
-         </v-col>
-         <v-col cols="12" md="4">
-
-            <el-button @click="addavatar()">头像</el-button>
-
-         </v-col>
-         <v-col cols="12" md="4">
-
-            <el-button @click="addtag()">标签</el-button>
-
-         </v-col>
-         <v-col cols="12" md="4">
-
-            <el-button @click="addbread()">面包屑</el-button>
-
-         </v-col>
-         <v-col cols="12" md="4">
-
-            <el-button @click="addboard()">画布</el-button>
-
-         </v-col>
-<v-col cols="12" md="12">
-         <div class="save" >
-      <el-button :style="{'width':'100px','height':'45px'}" @click="save()">
-        保存页面
-      </el-button>
-    </div>
-    </v-col>
-    <v-col cols="12" md="12">
-    <div class="saveAsOthers" >
-      <el-button :style="{'width':'100px','height':'45px'}" @click="saveAsOthers()">
-        导出页面
-      </el-button>
-      <img :src="imgUrl" alt="" />
-    </div>
-    </v-col>
-        </v-row>
-        </v-card>
-    </v-col>
 <v-col cols="15" md="7">
   <div class="prototype" ref="prototype"> 
     <div v-for="(info,index) in inputinfo"
@@ -298,7 +279,8 @@ export default {
         content_disabled:false,
         dialog_width:500,
         dialog_height:500,
-        dialog:false
+        dialog:false,
+        activeNames:['1','2','3']
 
       }
     },
@@ -591,9 +573,10 @@ export default {
 
 </script>
 <style scoped>
+@import "../../assets/com/com.css";
 .el-button{
-  width:90px;
-  height:90px
+  width:65px;
+  height:65px
 }
 .col-md-4.col-12{
   padding-left:4px;

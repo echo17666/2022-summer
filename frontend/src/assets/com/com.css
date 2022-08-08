@@ -1,0 +1,48 @@
+.rect{ 
+  background: url("../../assets/com/rectangle.png");
+  background-size: cover;
+}
+.circle{
+    background: url("../../assets/com/circle.png");
+    background-size: cover;
+}
+.triangle{
+    background: url("../../assets/com/triangle.png");
+    background-size: cover;
+}
+.input{ 
+  background: url("../../assets/com/input.png");
+  background-size: cover;
+}
+.radio{
+    background: url("../../assets/com/radio.png");
+    background-size: cover;
+}
+.checkbox{
+    background: url("../../assets/com/checkbox.png");
+    background-size: cover;
+}
+.switch{ 
+  background: url("../../assets/com/switch.png");
+  background-size: cover;
+}
+.option{
+    background: url("../../assets/com/option.png");
+    background-size: cover;
+}
+.button{
+    background: url("../../assets/com/button.png");
+    background-size: cover;
+}
+.imgbox{ 
+  background: url("../../assets/com/imgbox.png");
+  background-size: cover;
+}
+/* .avator{
+    background: url("../../assets/com/avator.png");
+    background-size: cover;
+}
+.tag{
+    background: url("../../assets/com/tag.png");
+    background-size: cover;
+} */
