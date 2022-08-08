@@ -37,15 +37,10 @@ export default {
                 this.info.height = newRect.height;
                 this.info.top = newRect.top;
                 this.info.left = newRect.left;
+                this.showinformation()
             },
-        showinformation(newRect){
-          this.$parent.comwidth=newRect.width;
-          this.$parent.comheight = newRect.height;
-          this.$parent.comtop = newRect.top;
-          this.$parent.comleft = newRect.left;
-          this.$parent.comid=this.info.comid;
-          // this.$store.state.comcontent =this.text;
-          // this.$store.state.content_disabled=false;
+        showinformation(){
+          this.$parent.showinformation(this.info.comid)
         }
        
     }

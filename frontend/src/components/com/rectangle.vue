@@ -1,6 +1,6 @@
 <template>
   <div class="design">
-        <VueDragResize  v-show="info.isshown" :z="10" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
+        <VueDragResize  v-show="info.isshown"  v-on:clicked="showinformation" :z="10" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
              <div id="container" :style="{'position':'relative'}">
                 <img id="img" src="../../assets/rectangle.png" >
                 <v-btn @click="deleted(info)" :style="{'position':'absolute','top':'0px','right':'0px'}" icon> <span class="material-icons-outlined">
@@ -34,7 +34,11 @@ export default {
                 this.info.height = newRect.height;
                 this.info.top = newRect.top;
                 this.info.left = newRect.left;
+           this.showinformation()
             },
+            showinformation(){
+          this.$parent.showinformation(this.info.comid)
+        }
        
     }
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="design">
-        <VueDragResize  v-show="info.isshown" :z="10" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
+        <VueDragResize  v-show="info.isshown" :z="10" v-on:clicked="showinformation" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
             <div :style="{'position':'relative'}">
               <el-avatar :fit="fill" :src="url" :width="info.width" :height="info.height"></el-avatar>
                 
@@ -38,7 +38,11 @@ export default {
                 this.info.height = newRect.height;
                 this.info.top = newRect.top;
                 this.info.left = newRect.left;
+                this.showinformation()
             },
+        showinformation(){
+          this.$parent.showinformation(this.info.comid)
+        }
        
     }
     }

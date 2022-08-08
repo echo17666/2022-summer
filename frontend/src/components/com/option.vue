@@ -1,6 +1,6 @@
 <template>
   <div class="design">
-        <VueDragResize  v-show="info.isshown" :z="10" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
+        <VueDragResize  v-show="info.isshown"  v-on:clicked="showinformation" :z="10" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
             <div :style="{'position':'relative'}">
                 <el-select v-model="value" placeholder="请选择">
                   <el-option
@@ -54,7 +54,11 @@ export default {
                 this.info.height = newRect.height;
                 this.info.top = newRect.top;
                 this.info.left = newRect.left;
+            this.showinformation()
             },
+            showinformation(){
+          this.$parent.showinformation(this.info.comid)
+        }
        
     }
     }

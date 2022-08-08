@@ -2,7 +2,7 @@
   <div class="design" ref="app">
     <div class="components">
         <v-row >
-          <v-col cols="12" md="3">
+          <v-col cols="15" md="3">
             <v-card outlined :style="{'padding':'10px','height':'100vh'}">
         <v-row :style="{'margin-left':'5px','margin-top':'5px'}">
           <v-col cols="12" md="4">
@@ -93,7 +93,7 @@
         </v-row>
         </v-card>
     </v-col>
-<v-col cols="12" md="6">
+<v-col cols="15" md="7">
   <div class="prototype" ref="prototype"> 
     <div v-for="(info,index) in inputinfo"
              :key="index+'1'">
@@ -153,27 +153,74 @@
     </div>
     </div>
     </v-col>
-  <v-col cols="12" md="3">
-    <div>
+  <v-col cols="15" md="2" >
+    <div style="text-align:center; margin-right:10px; margin-top:10px">
       <el-form>
         <el-form-item label="宽度:">
-          <el-input v-model="this.comwidth">
+          <el-input v-model="comwidth">
             </el-input>
         </el-form-item>
         <el-form-item label="高度:">
-          <el-input v-model="this.comheight">
+          <el-input v-model="comheight">
             </el-input>
         </el-form-item>
         <el-form-item label="x:">
-          <el-input v-model="this.comleft">
+          <el-input v-model="comleft">
             </el-input>
         </el-form-item>
         <el-form-item label="y:">
-          <el-input v-model="this.comtop">
+          <el-input v-model="comtop">
             </el-input>
         </el-form-item>
+        <!-- <el-form-item label="id:">
+          {{this.comid}}
+        </el-form-item>
+        <el-form-item label="number:">
+          {{this.comnumber}}
+        </el-form-item> -->
+        <!-- <el-from-item> -->
+          <v-btn @click="updatecom()">保存修改</v-btn>
+        <!-- </el-from-item> -->
       </el-form>
     </div>
+    <div>
+      <v-dialog v-model="dialog" persistent max-width="600px">
+     
+      <v-card>
+        <v-card-title >
+          <span class="headline mx-auto">请选择画布尺寸</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-row>
+               <v-col col="12" md="6">
+                <v-text-field
+                    v-model="dialog_width"
+                    
+                    label="宽度"
+                    required
+                ></v-text-field>
+              </v-col>
+              <v-col col="12" md="6">
+                <v-text-field
+                    v-model="dialog_height"
+                    
+                    label="高度"
+                    required
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="cancel()">从模板新建</v-btn>
+          <v-btn color="blue darken-1" text @click="newBoard()">确定</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    </div>
+    
   </v-col>
         </v-row>
   
@@ -248,7 +295,10 @@ export default {
         comleft:0,
         comtop:0,
         comcontent:'',
-        content_disabled:false
+        content_disabled:false,
+        dialog_width:500,
+        dialog_height:500,
+        dialog:false
 
       }
     },
@@ -256,6 +306,51 @@ export default {
       this.show();
     },
     methods: {
+      cancel(){
+        this.dialog=false;
+      },
+      showinformation(id){
+        this.comid=id
+        let list=new Array()
+        list.push(this.inputinfo)
+        list.push(this.buttoninfo)
+        list.push(this.radioinfo)
+        list.push(this.checkboxinfo)
+        list.push(this.switchinfo)
+        list.push(this.optioninfo)
+        list.push(this.imginfo)
+        list.push(this.avatarinfo)
+        list.push(this.rectinfo)
+        list.push(this.circleinfo)
+        list.push(this.taginfo)
+        list.push(this.triangleinfo)
+        list.push(this.breadinfo)
+        list.push(this.boardinfo)
+
+        for(var i=0;i<14;i++){
+          for(var j=0;j<list[i].length;j++){
+            if(list[i][j].comid==this.comid){
+              this.comwidth=list[i][j].width
+              this.comheight=list[i][j].height
+              this.comleft=list[i][j].left
+              this.comtop=list[i][j].top
+              break;
+            }
+          }
+        }
+      },
+      newBoard(){
+        if(this.dialog_width==0||this.dialog_height==0){
+          this.$notify({
+            title:'宽度和高度不能为0',
+            type:'warning'
+          })
+        }
+        let a={width:this.dialog_width,height:this.dialog_height,top:100,left:500,isshown:true,comid:this.comnumber}
+        this.boardinfo.push(a);
+        this.comnumber+=1
+        this.dialog=false
+      },
       updatecom(){
         let list=new Array()
         list.push(this.inputinfo)
@@ -298,6 +393,7 @@ export default {
         .then((res)=>{
           console.log(res)
           list=res.data.list;
+          this.comnumber=res.data.design.number
           
           this.inputinfo=list[0]
           this.buttoninfo=list[1]
@@ -313,7 +409,11 @@ export default {
           this.triangleinfo=list[11]
           this.breadinfo=list[12]
           this.boardinfo=list[13]
+          if(this.getnumberOfboard()==0){
+            this.dialog=true
+          }
         })
+        
       },       
       save(){
         let id=this.$route.params.id
@@ -350,6 +450,7 @@ export default {
         formdata.append('design_x',this.drawleft)
         formdata.append('design_y',this.drawtop)
         formdata.append('design_id',prototype_id)
+        formdata.append('number',this.comnumber)
         // formdata.append('design_id',2)
         Account.saveProtype(formdata)
         .then((res)=>{
@@ -368,6 +469,15 @@ export default {
           }
         })
 
+      },
+      getnumberOfboard(){
+        var num=0
+        for(var i=0;i<this.boardinfo.length;i++){
+          if(this.boardinfo[i].isshown==true){
+            num++
+          }
+        }
+        return num
       },
       saveAsOthers(){
           // 第一个参数是需要生成截图的元素,第二个是自己需要配置的参数,宽高等
@@ -393,61 +503,81 @@ export default {
         		 document.body.removeChild(aCreate);//移除
      		},
       addboard(){
+        if(this.getnumberOfboard()>0){
+          this.$notify({
+            title:"最多只能有一个画布",
+            type:"warning"
+          })
+          return
+        }
         let a={width:500,height:500,top:100,left:500,isshown:true,comid:this.comnumber}
         this.boardinfo.push(a);
         this.comnumber+=1
       },
       addinput(){
-        let a={width:200,height:100,top:200,left:400,isshown:true}
+        let a={width:200,height:100,top:200,left:400,isshown:true,comid:this.comnumber}
         this.inputinfo.push(a);
+        this.comnumber+=1
       },
       addbutton(){
-        let a={width:100,height:50,top:200,left:400,isshown:true}
+        let a={width:100,height:50,top:200,left:400,isshown:true,comid:this.comnumber}
         this.buttoninfo.push(a);
+        this.comnumber+=1
       },
       addradio(){
-        let a={width:100,height:50,top:200,left:400,isshown:true}
+        let a={width:100,height:50,top:200,left:400,isshown:true,comid:this.comnumber}
         this.radioinfo.push(a);
+        this.comnumber+=1
       },
       addcheckbox(){
-        let a={width:100,height:50,top:200,left:400,isshown:true}
+        let a={width:100,height:50,top:200,left:400,isshown:true,comid:this.comnumber}
         this.checkboxinfo.push(a);
+        this.comnumber+=1
       },
       addswitch(){
-        let a={width:50,height:50,top:200,left:400,isshown:true}
+        let a={width:50,height:50,top:200,left:400,isshown:true,comid:this.comnumber}
         this.switchinfo.push(a);
+        this.comnumber+=1
       },
       addoption(){
-        let a={width:240,height:50,top:200,left:400,isshown:true}
+        let a={width:240,height:50,top:200,left:400,isshown:true,comid:this.comnumber}
         this.optioninfo.push(a);
+        this.comnumber+=1
       },
       addimg(){
-        let a={width:200,height:100,top:200,left:400,isshown:true}
+        let a={width:200,height:100,top:200,left:400,isshown:true,comid:this.comnumber}
         this.imginfo.push(a);
+        this.comnumber+=1
       },
       addavatar(){
-        let a={width:100,height:50,top:200,left:400,isshown:true}
+        let a={width:100,height:50,top:200,left:400,isshown:true,comid:this.comnumber}
         this.avatarinfo.push(a);
+        this.comnumber+=1
       },
       addrect(){
-        let a={width:100,height:100,top:200,left:400,isshown:true}
+        let a={width:100,height:100,top:200,left:400,isshown:true,comid:this.comnumber}
         this.rectinfo.push(a);
+        this.comnumber+=1
       },
       addcircle(){
-        let a={width:200,height:200,top:200,left:400,isshown:true}
+        let a={width:200,height:200,top:200,left:400,isshown:true,comid:this.comnumber}
         this.circleinfo.push(a);
+        this.comnumber+=1
       },
       addtag(){
-        let a={width:100,height:50,top:200,left:400,isshown:true}
+        let a={width:100,height:50,top:200,left:400,isshown:true,comid:this.comnumber}
         this.taginfo.push(a);
+        this.comnumber+=1
       },
       addtriangle(){
-        let a={width:200,height:150,top:200,left:400,isshown:true}
+        let a={width:200,height:150,top:200,left:400,isshown:true,comid:this.comnumber}
         this.triangleinfo.push(a);
+        this.comnumber+=1
       },
       addbread(){
-        let a={width:250,height:50,top:200,left:400,isshown:true}
+        let a={width:250,height:50,top:200,left:400,isshown:true,comid:this.comnumber}
         this.breadinfo.push(a);
+        this.comnumber+=1
       },
 
       resize(newRect) {

@@ -1,6 +1,6 @@
 <template>
   <div class="design">
-        <VueDragResize  v-show="info.isshown" :z="10" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
+        <VueDragResize  v-show="info.isshown" v-on:clicked="showinformation" :z="10" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
             <div :style="{'position':'relative'}">
                 <v-btn class="button"  outlined @click="show()" :width="info.width" :height="info.height" >按钮</v-btn>
                 <v-btn @click="deleted(info)" :style="{'position':'absolute','top':'0px','right':'0px'}" icon> <span class="material-icons-outlined">
@@ -34,9 +34,13 @@ export default {
                 this.info.height = newRect.height;
                 this.info.top = newRect.top;
                 this.info.left = newRect.left;
+                this.showinformation()
             },
         show(){
           console.log(this.info.width,this.info.top)
+        },
+        showinformation(){
+          this.$parent.showinformation(this.info.comid)
         }
        
     }
