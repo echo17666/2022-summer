@@ -6,6 +6,8 @@ import Register from '../components/Starting/Register.vue'
 import Reset from '../components/Starting/Reset.vue'
 import Main from '../components/Starting/Main.vue'
 import Profile from '../components/Starting/Profile.vue'
+import ProfileManage from '../components/Starting/ProfileManage.vue'
+import ChangePassword from '../components/Starting/ChangePassword.vue'
 
 import Project from '../components/MyProject/Manage.vue'
 import ShowAll from '../components/MyProject/ShowAll.vue'
@@ -33,6 +35,8 @@ import newDocument from "@/components/documentEdit/newDocument";
 import documentmanage from "@/components/documentEdit/Manage";
 
 import Test from "@/components/Project/ScreenShotTest.vue";
+
+import UML from  "@/components/UML/UML.vue"
 
 
 
@@ -66,9 +70,13 @@ const routes = [
     component: Main
   },
   {
-    path: '/profile',
-    name: 'Profile',
-    component: Profile
+    path: '/profilemanage',
+    name: 'ProfileManage',
+    component: ProfileManage,
+    children: [
+      {path: '', name:'Profile',component: Profile},
+      {path: 'password',name:'ChangePassword', component: ChangePassword},
+  ]
   },
   {
     path: '/design/:id',
@@ -79,6 +87,11 @@ const routes = [
     path: '/text',
     name: 'Text',
     component: Text
+  },
+  {
+    path: '/uml',
+    name: 'UML',
+    component: UML
   },
   {
     path: '/project/:id',

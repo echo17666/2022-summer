@@ -8,10 +8,20 @@ const url={
     finishProject:'/project/finishproject',
     deleteProject:'/project/deleteproject',
     reviveproject:'/project/reviveproject',
-    updateProject:'/project/updateproject'
+    updateProject:'/project/updateproject',
+    copyProject:'/project/copyproject'
 }
 export class Project{
-
+    static async copyProject(data){
+        return service(url.copyProject, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data:data,
+        })
+    };
     static async ShowProject(data){
         return service(url.showProject, {
             method: 'post',
