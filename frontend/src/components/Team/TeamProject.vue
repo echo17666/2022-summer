@@ -4,7 +4,7 @@
     <div style="height: 10px; margin-top:10px" ></div>
     <v-text-field
         v-model="keyword"
-        label="搜索文档"
+        label="搜索项目"
         placeholder="输入后按回车搜索"
         outlined
         @change="getProject"
@@ -109,7 +109,6 @@ export default {
       let s=id.split('ZY');
       let team_id=s[1];
       let formdata = new FormData();
-      console.log(this.sort+"sort2");
       formdata.append("team_id",team_id)
       formdata.append("sort",this.sort)
       formdata.append("keyword", this.keyword)
