@@ -60,6 +60,7 @@
 
         <v-list-group
             prepend-icon="folder"
+            @click="$router.push({name:'Documents'})"
         >
           <template v-slot:activator>
             <v-list-item-title>文档中心</v-list-item-title>
