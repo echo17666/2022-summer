@@ -4,7 +4,7 @@ import Home from '../components/Starting/Home.vue'
 import Login from '../components/Starting/Login.vue'
 import Register from '../components/Starting/Register.vue'
 import Reset from '../components/Starting/Reset.vue'
-import Main from '../components/Starting/Main.vue'
+import Main from '../Main.vue'
 import Profile from '../components/Starting/Profile.vue'
 import ProfileManage from '../components/Starting/ProfileManage.vue'
 import ChangePassword from '../components/Starting/ChangePassword.vue'
@@ -37,17 +37,21 @@ import documentmanage from "@/components/documentEdit/Manage";
 import Test from "@/components/Project/ScreenShotTest.vue";
 
 import UML from  "@/components/UML/UML.vue"
+import Documents from "@/components/Team/Documents";
 
 
 
-   
+
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
     name: 'Main',
-    component: Main
+    component: Main,
+    meta:{
+      showNav: true
+    }
   },
   {
     path: '/login',
@@ -125,7 +129,7 @@ const routes = [
     {path: 'allteams',name:'AllTeams', component: AllTeams},
     {path: 'create',name:'CreateTeam', component: CreateTeam},
 
-   
+
 ]
 },
 
@@ -138,7 +142,8 @@ const routes = [
     {path: 'list',name:'MemberList', component: MemberList},
     {path: 'deleted', name:'Deleted',component: Deleted},
     {path: 'project', name:'TeamProject',component: TeamProject},
-   
+    {path:'documents',name:'Documents',component: Documents},
+
 ]
 },
 {path: '/newdocument/:id', name: 'NewDocument', component: newDocument},
