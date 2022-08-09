@@ -69,25 +69,86 @@
               sub-group
               prepend-icon="folder_open"
               style="margin-left: 6px"
+              v-for="(title, i) in folder"
+              :key="i"
           >
             <template v-slot:activator>
               <v-list-item-content>
-                <v-list-item-title>其他文档</v-list-item-title>
+                <v-list-item-title v-text="title"></v-list-item-title>
               </v-list-item-content>
             </template>
 
             <v-list-item
-                v-for="(title, i) in otherDocuments"
+                v-for="(title1, i) in documents"
                 :key="i"
                 link
                 style="padding-left: 46px"
             >
-              <v-list-item-title v-text="title"></v-list-item-title>
-
-
+              <v-list-item-title v-text="title1"></v-list-item-title>
             </v-list-item>
+            <v-btn  @click="dialog1=!dialog1" style="margin-left: 40px" bottom>
+              添加文档
+              <v-icon>add</v-icon>
+            </v-btn>
           </v-list-group>
+                <v-spacer></v-spacer>
+            <v-btn  @click="dialog=!dialog" style="margin-left: 26px" bottom>
+                  添加文件夹
+                  <v-icon>add</v-icon>
+                </v-btn>
         </v-list-group>
+        <v-dialog v-model="dialog" persistent max-width="600px">
+          <v-card>
+            <v-card-title>
+              <span class="headline mx-auto">添加文件夹</span>
+            </v-card-title>
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <v-col col="12" md="12">
+                    <v-text-field
+                        v-model="FolderName"
+                        label="文件夹名称"
+                        required
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+
+              </v-container>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text @click="cancel()">取消</v-btn>
+              <v-btn color="blue darken-1" text @click="addFolder()">添加</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        <v-dialog v-model="dialog1" persistent max-width="600px">
+          <v-card>
+            <v-card-title>
+              <span class="headline mx-auto">添加文档</span>
+            </v-card-title>
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <v-col col="12" md="12">
+                    <v-text-field
+                        v-model="DocumentName"
+                        label="文档名称"
+                        required
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+
+              </v-container>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text @click="cancel()">取消</v-btn>
+              <v-btn color="blue darken-1" text @click="addDocument()">添加</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-list>
     </v-navigation-drawer>
     </v-col>
@@ -103,6 +164,7 @@
 
 <script>
 import {document} from '@/api/document.js'
+import {Member} from "@/api/member";
 export default {
   name: 'DocManage',
   data(){
@@ -110,17 +172,15 @@ export default {
      Projects: [
 
     ],
-      ProjectDocuments: [
-        'Management', 'account-multiple',
-        'Settings', 'cog-outline',
-      ],
-      otherDocuments: [
-        'Create', 'plus-outline',
-        'Read', 'file',
-        'Update', 'update',
-        'Delete', 'delete',
-      ],
-      }
+      folder:['FolderName'],
+      documents:['      FolderName:"",\n' +
+      '      dialog: false,','      FolderName:"",\n' +
+      '      dialog: false,'],
+      FolderName:"",
+      DocumentName:"",
+      dialog: false,
+      dialog1:false,
+    }
   },
     methods: {
      getContext(){
@@ -133,7 +193,38 @@ export default {
         this.Projects = res.data.documents
       })
      },
-
+      cancel(){
+        this.FolderName="";
+        this.DocumentName="";
+        this.dialog=false;
+        this.dialog1=false;
+      },
+      addFolder(){
+        // let id=this.$route.params.id
+        // let s=id.split('ZY');
+        // let team_id=s[1];
+        // let formdata = new FormData();
+        // formdata.append("team_id",team_id)
+        // formdata.append("folder_name",this.FolderName)
+        //
+        // Member.AddFolder(formdata)
+        //     .then((response) => {
+        //       console.log(response.data)
+        //       this.$notify({
+        //         title: '添加文件夹成功',
+        //         type: 'success'
+        //       })
+        //       this.dialog=false
+        //       this.FolderName=""
+        //     })
+        //     .catch((error) => {
+        //       console.log(error)
+        //     });
+        this.folder.push(this.FolderName);
+      },
+      addDocument(){
+       this.documents.push(this.DocumentName);
+      }
   },
   mounted(){
     this.getContext();
