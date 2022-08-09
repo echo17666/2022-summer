@@ -44,15 +44,7 @@
           </v-col>
           </v-row>
           </v-col>
-  <v-col cols="12" md="2">
-             <v-btn  @click="open()"  icon :style="{'margin-top':'10px'}" >
-      <span class="material-icons-outlined">edit</span>
-    </v-btn>
-
-
-
-        </v-col>
-
+ 
 
 
 

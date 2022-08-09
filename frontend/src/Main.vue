@@ -3,11 +3,41 @@
   <div width="100vw" min-height="100vh" >
 <v-card color="#EEEEEE" >
 <v-row >
-  <v-col cols="12" md="12" sm="8">
-  <div id="logo" :style="{ width: '100vw', height: '80vh' }"></div>
+  <v-col cols="12" md="12" sm="8" >
+    <v-row>
+      <v-col cols="12" md="1" sm="12"/>
+    <v-col cols="12" md="5" sm="12" class="d-flex justify-center">
+      <v-row>
+        <v-col cols="12" md="12" sm="2" :style="{'height':'14vh'}"/>
+        <v-col cols="12" md="12" sm="4">
+  <div id="logo" :style="{ width: '30vw', height: '250px' }" class="mx-auto"></div>
+        </v-col>
+        <v-col cols="12" md="12" sm="4">
+            <v-img src="@/assets/logo.png" :style="{'width': '200px'}" class="mx-auto"/>
+        </v-col>
+         <v-col cols="12" md="12" sm="2"/>
+      </v-row>
+    </v-col>
+  <v-col cols="12" md="5" sm="12" class="d-flex justify-center">
+    <v-row>
+       <v-col cols="12" md="12" sm="2" :style="{'height':'14vh'}"/>
+        <v-col cols="12" md="12" sm="4" class="d-flex justify-center">
+          <v-row>
+          <h1 class="mx-auto">产品高效设计，简单快捷</h1>
+          <h3 class="mx-auto">原创设计组件，快速团队管理，高效文档整合，构建强大管理平台</h3>
+          </v-row>
+        </v-col>
+        <v-col cols="12" md="12" sm="4" class="d-flex justify-center">
+         <v-btn outlined @click="start()" class="mx-auto" :style="{'width':'120px','height':'60px','font-size':'20px'}"> 开始使用</v-btn>
+         </v-col>
+        <v-col cols="12" md="12" sm="2"/>
+    </v-row>
+  </v-col>
+  <v-col cols="12" md="1" sm="12" class="d-flex justify-center"/>
+    </v-row>
   </v-col>
   <v-col cols="12" md="12" sm="4" class="d-flex justify-center" :style="{'min-height':'20vh'}">
-  <v-btn outlined @click="start()" class="mx-auto" :style="{'width':'120px','height':'60px','font-size':'20px'}"> 开始使用</v-btn>
+  
   </v-col>
 </v-row>
 </v-card>
@@ -113,7 +143,7 @@ var option;
               top: "center",
               style: {
                 text: "墨 书",
-                fontSize: 305,
+                fontSize: 140,
                 fontWeight: "bold",
                 lineDash: [0, 200],
                 lineDashOffset: 0,
