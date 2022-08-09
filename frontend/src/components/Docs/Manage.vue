@@ -238,7 +238,7 @@ export default {
              console.log(error)
            });
       },
-      addDocument(id){
+      addDocument(){
         let formdata = new FormData();
         formdata.append("document_name",this.DocumentName)
         formdata.append("project_id",0)
@@ -252,8 +252,10 @@ export default {
                 title: '添加文档成功',
                 type: 'success'
               })
+              console.log(this.dialog)
               this.dialog=false
               this.DocumentName=""
+              this.getDocument()
             })
             .catch((error) => {
               console.log(error)

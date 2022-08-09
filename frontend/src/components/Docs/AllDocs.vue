@@ -1,9 +1,24 @@
 <template>
   <div class="Alldocs">
     <v-row>
+      <v-col cols="12" md="12">
+      <h1>项目文档区</h1>
+      </v-col>
       <v-col cols="12" md="4" v-for="(project,index) in Projects"    :key="index"
       >
         <ProjectDoc  :project="project"></ProjectDoc>
+      </v-col>
+      <br/>
+      <v-col cols="12" md="12" v-for="(folder,index) in folder" :key="index">
+        <v-row>
+      <v-col cols="12" md="12">
+        <h1>{{folder.folder_name}}</h1>
+      </v-col>
+       <v-col cols="12" md="4" v-for="(project,index) in folder.list"    :key="index"
+      >
+        <Doc  :project="project"></Doc>
+      </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </div>
@@ -11,10 +26,11 @@
 <script>
 import {document} from '@/api/document.js'
 import ProjectDoc from "./ProjectDocItem.vue"
+import Doc from "./DocItem.vue"
 export default {
   name: 'AllDocs',
   components:{
-      ProjectDoc
+      ProjectDoc,Doc
   },
   data(){
     return{
@@ -59,6 +75,7 @@ export default {
        document.folderdocument(formdata)
            .then((res) => {
              this.folder=res.data.documents
+             console.log(this.folder)
            })
            .catch((error) => {
              console.log(error)
