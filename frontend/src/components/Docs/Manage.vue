@@ -60,8 +60,6 @@
               </v-list-item>
 
             </v-list-group>
-
-
           </v-list-group>
 
           <v-list-group
@@ -74,17 +72,17 @@
           >
             <template v-slot:activator>
               <v-list-item-content>
-                <v-list-item-title v-text="title"></v-list-item-title>
+                <v-list-item-title v-text="title.folder_name"></v-list-item-title>
               </v-list-item-content>
             </template>
 
             <v-list-item
-                v-for="(title1, i) in documents"
+                v-for="(title, i) in title.list"
                 :key="i"
                 link
                 style="padding-left: 46px"
             >
-              <v-list-item-title v-text="title1"></v-list-item-title>
+              <v-list-item-title v-text="title.document_name"></v-list-item-title>
             </v-list-item>
             <v-btn  @click="dialog1=!dialog1" style="margin-left: 40px" bottom>
               添加文档
@@ -119,7 +117,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="cancel()">取消</v-btn>
-              <v-btn color="blue darken-1" text @click="addFolder()">添加</v-btn>
+              <v-btn color="blue darken-1" text @click="addFolder();getDocument()">添加</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -172,10 +170,28 @@ export default {
      Projects: [
 
     ],
-      folder:['FolderName'],
-      documents:['      FolderName:"",\n' +
-      '      dialog: false,','      FolderName:"",\n' +
-      '      dialog: false,'],
+      folder:[ {
+        "folder_name": "first",
+        "list": [
+          {
+            "id": 3,
+            "document_name": "测试",
+            "project_id": 1,
+            "document_url": "https://document-1310787519.cos.ap-beijing.myqcloud.com/document/6ae94b2e-18e5-43f2-ae07-c32c03eb0995.txt",
+            "document_key": "/document/6ae94b2e-18e5-43f2-ae07-c32c03eb0995.txt",
+            "document_content": "<p>fasdfasdf</p><p>22饿</p><h3>fwfasdfa</h3>"
+          },
+          {
+            "id": 5,
+            "document_name": "收到",
+            "project_id": 1,
+            "document_url": "",
+            "document_key": "",
+            "document_content": "<p>食不果腹东莞市东方人格托管人突然</p>"
+          }
+        ]
+      },],
+
       FolderName:"",
       DocumentName:"",
       dialog: false,
@@ -200,27 +216,41 @@ export default {
         this.dialog1=false;
       },
       addFolder(){
-        // let id=this.$route.params.id
-        // let s=id.split('ZY');
-        // let team_id=s[1];
-        // let formdata = new FormData();
-        // formdata.append("team_id",team_id)
-        // formdata.append("folder_name",this.FolderName)
-        //
-        // Member.AddFolder(formdata)
-        //     .then((response) => {
-        //       console.log(response.data)
-        //       this.$notify({
-        //         title: '添加文件夹成功',
-        //         type: 'success'
-        //       })
-        //       this.dialog=false
-        //       this.FolderName=""
-        //     })
-        //     .catch((error) => {
-        //       console.log(error)
-        //     });
-        this.folder.push(this.FolderName);
+        let id=this.$route.params.id
+        let s=id.split('ZY');
+        let team_id=s[1];
+        let formdata = new FormData();
+        formdata.append("team_id",team_id)
+        formdata.append("folder_name",this.FolderName)
+
+        document.createfolder(formdata)
+            .then((response) => {
+              console.log(response.data)
+              this.$notify({
+                title: '添加文件夹成功',
+                type: 'success'
+              })
+              this.dialog=false
+              this.FolderName=""
+            })
+            .catch((error) => {
+              console.log(error)
+            });
+      },
+      getDocument(){
+        let id=this.$route.params.id
+        let s=id.split('ZY');
+        let team_id=s[1];
+        let formdata = new FormData();
+        formdata.append("team_id",team_id)
+
+       document.folderdocument(formdata)
+           .then((res) => {
+             this.folder=res.data.documents
+           })
+           .catch((error) => {
+             console.log(error)
+           });
       },
       addDocument(){
        this.documents.push(this.DocumentName);
@@ -228,6 +258,7 @@ export default {
   },
   mounted(){
     this.getContext();
+    this.getDocument();
   }
 }
 </script>

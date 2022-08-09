@@ -7,10 +7,32 @@ const url={
     updatedocument:'/document/updatedocument',
     deletedocument:'/document/deletedocument',
     getcontent:'/document/documentcontent',
-    getalldocs:'/document/teamdocument'
+    getalldocs:'/document/teamdocument',
+    createfolder:'/document/createfolder',
+    folderdocument:'/document/folderdocument',
 }
 export class document{
-   
+    static async createfolder(data){
+        return service(url.createfolder, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data:data,
+        })
+    };
+    static async folderdocument(data){
+        return service(url.folderdocument, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data:data,
+        })
+    };
+
     static async createdocument(data){
         return service(url.createdocument, {
             method: 'post',
@@ -18,7 +40,7 @@ export class document{
                 'Content-Type': 'multipart/form-data'
             },
             responseType: 'json',
-            data:data,          
+            data:data,
         })
     };
     static async projectdocument(data){
@@ -28,7 +50,7 @@ export class document{
                 'Content-Type': 'multipart/form-data'
             },
             responseType: 'json',
-            data:data,          
+            data:data,
         })
     };
     static async updatedocument(data){
@@ -38,7 +60,7 @@ export class document{
                 'Content-Type': 'multipart/form-data'
             },
             responseType: 'json',
-            data:data,          
+            data:data,
         })
     };
     static async deletedocument(data){
@@ -48,7 +70,7 @@ export class document{
                 'Content-Type': 'multipart/form-data'
             },
             responseType: 'json',
-            data:data,          
+            data:data,
         })
     };
     static async getContent(data){
@@ -58,7 +80,7 @@ export class document{
                 'Content-Type': 'multipart/form-data'
             },
             responseType: 'json',
-            data:data,          
+            data:data,
         })
     };
     static async getAllDocs(data){
@@ -68,8 +90,8 @@ export class document{
                 'Content-Type': 'multipart/form-data'
             },
             responseType: 'json',
-            data:data,          
+            data:data,
         })
     };
-   
+
 }
