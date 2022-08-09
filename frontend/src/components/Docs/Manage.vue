@@ -68,6 +68,7 @@
               style="margin-left: 6px"
               v-for="(title, i) in folder"
               :key="i"
+              @click="getDocument()"
           >
             <template v-slot:activator>
               <v-list-item-content>
@@ -80,10 +81,11 @@
                 :key="i"
                 link
                 style="padding-left: 46px"
+                @click="$router.push({name:'ShowDoc',params:{docid:title.id}})"
             >
               <v-list-item-title v-text="title.document_name"></v-list-item-title>
             </v-list-item>
-            <v-btn  @click="dialog1=!dialog1" style="margin-left: 40px" bottom>
+            <v-btn  @click="openFolder(title.folder_id)" style="margin-left: 40px" bottom>
               添加文档
               <v-icon>add</v-icon>
             </v-btn>
@@ -172,6 +174,7 @@ export default {
       DocumentName:"",
       dialog: false,
       dialog1:false,
+      folder_id:0
     }
   },
     methods: {
@@ -185,11 +188,16 @@ export default {
         this.Projects = res.data.documents
       })
      },
+      openFolder(id){
+       this.dialog1=true;
+       this.folder_id=id;
+      },
       cancel(){
         this.FolderName="";
         this.DocumentName="";
         this.dialog=false;
         this.dialog1=false;
+        this.folder_id=0;
       },
       addFolder(){
         let id=this.$route.params.id
@@ -206,8 +214,10 @@ export default {
                 title: '添加文件夹成功',
                 type: 'success'
               })
-              this.dialog=false
-              this.FolderName=""
+              this.FolderName="";
+              this.DocumentName="";
+              this.dialog1=false;
+              this.folder_id=0;
             })
             .catch((error) => {
               console.log(error)
@@ -228,8 +238,26 @@ export default {
              console.log(error)
            });
       },
-      addDocument(){
-       this.documents.push(this.DocumentName);
+      addDocument(id){
+        let formdata = new FormData();
+        formdata.append("document_name",this.DocumentName)
+        formdata.append("project_id",0)
+        formdata.append("model_id",1)
+        formdata.append("folder_id",this.folder_id)
+
+        document.createdocument(formdata)
+            .then((response) => {
+              console.log(response.data)
+              this.$notify({
+                title: '添加文档成功',
+                type: 'success'
+              })
+              this.dialog=false
+              this.DocumentName=""
+            })
+            .catch((error) => {
+              console.log(error)
+            });
       }
   },
   mounted(){
