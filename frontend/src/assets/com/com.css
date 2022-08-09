@@ -1,48 +1,48 @@
-.rect{ 
-  background: url("../../assets/com/rectangle.png");
-  background-size: cover;
+.el-button.rect{ 
+  background-image: url("../../assets/com/rectangle.png") !important;
+  background-size: cover !important;
 }
 .circle{
-    background: url("../../assets/com/circle.png");
-    background-size: cover;
+    background-image: url("../../assets/com/circle.png") !important;
+    background-size: cover !important;
 }
 .triangle{
-    background: url("../../assets/com/triangle.png");
-    background-size: cover;
+    background-image: url("../../assets/com/triangle.png") !important;
+    background-size: cover !important;
 }
 .input{ 
-  background: url("../../assets/com/input.png");
-  background-size: cover;
+  background-image: url("../../assets/com/input.png") !important;
+  background-size: cover !important;
 }
 .radio{
-    background: url("../../assets/com/radio.png");
-    background-size: cover;
+    background-image: url("../../assets/com/radio.png") !important;
+    background-size: cover !important;
 }
 .checkbox{
-    background: url("../../assets/com/checkbox.png");
-    background-size: cover;
+    background-image: url("../../assets/com/checkbox.png") !important;
+    background-size: cover !important;
 }
 .switch{ 
-  background: url("../../assets/com/switch.png");
-  background-size: cover;
+  background-image: url("../../assets/com/switch.png") !important;
+  background-size: cover !important;
 }
 .option{
-    background: url("../../assets/com/option.png");
-    background-size: cover;
+    background-image: url("../../assets/com/option.png") !important;
+    background-size: cover !important;
 }
-.button{
-    background: url("../../assets/com/button.png");
-    background-size: cover;
+.buttonbox{
+    background-image: url("../../assets/com/button.png") !important;
+    background-size: cover !important;
 }
 .imgbox{ 
-  background: url("../../assets/com/imgbox.png");
-  background-size: cover;
+  background-image: url("../../assets/com/imgbox.png") !important;
+  background-size: cover !important;
 }
-/* .avator{
-    background: url("../../assets/com/avator.png");
-    background-size: cover;
-} */
+.carousel{
+    background-image: url("../../assets/com/avator.png") !important;
+    background-size: cover !important;
+}
 .tag{
-    background: url("../../assets/com/tag.png");
-    background-size: cover;
+    background-image: url("../../assets/com/tag.png") !important;
+    background-size: cover !important;
 }

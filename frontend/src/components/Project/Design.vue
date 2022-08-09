@@ -23,7 +23,7 @@
                   <el-button class="input" @click="addinput()"></el-button>
                 </v-col>
                 <v-col cols="12" md="4">
-                  <el-button class="button" @click="addbutton()"></el-button>
+                  <el-button class="buttonbox" @click="addbutton()"></el-button>
                 </v-col>
                 <v-col cols="12" md="4">
                   <el-button class="radio" @click="addradio()"></el-button>
@@ -40,9 +40,9 @@
                 <v-col cols="12" md="4">
                   <el-button class="imgbox" @click="addimg()"></el-button>
                 </v-col>
-                <!-- <v-col cols="12" md="4">
-                  <el-button class="avator" @click="addavatar()"></el-button>
-                </v-col> -->
+                <v-col cols="12" md="4">
+                  <el-button class="carousel" @click="addcarousel()"></el-button>
+                </v-col>
                 <v-col cols="12" md="4">
                   <el-button class="tag" @click="addtag()"></el-button>
                 </v-col>
@@ -50,11 +50,20 @@
             </el-collapse-item>
             <el-collapse-item title="模板" name="3">
               <v-row style="margin-top:10px;margin-left:10px">
-                <v-col cols="12" md="4">
-                  <el-button @click="addboard()">画布</el-button>
+                <v-col cols="12" md="6">
+                  <el-button style="height:50px;width:120px;" @click="addboard()">画布</el-button>
                 </v-col>
-                <v-col cols="12" md="4">
-                  
+                <v-col cols="12" md="6">
+                  <el-button style="height:50px;width:120px;" @click="addPcshop()">电脑线上商城</el-button>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <el-button style="height:50px;width:120px" @click="addAndroidshop()">安卓线上商城</el-button>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <el-button style="height:50px;width:120px" @click="addPcresearch()">电脑学习平台</el-button>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <el-button style="height:50px;width:120px" @click="addAndroidresearch()">安卓学习平台</el-button>
                 </v-col>
               </v-row>
               
@@ -217,7 +226,7 @@
    import RadioBox from '../com/radio.vue'
    import CheckBox from '../com/checkbox.vue'
    import SwitchBox from '../com/switch.vue'
-   import AvatarBox from '../com/avatar.vue'
+   import AvatarBox from '../com/carousel.vue'
    import ImgBox from '../com/img.vue'
    import RectBox from '../com/rectangle.vue'
    import OptionBox from '../com/option.vue'
@@ -531,8 +540,8 @@ export default {
         this.imginfo.push(a);
         this.comnumber+=1
       },
-      addavatar(){
-        let a={width:100,height:50,top:200,left:400,isshown:true,comid:this.comnumber}
+      addcarousel(){
+        let a={width:300,height:100,top:200,left:400,isshown:true,comid:this.comnumber}
         this.avatarinfo.push(a);
         this.comnumber+=1
       },
@@ -561,7 +570,137 @@ export default {
         this.breadinfo.push(a);
         this.comnumber+=1
       },
+      addPcshop(){
+        if(this.getnumberOfboard()>0){
+          this.$notify({
+            title:"最多只能有一个画布",
+            type:"warning"
+          })
+          return
+        }
+        this.boardinfo.push({width:824,height:518,top:72,left:349,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.inputinfo.push({width:466,height:50,top:111,left:528,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.optioninfo.push({width:141,height:50,top:207,left:1018,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.avatarinfo.push({width:509,height:100,top:208,left:504,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.switchinfo.push({width:80,height:50,top:264,left:400,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.switchinfo.push({width:80,height:50,top:208,left:400,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
 
+        this.imginfo.push({width:92,height:54,top:112,left:397,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.imginfo.push({width:200,height:130,top:370,left:400,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.imginfo.push({width:200,height:130,top:370,left:650,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.imginfo.push({width:200,height:130,top:370,left:900,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.buttoninfo.push({width:100,height:50,top:114,left:1026,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+      },
+      addAndroidshop(){
+        if(this.getnumberOfboard()>0){
+          this.$notify({
+            title:"最多只能有一个画布",
+            type:"warning"
+          })
+          return
+        }
+        this.boardinfo.push({width:346,height:649,top:44,left:546,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.inputinfo.push({width:294,height:54,top:68,left:569,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.buttoninfo.push({width:66,height:55,top:68,left:797,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.buttoninfo.push({width:100,height:50,top:644,left:545,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.buttoninfo.push({width:100,height:50,top:644,left:672,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.buttoninfo.push({width:100,height:50,top:644,left:792,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.avatarinfo.push({width:346,height:100,top:250,left:546,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+
+        this.imginfo.push({width:76,height:53,top:167,left:565,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.imginfo.push({width:76,height:53,top:167,left:682,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.imginfo.push({width:76,height:53,top:167,left:791,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.imginfo.push({width:173,height:178,top:370,left:546,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.imginfo.push({width:173,height:178,top:370,left:720,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        
+      },
+      addPcresearch(){
+        if(this.getnumberOfboard()>0){
+          this.$notify({
+            title:"最多只能有一个画布",
+            type:"warning"
+          })
+          return
+        }
+        this.boardinfo.push({width:824,height:518,top:72,left:349,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.inputinfo.push({width:550,height:50,top:111,left:528,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+       
+        this.avatarinfo.push({width:728,height:100,top:466,left:403,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.radioinfo.push({width:387,height:50,top:174,left:528,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+
+        this.imginfo.push({width:92,height:54,top:111,left:400,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.imginfo.push({width:154,height:212,top:211,left:403,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.imginfo.push({width:348,height:212,top:211,left:587,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.imginfo.push({width:154,height:212,top:211,left:968,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.buttoninfo.push({width:79,height:56,top:110,left:998,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+      },
+      addAndroidresearch(){
+        if(this.getnumberOfboard()>0){
+          this.$notify({
+            title:"最多只能有一个画布",
+            type:"warning"
+          })
+          return
+        }
+        this.boardinfo.push({width:346,height:649,top:44,left:546,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.inputinfo.push({width:215,height:50,top:61,left:557,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.buttoninfo.push({width:66,height:56,top:61,left:705,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.buttoninfo.push({width:100,height:50,top:383,left:779,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.buttoninfo.push({width:100,height:50,top:492,left:547,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.buttoninfo.push({width:100,height:50,top:613,left:780,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.avatarinfo.push({width:346,height:100,top:250,left:546,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+
+        this.imginfo.push({width:216,height:114,top:352,left:546,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.imginfo.push({width:216,height:110,top:467,left:680,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.imginfo.push({width:216,height:115,top:577,left:546,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.imginfo.push({width:346,height:119,top:130,left:546,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        this.imginfo.push({width:76,height:53,top:62,left:793,isshown:true,comid:this.comnumber})
+        this.comnumber+=1
+        
+      },
       resize(newRect) {
                 this.width = newRect.width;
                 this.height = newRect.height;
@@ -577,6 +716,8 @@ export default {
 .el-button{
   width:65px;
   height:65px;
+  /* background-color: none !important;
+  opacity: 0; */
 }
 @import "../../assets/com/com.css";
 .col-md-4.col-12{
