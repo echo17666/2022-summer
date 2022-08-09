@@ -143,7 +143,7 @@ export default {
         
         Design.updatedesign(formdata)
         .then((response) => { 
-          if(response.code==200){
+          if(response.data.code==200){
             this.$notify({
               title: '重命名成功',
               type: 'success'
