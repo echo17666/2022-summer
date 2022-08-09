@@ -68,6 +68,7 @@
               style="margin-left: 6px"
               v-for="(title, i) in folder"
               :key="i"
+              @click="getDocument();$router.push({name:'ShowFolder',params:{fid:title.folder_id}})"
           >
             <template v-slot:activator>
               <v-list-item-content>
@@ -80,6 +81,7 @@
                 :key="i"
                 link
                 style="padding-left: 46px"
+                @click="getDocument();$router.push({name:'ShowFolder',params:{docid:title.id}})"
             >
               <v-list-item-title v-text="title.document_name"></v-list-item-title>
             </v-list-item>
@@ -229,7 +231,25 @@ export default {
            });
       },
       addDocument(){
-       this.documents.push(this.DocumentName);
+        let formdata = new FormData();
+        formdata.append("document_name",this.DocumentName)
+        formdata.append("project_id",0)
+        formdata.append("model_id",1)
+        formdata.append("folder_id",this.$route.params.fid)
+
+        document.createdocument(formdata)
+            .then((response) => {
+              console.log(response.data)
+              this.$notify({
+                title: '添加文档成功',
+                type: 'success'
+              })
+              this.dialog=false
+              this.DocumentName=""
+            })
+            .catch((error) => {
+              console.log(error)
+            });
       }
   },
   mounted(){
