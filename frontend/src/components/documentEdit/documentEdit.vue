@@ -125,13 +125,14 @@ this.getprojectdocument()
 
       let s=id.split('JQ');
       let project_id=s[1];
-      document.createdocument({document_name: this.value,project_id:project_id}).then(res => {
+      document.createdocument({document_name: this.value,project_id:project_id,folder_id:0,model_id:1}).then(res => {
         console.log(res)
-        if (res.data.errno == 0) {
+        
           this.dialogVisible = false
-        }
+          this.getprojectdocument()
+        
       })
-      this.$router.go(0)
+      
     },
     handleEdit(index, row) {
       console.log(index, row);
@@ -152,6 +153,7 @@ this.getprojectdocument()
       let project_id=s[1];
       document.projectdocument({project_id:project_id}).then(res => {
         this.documentlist = res.data.documents
+        console.log(this.documentlist)
       })
     },
     showEdit(row) {

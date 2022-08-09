@@ -1,10 +1,76 @@
 <template>
-  <div class="about">
-    <h1>文档中心页面</h1>
+  <div class="Alldocs">
+    <v-row>
+      <v-col cols="12" md="4" v-for="(project,index) in Projects"    :key="index"
+      >
+        <ProjectDoc  :project="project"></ProjectDoc>
+      </v-col>
+    </v-row>
   </div>
 </template>
 <script>
+import {document} from '@/api/document.js'
+import ProjectDoc from "./ProjectDocItem.vue"
 export default {
-  name: 'AllDocs'
+  name: 'AllDocs',
+  components:{
+      ProjectDoc
+  },
+  data(){
+    return{
+      Projects: [],
+      folder:[],
+    }
+  },
+  methods: {
+     getContext(){
+      let id = this.$route.params.id
+      let s=id.split('ZY');
+      let team_id=s[1];
+      let formdata = new FormData()
+      formdata.append('team_id',team_id)
+      document.getAllDocs(formdata).then(res=>{
+        this.Projects = res.data.documents
+        var key = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+          var a = key.split("");
+          for(let i=0;i<this.Projects.length;i++){
+            let s="";
+            for(let j=0;j<id.length;j++){
+              let b = id.charCodeAt(j);
+              s+=a[b%36];
+            }
+
+            s+="JQ"
+            s+=this.Projects[i].project_id;
+            this.Projects[i]["url"]=s;
+          }
+        console.log(this.Projects)
+      })
+     },
+      
+     
+      getDocument(){
+        let id=this.$route.params.id
+        let s=id.split('ZY');
+        let team_id=s[1];
+        let formdata = new FormData();
+        formdata.append("team_id",team_id)
+
+       document.folderdocument(formdata)
+           .then((res) => {
+             this.folder=res.data.documents
+           })
+           .catch((error) => {
+             console.log(error)
+           });
+      },
+      addDocument(){
+       this.documents.push(this.DocumentName);
+      }
+  },
+  mounted(){
+    this.getContext();
+    this.getDocument();
+  }
 }
 </script>

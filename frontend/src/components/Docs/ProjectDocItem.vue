@@ -1,0 +1,135 @@
+<template>
+  <div>
+    <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'200px'}">
+      <v-row>
+        <v-col cols="12" md="10">
+          <v-row>
+            <v-col cols="12" md="12" sm="3">
+            <router-link :to="{ name: 'ViewAll', params: { id: project.url } }">
+            <v-card-title>
+              <h2>
+             {{project.project_name}}
+             </h2>
+            </v-card-title>
+              </router-link>
+              </v-col>
+
+        <v-col cols="12" md="12" sm="9">
+          <v-card-text>
+            <h3>
+             文档：</h3>
+             <div v-show="project.list.length==0">
+             <h3 >无</h3></div>
+             <div v-if="project.list.length<=2">
+             <div  v-for="(doc,index) in project.list"    :key="index">
+                <router-link :to="{ name: 'ShowDoc',params:{docid: doc.id}}">
+             <h3 >{{doc.document_name}}</h3>
+             </router-link>
+             </div>
+             </div>
+             <div v-else>
+                <router-link :to="{ name: 'ShowDoc',params:{docid: project.list[0].id}}">
+             <h3 >{{project.list[0].document_name}}</h3>
+             </router-link>
+              <router-link :to="{ name: 'ShowDoc',params:{docid: project.list[1].id}}">
+             <h3 >{{project.list[1].document_name}}</h3>
+             </router-link>
+              <router-link :to="{ name: 'DocumentEdit', params: { id: project.url } }">
+             <h3 >更多</h3>
+             </router-link>
+             </div>
+             
+          </v-card-text>
+          
+          </v-col>
+          </v-row>
+          </v-col>
+  <v-col cols="12" md="2">
+             <v-btn  @click="open()"  icon :style="{'margin-top':'10px'}" >
+      <span class="material-icons-outlined">edit</span>
+    </v-btn>
+
+
+
+        </v-col>
+
+
+
+
+      </v-row>
+
+    </v-card>
+
+   <v-dialog v-model="dialog" persistent max-width="600px">
+
+      <v-card>
+        <v-card-title >
+          <span class="headline mx-auto">重命名</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-row>
+               <v-col col="12" md="12">
+                <v-text-field
+                    v-model="name"
+                    :counter="10"
+                    label="项目名称"
+                    required
+                ></v-text-field>
+              </v-col>
+              <v-col col="12" md="12">
+                <v-textarea
+                    v-model="intro"
+                    outlined
+                    label="项目简介"
+                    rows="4"
+                    :counter="100"
+                    row-height="30"
+                ></v-textarea>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="cancel()">取消</v-btn>
+          <v-btn color="blue darken-1" text @click="update()">更改</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+  </div>
+</template>
+
+<script>
+
+import {Project} from "@/api/project";
+
+export default {
+  name: "ProjectDocItem",
+  props: ["project"],
+  data() {
+    return {
+      dialog:false,
+        name:"",
+        intro:"",
+    }
+  },
+  methods: {
+     open(){
+       
+        console.log(this.project.url)
+    },
+   
+    
+
+   
+    
+  },
+
+};
+
+</script>
+<style scoped>
+
+</style>
