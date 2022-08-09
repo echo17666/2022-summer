@@ -25,7 +25,6 @@
               sub-group
               prepend-icon="folder_open"
               style="margin-left: 6px"
-              :value="true"
           >
             <template v-slot:activator>
               <v-list-item-content>
@@ -167,31 +166,8 @@ export default {
   name: 'DocManage',
   data(){
     return {
-     Projects: [
-
-    ],
-      folder:[ {
-        "folder_name": "first",
-        "list": [
-          {
-            "id": 3,
-            "document_name": "测试",
-            "project_id": 1,
-            "document_url": "https://document-1310787519.cos.ap-beijing.myqcloud.com/document/6ae94b2e-18e5-43f2-ae07-c32c03eb0995.txt",
-            "document_key": "/document/6ae94b2e-18e5-43f2-ae07-c32c03eb0995.txt",
-            "document_content": "<p>fasdfasdf</p><p>22饿</p><h3>fwfasdfa</h3>"
-          },
-          {
-            "id": 5,
-            "document_name": "收到",
-            "project_id": 1,
-            "document_url": "",
-            "document_key": "",
-            "document_content": "<p>食不果腹东莞市东方人格托管人突然</p>"
-          }
-        ]
-      },],
-
+     Projects: [],
+      folder:[],
       FolderName:"",
       DocumentName:"",
       dialog: false,
