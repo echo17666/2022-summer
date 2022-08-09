@@ -68,7 +68,7 @@
               style="margin-left: 6px"
               v-for="(title, i) in folder"
               :key="i"
-              @click="getDocument();$router.push({name:'ShowFolder',params:{fid:title.folder_id}})"
+              @click="getDocument()"
           >
             <template v-slot:activator>
               <v-list-item-content>
@@ -81,11 +81,11 @@
                 :key="i"
                 link
                 style="padding-left: 46px"
-                @click="getDocument();$router.push({name:'ShowFolder',params:{docid:title.id}})"
+                @click="$router.push({name:'ShowDoc',params:{docid:title.id}})"
             >
               <v-list-item-title v-text="title.document_name"></v-list-item-title>
             </v-list-item>
-            <v-btn  @click="dialog1=!dialog1" style="margin-left: 40px" bottom>
+            <v-btn  @click="openFolder(title.folder_id)" style="margin-left: 40px" bottom>
               添加文档
               <v-icon>add</v-icon>
             </v-btn>
@@ -174,6 +174,7 @@ export default {
       DocumentName:"",
       dialog: false,
       dialog1:false,
+      folder_id:0
     }
   },
     methods: {
@@ -187,11 +188,16 @@ export default {
         this.Projects = res.data.documents
       })
      },
+      openFolder(id){
+       this.dialog1=true;
+       this.folder_id=id;
+      },
       cancel(){
         this.FolderName="";
         this.DocumentName="";
         this.dialog=false;
         this.dialog1=false;
+        this.folder_id=0;
       },
       addFolder(){
         let id=this.$route.params.id
@@ -208,8 +214,10 @@ export default {
                 title: '添加文件夹成功',
                 type: 'success'
               })
-              this.dialog=false
-              this.FolderName=""
+              this.FolderName="";
+              this.DocumentName="";
+              this.dialog1=false;
+              this.folder_id=0;
             })
             .catch((error) => {
               console.log(error)
@@ -230,12 +238,12 @@ export default {
              console.log(error)
            });
       },
-      addDocument(){
+      addDocument(id){
         let formdata = new FormData();
         formdata.append("document_name",this.DocumentName)
         formdata.append("project_id",0)
         formdata.append("model_id",1)
-        formdata.append("folder_id",this.$route.params.fid)
+        formdata.append("folder_id",this.folder_id)
 
         document.createdocument(formdata)
             .then((response) => {

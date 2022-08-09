@@ -155,7 +155,6 @@ const routes = [
 children: [
   {path: '', name:'AllDocs',component: AllDocs},
   {path: 'show/:docid', name:'ShowDoc',component: ShowDoc},
-  {path: 'folder/:fid/show/:docid', name:'ShowFolder',component: ShowDoc},
 ]
 },
 
