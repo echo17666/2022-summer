@@ -1,11 +1,12 @@
 <template>
   <div :style="{'background-color':'#EEEEEE' ,width:'80vw' ,height:'100%'}">
     <v-container width="80vw">
-      <el-tiptap  v-model="content" :extensions="extensions" placeholder="Write something ..."/>
+      <el-tiptap  v-model="content" :extensions="extensions" placeholder="Write something ..." id="eltipTap"/>
       <div style="height: 15px"></div>
       <el-row >
         <el-button style="float: right;margin-right: 15px" @click="saveFile()">保存</el-button>
         <el-button style="float: right" @click="clearTiptap()">清空内容</el-button>
+        <el-button style="float: right" @click="outWord()">导出word</el-button>
       </el-row>
     </v-container>
   </div>
@@ -38,7 +39,7 @@ import {
   History,
   // LineHeight,
   // Iframe,
-  // CodeBlock,
+  CodeBlock,
   // TrailingNode,
   // Table, // use with TableHeader, TableCell, TableRow
   // TableHeader,
@@ -49,6 +50,8 @@ import {
   // TextHighlight,
   // Preview,
   // Print,
+  Preview,
+  Print,
   Fullscreen,
   CodeView
   // SelectAll,
@@ -61,7 +64,8 @@ import "codemirror/addon/selection/active-line.js"; // require active-line.js
 import "codemirror/addon/edit/closetag.js";
 import {createLogger, mapState} from "vuex";
 import Manage from "@/components/Docs/Manage"; // autoCloseTags
-
+import $ from "jquery";
+require("@/assets/js/jquery.wordexport.js");
 export default {
 
   name: "newDocument",
@@ -69,7 +73,10 @@ export default {
     return{
       stats:false,
       gettime:'',
+      docname:'',
       extensions: [
+        new Preview(),
+        new Print(),
         new Doc(),
         new Text(),
         new Paragraph(),
@@ -137,6 +144,10 @@ export default {
     },
   },
   methods:{
+    outWord(){
+      // this.cword();
+      $('#eltipTap').wordExport(this.docname)
+    },
     getCurrentTime() {
       //获取当前时间并打印
       var _this = this;
@@ -160,6 +171,8 @@ export default {
       document.getContent(formdata)
           .then((response) => {
             this.content=response.data.document.document_content;
+            this.docname=response.data.document.document_name;
+            console.log(this.docname)
           })
           .catch((error) => {
             console.log(error)
