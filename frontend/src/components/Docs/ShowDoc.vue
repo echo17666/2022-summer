@@ -1,12 +1,13 @@
 <template>
   <div :style="{'background-color':'#EEEEEE' ,width:'80vw' ,height:'100%'}">
-    <v-container width="80vw">
+    <v-container width="80vw" id="container">
       <el-tiptap  v-model="content" :extensions="extensions" placeholder="Write something ..." id="eltipTap"/>
       <div style="height: 15px"></div>
       <el-row >
         <el-button style="float: right;margin-right: 15px" @click="saveFile()">保存</el-button>
         <el-button style="float: right" @click="clearTiptap()">清空内容</el-button>
         <el-button style="float: right" @click="outWord()">导出word</el-button>
+        <el-button style="float: right" v-print="printObj">导出pdf</el-button>
       </el-row>
     </v-container>
   </div>
@@ -74,6 +75,11 @@ export default {
       stats:false,
       gettime:'',
       docname:'',
+      doc_content:'',
+      printObj:{
+        id:'container',
+        popTitle:'111',
+      },
       extensions: [
         new Preview(),
         new Print(),
@@ -148,6 +154,7 @@ export default {
       // this.cword();
       $('#eltipTap').wordExport(this.docname)
     },
+     
     getCurrentTime() {
       //获取当前时间并打印
       var _this = this;
