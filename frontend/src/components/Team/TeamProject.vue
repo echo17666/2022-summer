@@ -1,23 +1,36 @@
 <template>
   <div class="teamproject" style="margin-top:15px" :style="{'margin-left':'10px','margin-right':'10px'}">
+    <v-row :style="{'margin-top':'10px'}">
+      <v-col cols="12" md="4">
     <h1>团队项目列表</h1>
-    <div style="height: 10px; margin-top:10px" ></div>
-    <v-text-field
+      </v-col>
+     <v-col cols="12" md="4">
+    <!-- <v-text-field
         v-model="keyword"
         label="搜索项目"
         placeholder="输入后按回车搜索"
         outlined
-        @change="getProject"
-    ></v-text-field>
-    <v-select
-        :items="sorts"
-        v-model="type"
-        label="排序依据"
-        outlined
-        @change="sort1();getProject();"
+        @change="getProject()"
+    ></v-text-field> -->
+     <el-input label="搜索项目" placeholder="关键字检索"  @change="getProject()" v-model="keyword" class="input-with-select">
+    <el-button slot="append" icon="el-icon-search"></el-button>
+  </el-input>
+     </v-col>
+      <v-col cols="12" md="4">
+    <el-select
+        v-model="sort"
+        placeholder="默认排序"
+        @change="getProject();"
     >
-    </v-select>
-
+     <el-option
+      v-for="item in sorts"
+      :key="item.num"
+      :label="item.name"
+      :value="item.num">
+    </el-option>
+    </el-select>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col cols="12" md="4" v-for="(project,index) in projects"
              :key="index"
@@ -85,8 +98,15 @@ export default {
       name: "",
       description: "",
       keyword:"",
-      sorts:["按时间升序","按名称升序","按名称降序","按时间降序"],
-      sort:"0",
+      // sorts:["按时间升序","按名称升序","按名称降序","按时间降序"],
+      sorts:[
+        {value:"选项2",name:"默认排序",num:0},
+        {value:"选项1",name:"按时间升序",num:1},
+
+        {value:"选项3",name:"按名称升序",num:2},
+        {value:"选项4",name:"按名称降序",num:3},
+        ],
+      sort:"",
       type:"",
       projects: [],
     }
