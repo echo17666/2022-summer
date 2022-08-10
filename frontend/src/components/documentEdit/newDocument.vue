@@ -1,6 +1,6 @@
 <template>
-  <div :style="{'background-color':'#EEEEEE' ,width:'100vw' ,height:'100%'}">
-    <v-container width="80vw">
+  <div :style="{'background-color':'#EEEEEE' ,width:'80vw' ,height:'100%'}">
+    <v-container width="80vw" id="container">
     <el-tiptap  v-model="content" :extensions="extensions" placeholder="Write something ..." id="eltipTap"/>
     <div style="height: 15px"></div>
     <el-row >

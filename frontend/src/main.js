@@ -18,6 +18,10 @@ import { ElementTiptapPlugin } from "element-tiptap";
 import 'element-ui/lib/theme-chalk/index.css';
 // 引入 import element-tiptap 样式
 import 'element-tiptap/lib/index.css';
+import '@mdi/font/css/materialdesignicons.css'
+
+
+
 Vue.use(ElementUI)
 Vue.use(Print)
 Vue.prototype.$echarts = echarts;

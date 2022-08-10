@@ -7,7 +7,7 @@
         <el-button style="float: right;margin-right: 15px" @click="saveFile()">保存</el-button>
         <el-button style="float: right" @click="clearTiptap()">清空内容</el-button>
         <el-button style="float: right" @click="outWord()">导出word</el-button>
-        <el-button style="float: right" v-print="printObj">导出pdf</el-button>
+    
       </el-row>
     </v-container>
   </div>

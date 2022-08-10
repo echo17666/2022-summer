@@ -1,6 +1,10 @@
 <template>
   <div>
-    <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'200px'}">
+    <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'250px'}">
+      <v-img 
+      :src="imgurl"
+      height="70%"
+    ></v-img>
       <v-row>
         <v-col cols="12" md="10">
           <v-row>
@@ -14,12 +18,7 @@
               </router-link>
               </v-col>
 
-        <v-col cols="12" md="12" sm="9">
-          <v-card-text>
-           
-          </v-card-text>
-          
-          </v-col>
+    
           </v-row>
           </v-col>
  
@@ -83,6 +82,7 @@ export default {
       dialog:false,
         name:"",
         intro:"",
+        imgurl:'',
     }
   },
   methods: {
@@ -96,6 +96,11 @@ export default {
    
     
   },
+  mounted(){
+    this.i=this.project.id%9;
+    this.imgurl=require("../../assets/document/"+this.i+".jpg");
+    console.log(this.imgurl)
+  }
 
 };
 

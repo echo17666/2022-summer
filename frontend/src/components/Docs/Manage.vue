@@ -1,10 +1,11 @@
 <template>
-  <div class="project" style="margin-top:10px">
+  <div class="project" style="margin-top:10px" >
     <div class="row">
-      <v-col cols="12" md="2">
+      <v-col cols="12" md="2" :style="{'padding-right':'0px'}">
      <v-navigation-drawer
       permanent
-      height="100vh"
+      :style="{'min-height':'100vh','height':'100%'}"
+      
     >
 
 
@@ -55,7 +56,7 @@
                   @click="$router.push({name:'ShowDoc',params:{docid:title.id}})"
               >
                 <v-list-item-title v-text="title.document_name"></v-list-item-title>
-                {{title.id}}
+              
               </v-list-item>
 
             </v-list-group>
@@ -85,14 +86,13 @@
             >
               <v-list-item-title v-text="title.document_name"></v-list-item-title>
             </v-list-item>
-            <v-btn  @click="openFolder(title.folder_id)" style="margin-left: 40px" bottom>
-              添加文档
+            <v-btn  @click="openFolder(title.folder_id)" style="margin-left: 35px" icon bottom>
+            
               <v-icon>add</v-icon>
             </v-btn>
           </v-list-group>
                 <v-spacer></v-spacer>
-            <v-btn  @click="dialog=!dialog" style="margin-left: 26px" bottom>
-                  添加文件夹
+            <v-btn  @click="dialog=!dialog" icon bottom style="margin-left: 20px">
                   <v-icon>add</v-icon>
                 </v-btn>
         </v-list-group>
@@ -229,8 +229,8 @@
     </v-navigation-drawer>
     </v-col>
 
-    <v-col cols="12" md="10" >
-           <router-view/>
+    <v-col cols="12" md="10" :style="{'background-color':'#EEEEEE'}">
+           <router-view />
     </v-col>
 
   </div>

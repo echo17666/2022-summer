@@ -1,9 +1,10 @@
 <template>
   <div class="design" ref="app">
-    <div class="components">
+    <div class="components" :style="{'background-color':'#FFFFE0'}">
         <v-row >
-          <v-col cols="15" md="3">
-          <el-collapse v-model="activeNames" style="margin-left:15px;margin-top:10px">
+          <v-col cols="12" md="3" :style="{'padding':'0px'}">
+            <v-card :style="{'height':'110%','min-height':'100vh','z-index':'25'}">
+          <el-collapse v-model="activeNames" style="margin-left:25px;margin-top:10px;">
             <el-collapse-item title="图形" name="1">
               <v-row style="margin-top:10px;margin-left:10px">
                 <v-col cols="12" md="4">
@@ -69,6 +70,7 @@
               
             </el-collapse-item>
           </el-collapse>
+          
           <v-row style="text-align:center;margin-top:10px;">
             <v-col cols="12" md="6" >
               <el-button :style="{'width':'100px','height':'40px'}" round type="primary" @click="save()">
@@ -90,10 +92,15 @@
               取消预览
               </el-button>
             </v-col>
+            <v-col cols="12" md="6">
+              <el-button :style="{'width':'100px','height':'40px'}" round type="primary" @click="$router.go(-1)">
+              返回上级
+              </el-button>
+            </v-col>
           </v-row>
-          
+          </v-card>
           </v-col>
-<v-col cols="15" md="7">
+<v-col cols="12" md="7">
   <div class="prototype" ref="prototype"> 
     <div v-for="(info,index) in inputinfo"
              :key="index+'1'">
@@ -153,9 +160,10 @@
     </div>
     </div>
     </v-col>
-  <v-col cols="15" md="2" >
-    <div style="text-align:center; margin-right:10px; margin-top:10px">
-      <el-form>
+  <v-col cols="12" md="2" :style="{'padding':'0px'}">
+ 
+      <v-card :style="{'height':'110%','min-height':'100vh','z-index':'25'}">
+      <el-form :style="{'margin-left':'10px','margin-right':'10px', 'margin-top':'10px'}">
         <el-form-item label="宽度:">
           <el-input v-model="comwidth">
             </el-input>
@@ -182,7 +190,8 @@
           <v-btn @click="updatecom()">保存修改</v-btn>
         <!-- </el-from-item> -->
       </el-form>
-    </div>
+      </v-card>
+    
     <div>
       <v-dialog v-model="dialog" persistent max-width="600px">
      

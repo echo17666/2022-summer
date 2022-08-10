@@ -1,27 +1,12 @@
 <template>
   <div>
-    <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'200px'}">
-      <v-row>
-        <v-col cols="12" md="10" sm="10">
-            <router-link :to="{ name: 'Design', params: { id: design.url } }">
-            <v-card-title>
-              <h1>
-             {{design.design_name}}
-             </h1>
-            </v-card-title>
-            </router-link>
-         
-          <v-spacer></v-spacer>
-     
-           
-       
-          <v-card-actions>
-                
-          </v-card-actions>
-            
-        </v-col>
-        <v-col cols="12" md="2" sm="10">
-             <v-btn  @click="open()"  icon :style="{'margin-top':'10px'}" >
+    <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'250px','position':'relative', 'width':'380px'}">
+         <v-img
+      :src="imgurl"
+      height="70%"
+    ></v-img>
+     <div :style="{'z-index':'100','position':'absolute','bottom':'0px','right':'0px','margin-bottom':'10px','margin-right':'10px'}">
+       <v-btn  @click="open()"  icon :style="{'margin-top':'10px'}" >
       <span class="material-icons-outlined">edit</span>
     </v-btn>
     <v-btn  @click="open1()"  icon :style="{'margin-top':'10px'}" >
@@ -30,12 +15,22 @@
     <v-btn  @click="open2()" v-show="design.is_displaying"  icon :style="{'margin-top':'10px'}" >
       <span class="material-icons-outlined">preview</span>
     </v-btn>
+     </div>
+      
+      <v-row>
+        <v-col cols="12" md="10" sm="10">
+            <router-link :to="{ name: 'Design', params: { id: design.url } }">
+            <v-card-title>
+              <h3>
+             {{design.design_name}}
+             </h3>
+            </v-card-title>
+            </router-link>
+         
+       
+            
         </v-col>
-        <v-col cols="12" md="12" sm="2">
-            <v-card-text>
-             大小:{{design.design_a}}x{{design.design_b}}
-          </v-card-text>
-            </v-col>
+        
       </v-row>
 
     </v-card>
@@ -96,6 +91,7 @@ export default {
   data() {
     return {
         dialog:false,
+         imgurl:"",
         dialog1:false,
         name:"",
         intro:"",
@@ -196,7 +192,11 @@ export default {
     },
     
   },
- 
+  mounted(){
+    this.i=this.design.id%10;
+    this.imgurl=require("../../assets/design/"+this.i+".jpg");
+    console.log(this.imgurl)
+  }
 
 };
 </script>

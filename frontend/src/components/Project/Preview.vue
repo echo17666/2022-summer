@@ -1,8 +1,9 @@
-<template>
-  <div class="design" ref="app">
-    <div class="components">
+<template >
+  <div class="design" ref="app" :style="{'background-color':'#FFFFE0','min-height':'100vh','height':'110%'}">
+    <div class="components" >
         <v-row >
           <v-col cols="12" md="3" style="margin-left:-25px">
+            <v-card :style="{'height':'110%','min-height':'100vh'}">
             <el-menu
               :default-openeds="this.activeNames"
               :collapse="false"
@@ -23,11 +24,11 @@
               </el-submenu>
               
             </el-menu>
-            
+            </v-card>
           </v-col>
          
       <v-col cols="12" md="8" >
-        <div class="prototype" ref="prototype"> 
+        <div class="prototype" ref="prototype" > 
           <div v-for="(info,index) in inputinfo"
                   :key="index+'1'">
             <Inputbox :info="info"></Inputbox>

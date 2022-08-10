@@ -41,7 +41,7 @@
       </v-col>
 
       <v-col cols="12" md="10">
-        <router-view/>
+        <router-view:style="{'background-color':'#EEEEEE'}"/>
       </v-col>
 
     </div>

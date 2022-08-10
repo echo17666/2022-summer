@@ -7,7 +7,7 @@
       width="290px"
       expand-on-hover
 
-      :style="{'background-color':'#bdd5ed'}"
+      :style="{'background-color':'#bdd5ed','z-index':'30'}"
       app
     >
       <template v-slot:prepend >

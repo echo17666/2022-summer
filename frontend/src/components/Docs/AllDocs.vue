@@ -1,5 +1,5 @@
 <template>
-  <div class="Alldocs">
+  <div class="Alldocs" :style="{'background-color':'#EEEEEE' ,height:'100%'}">
     <v-row>
       <v-col cols="12" md="12">
       <h1>项目文档区</h1>

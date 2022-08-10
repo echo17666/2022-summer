@@ -41,7 +41,11 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-
+ <v-pagination  :style="{'position':'absolute','bottom':'20px','left':'50%'}"
+      v-model="page"
+      :length="pageTotal"
+      circle
+    ></v-pagination>
   </div>
 </template>
 <script>
@@ -56,7 +60,10 @@ export default {
     return{
       designs:[],
       dialog:false,
-      name:""
+      name:"",
+        page:1,
+      pageTotal:0,
+      templateDesigns:[],
     }
   },
     methods: {
@@ -69,7 +76,24 @@ export default {
          Design.AllDesign(formdata)
         .then((response) => {
           this.designs= response.data.designs;
-          
+
+
+           this.templateDesigns = [];
+							if(this.designs.length-6*(this.page-1)<6) {
+                  for(let i = 0; i < this.designs.length-6*(this.page-1); i++){
+                    this.templateDesigns.push(response.data.designs[i+6*(this.page-1)]);
+                    console.log(this.templateDesigns,"xxx")
+                  }
+              }
+              else{
+                for(let i = 0; i < 6; i++){
+                    this.templateDesigns.push(response.data.designs[i+6*(this.page-1)]);
+                    console.log(this.templateDesigns,"xxx")
+                  }
+						}
+						this.pageTotal = Math.ceil(this.designs.length /6);
+						if(this.pageTotal===0) this.pageTotal = 1;
+
           var key = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
           var a = key.split("");
           for(let i=0;i<this.designs.length;i++){
@@ -133,6 +157,11 @@ export default {
   },
   mounted(){
     this.getDesigns();
-  }
+  },
+   watch:{
+   page(newPage,oldPage){
+      this.getTeams();
+    }
+  },
 }
 </script>

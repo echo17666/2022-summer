@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :style="{'z-index':'30'}">
     <navbar v-if="!$route.meta.showNav"></navbar>
     <v-main>
       <router-view/>

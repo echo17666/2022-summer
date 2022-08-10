@@ -5,6 +5,7 @@
       <div style="height: 20px"></div>
     </el-row>
     <el-table
+    :style="{'background-color':'#EEEEEE' }"
         :data="documentlist"
         style="width: 100%">
       <el-table-column

@@ -102,11 +102,7 @@ const routes = [
     name: 'Text',
     component: Text
   },
-  {
-    path: '/uml',
-    name: 'UML',
-    component: UML
-  },
+ 
   {
     path: '/project/:id',
     name: 'ProjectManage',
@@ -114,7 +110,10 @@ const routes = [
     children: [
       {path: '', component: ViewAll},
       {path: 'viewall', name:'ViewAll',component: ViewAll},
-      {path: 'newdocument',name:'DocumentEdit', component: documentEdit}
+      {path: 'newdocument',name:'DocumentEdit', component: documentEdit},
+      {path: '/newdocument/:id', name: 'NewDocument', component: newDocument},
+      
+      {path: 'uml',name: 'UML',component: UML},
   ]
   },
   {
@@ -156,7 +155,7 @@ const routes = [
 
 ]
 },
-{path: '/newdocument/:id', name: 'NewDocument', component: newDocument},
+
 {path: '/docs/:id', name: 'DocManage', component: DocManage,
 children: [
   {path: '', name:'AllDocs',component: AllDocs},

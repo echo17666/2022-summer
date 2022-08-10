@@ -1,7 +1,7 @@
 <template>
   <div class="project" style="margin-top:10px">
     <div class="row">
-      <v-col cols="12" md="2">
+      <v-col cols="12" md="2" :style="{'padding-right':'0px'}">
      <v-navigation-drawer
       permanent
       height="100vh"
@@ -9,7 +9,20 @@
      
 
       <v-list dense>
+        
+        <v-list-item
+    @click="$router.push({name:'UML'})"
+        >
+          <v-list-item-icon>
+            <span class="material-icons-outlined">
+               description</span>
+          </v-list-item-icon>
+          
 
+          <v-list-item-content>
+            <v-list-item-title>UML图</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item
           @click="jumpPrototype"
         >
@@ -38,14 +51,15 @@
             <v-list-item-title>编辑文档</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+
         <v-divider/>
        
       </v-list>
     </v-navigation-drawer>
     </v-col>
     
-    <v-col cols="12" md="10" >
-           <router-view/>
+    <v-col cols="12" md="10" :style="{'background-color':'#EEEEEE'}">
+           <router-view />
     </v-col>
     
   </div>

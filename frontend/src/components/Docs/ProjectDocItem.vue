@@ -1,49 +1,47 @@
 <template>
   <div>
-    <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'200px'}">
+    <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'250px',}">
+       <v-img 
+      :src="imgurl"
+      height="70%"
+    ></v-img>
       <v-row>
-        <v-col cols="12" md="10">
-          <v-row>
-            <v-col cols="12" md="12" sm="3">
+        <v-col cols="12" md="7">
+          
             <router-link :to="{ name: 'ViewAll', params: { id: project.url } }">
             <v-card-title>
-              <h2>
+              <h3>
              {{project.project_name}}
-             </h2>
+             </h3>
             </v-card-title>
               </router-link>
-              </v-col>
+        </v-col>
 
-        <v-col cols="12" md="12" sm="9">
-          <v-card-text>
-            <h3>
-             文档：</h3>
+        <v-col cols="12" md="5">
              <div v-show="project.list.length==0">
-             <h3 >无</h3></div>
+             <h5>无</h5></div>
              <div v-if="project.list.length<=2">
              <div  v-for="(doc,index) in project.list"    :key="index">
                 <router-link :to="{ name: 'ShowDoc',params:{docid: doc.id}}">
-             <h3 >{{doc.document_name}}</h3>
+             <h5>{{doc.document_name}}</h5>
              </router-link>
              </div>
              </div>
              <div v-else>
                 <router-link :to="{ name: 'ShowDoc',params:{docid: project.list[0].id}}">
-             <h3 >{{project.list[0].document_name}}</h3>
+             <h5>{{project.list[0].document_name}}</h5>
              </router-link>
               <router-link :to="{ name: 'ShowDoc',params:{docid: project.list[1].id}}">
-             <h3 >{{project.list[1].document_name}}</h3>
+             <h5>{{project.list[1].document_name}}</h5>
              </router-link>
               <router-link :to="{ name: 'DocumentEdit', params: { id: project.url } }">
-             <h3 >更多</h3>
+             <h5>更多</h5>
              </router-link>
              </div>
-             
-          </v-card-text>
           
           </v-col>
-          </v-row>
-          </v-col>
+          
+
  
 
 
@@ -104,6 +102,7 @@ export default {
     return {
       dialog:false,
         name:"",
+        imgurl:"",
         intro:"",
     }
   },
@@ -118,6 +117,11 @@ export default {
    
     
   },
+   mounted(){
+    this.i=this.project.project_id%7;
+    this.imgurl=require("../../assets/design/"+this.i+".jpg");
+    console.log(this.imgurl)
+  }
 
 };
 

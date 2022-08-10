@@ -1,6 +1,6 @@
 <template>
   <div class="design">
-        <VueDragResize v-show="info.isshown" v-on:clicked="showinformation" :z="1" :isActive="true" :w="info.width" :h="info.height" :x="info.left" :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
+        <VueDragResize v-show="info.isshown" v-on:clicked="showinformation" :z="1" :isActive="true" :w="info.width" :h="info.height" :x="info.left"  :y="info.top" v-on:resizing="resize" v-on:dragging="resize">
             <div :style="{'position':'relative'}" style="height:100%">
                 <img src="../../assets/background.png"
                 width="100%" height="100%" />
