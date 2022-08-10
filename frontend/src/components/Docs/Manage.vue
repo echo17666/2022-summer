@@ -130,12 +130,28 @@
             <v-card-text>
               <v-container>
                 <v-row>
-                  <v-col col="12" md="12">
+                  <v-col col="12" md="12" sm="2">
                     <v-text-field
                         v-model="DocumentName"
                         label="文档名称"
                         required
                     ></v-text-field>
+                  </v-col>
+                  <v-col col="12" md="12" sm="10">
+                    <v-row>
+                      <v-col cols="12" md="3">
+                        <el-button>模板1</el-button>
+                      </v-col>
+                      <v-col cols="12" md="3">
+                       <el-button>模板1</el-button>
+                      </v-col>
+                      <v-col cols="12" md="3">
+                        <el-button>模板1</el-button>
+                      </v-col>
+                      <v-col cols="12" md="3">
+                        <el-button>模板1</el-button>
+                      </v-col>
+                    </v-row>
                   </v-col>
                 </v-row>
 
