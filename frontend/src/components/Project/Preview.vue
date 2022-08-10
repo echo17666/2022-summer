@@ -7,8 +7,7 @@
               :default-openeds="this.activeNames"
               :collapse="false"
               class="el-menu-vertical-demo"
-              @open="handleOpen"
-              @close="handleClose">
+              >
               <el-submenu index="1">
                 <template slot="title">
                   <i class="el-icon-document"></i>
@@ -17,7 +16,7 @@
                 <el-menu-item-group>
                 
                   <el-menu-item v-for="(design,index) in showList"
-                  :key="index+'0'" :index="index"
+                  :key="index+'0'" index="1-1"
                   @click="open(design.id)">{{design.design_name}}</el-menu-item>
                   
                 </el-menu-item-group>
