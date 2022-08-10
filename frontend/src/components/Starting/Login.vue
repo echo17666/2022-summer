@@ -64,7 +64,7 @@ export default {
             window.localStorage.setItem("username", this.username);
             this.username=''
             this.password=''
-            this.$router.push('/main')
+            this.$router.push('/teams')
           }
           else if(response.data.errno==100004){
             this.$notify({

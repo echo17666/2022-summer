@@ -1,29 +1,34 @@
 <template>
   <div>
-    <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'200px'}">
+     
+    <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'250px','position':'relative', 'width':'380px'}">
+      
+       <v-img
+      :src="imgurl"
+      height="70%"
+    ></v-img>
+  
+      <v-btn  @click="open()"  icon :style="{'z-index':'100','position':'absolute','bottom':'0px','right':'0px','margin-bottom':'10px','margin-right':'10px'}" >
+      <span class="material-icons-outlined" :style="{}">edit</span>
+    </v-btn>
       <v-row>
         <v-col cols="12" md="10" sm="10">
-            <router-link :to="{ name: 'TeamProject', params: { id: team.url } }">
+           <router-link :to="{ name: 'TeamProject', params: { id: team.url } }">
             <v-card-title>
-              <h1>
+              <h3>
              {{team.team_name}}
-             </h1>
+             </h3>
             </v-card-title>
-            </router-link>
+           </router-link>
           <v-card-text>
-             <h3>简介：{{team.team_intro}}</h3>
+             
           </v-card-text>
             
         </v-col>
         <v-col cols="12" md="2" sm="10">
-             <v-btn  @click="open()"  icon :style="{'margin-top':'10px'}" >
-      <span class="material-icons-outlined">edit</span>
-    </v-btn>
+           
         </v-col>
-        <v-col cols="12" md="12" sm="2">
-            <v-card-text><h3>创始人：{{team.creator_username}}</h3>
-                </v-card-text>
-            </v-col>
+       
 
 
       </v-row>
@@ -45,20 +50,11 @@
                 <v-text-field
                     v-model="name"
                     :counter="10"
-                    label="项目名称"
+                    label="团队名称"
                     required
                 ></v-text-field>
               </v-col>
-              <v-col col="12" md="12">
-                <v-textarea
-                    v-model="intro"
-                    outlined
-                    label="项目简介"
-                    rows="4"
-                    :counter="100"
-                    row-height="30"
-                ></v-textarea>
-              </v-col>
+             
             </v-row>
           </v-container>
         </v-card-text>
@@ -84,7 +80,9 @@ export default {
         dialog:false,
         name:"",
         intro:"",
+        imgurl:"",
         id:"xxx",
+        i:"",
     };
   },
   methods: {
@@ -121,6 +119,11 @@ export default {
     },
     
   },
+  mounted(){
+    this.i=this.team.team_id%8;
+    this.imgurl=require("../../assets/team/"+this.i+".jpg");
+    console.log(this.imgurl)
+  }
  
 
 };

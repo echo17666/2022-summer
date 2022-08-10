@@ -1,54 +1,54 @@
 <template>
   <div class="profile">
     <h1>个人中心</h1>
+<br/>
+<el-form  label-width="100px" class="demo-ruleForm">
 
-<el-form class="demo-ruleForm">
-
+  <v-row>
 <v-col cols="12" md="10">
        <el-form-item label="头像">
-         <v-col></v-col>
         <v-img
-
-                  class="img-fluid"
+              
+                  class="img-fluid w-80"
                   :src="userUrl"
                   alt="Image Description"
-                  style="width: 180px;height: 180px;margin-top: 30px"
+                  style="width: 200px;height: 200px;"
               />
      </el-form-item>
 </v-col>
-
      <v-col cols="12" md="2">
  <el-button
                 @click="addFile">
               更换头像
             </el-button>
    <input type="file" ref="upload_input" style="display: none;" @change="select_file" accept=".png,.jpg,.jpeg">
+   
 
-
-    </v-col>
+</v-col>
+</v-row>
+      
+              
+<v-row>
 <v-col cols="12" md="10">
        <el-form-item label="用户名">
-   <el-input v-model="username" style="max-width: 4000px"></el-input>
+        
+   <el-input v-model="username"></el-input>
      </el-form-item>
 </v-col>
-     <v-col cols="12" md="2" >
+     <v-col cols="12" md="2">
    <el-button @click="changeName()">更改</el-button>
-
+   
 
 </v-col>
-  <v-col cols="12" md="10">
-   <el-form-item label="邮箱" text-align="left" style="margin-bottom: 0">
+</v-row>
+   <el-form-item label="邮箱" text-align="left">
   <span class="d-flex justify-start">{{email}}</span>
   </el-form-item>
-  </v-col>
-  <v-col cols="12" md="10">
   <el-form-item label="真实姓名">
       <span class="d-flex justify-start">{{truename}}</span>
   </el-form-item>
-  </v-col>
     </el-form>
-
-
+   
 
 
 
@@ -139,8 +139,5 @@ export default {
 }
 </script>
 <style>
-.profile{
-  text-align:left;
-  padding: 30px;
-}
+
 </style>
