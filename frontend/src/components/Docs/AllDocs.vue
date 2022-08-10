@@ -36,6 +36,7 @@ export default {
     return{
       Projects: [],
       folder:[],
+      timer: 0,
     }
   },
   methods: {
@@ -88,6 +89,21 @@ export default {
   mounted(){
     this.getContext();
     this.getDocument();
+  },
+  watch:{
+    folder: {
+      handler() {
+        clearInterval(this.timer);
+        this.timer = setInterval(() => {
+          
+            this.getDocument()
+          
+        }, 2000);
+      },
+      immediate: true
+    }
   }
+ 
+  
 }
 </script>

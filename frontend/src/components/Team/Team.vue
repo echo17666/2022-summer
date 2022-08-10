@@ -9,7 +9,18 @@
 
 
       <v-list dense>
-   
+    <v-list-item
+        @click="$router.push('/teams/allteams')"
+        >
+        <v-list-item-icon>
+            <span class="material-icons-outlined">
+              arrow_back</span>
+          </v-list-item-icon>
+          
+
+          <v-list-item-content>
+            <v-list-item-title>返回</v-list-item-title>
+          </v-list-item-content></v-list-item>
          <v-list-item
            @click="$router.push({name:'TeamProject'})"
         >
@@ -60,7 +71,7 @@
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
-                person</span>
+                folder</span>
           </v-list-item-icon>
 
 

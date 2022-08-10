@@ -9,13 +9,24 @@
      
 
       <v-list dense>
-        
+         <v-list-item
+        @click="$router.go(-1)"
+        >
+        <v-list-item-icon>
+            <span class="material-icons-outlined">
+              arrow_back</span>
+          </v-list-item-icon>
+          
+
+          <v-list-item-content>
+            <v-list-item-title>返回</v-list-item-title>
+          </v-list-item-content></v-list-item>
         <v-list-item
     @click="$router.push({name:'UML'})"
         >
           <v-list-item-icon>
             <span class="material-icons-outlined">
-               description</span>
+               equalizer</span>
           </v-list-item-icon>
           
 

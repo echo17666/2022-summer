@@ -10,7 +10,19 @@
 
 
       <v-list dense>
+        <v-list-item
+        @click="$router.push({name:'TeamProject',params: { id: $route.params.id }})"
+        >
+        <v-list-item-icon>
+            <span class="material-icons-outlined">
+              arrow_back</span>
+          </v-list-item-icon>
+          
 
+          <v-list-item-content>
+            <v-list-item-title>返回</v-list-item-title>
+          </v-list-item-content></v-list-item>
+        
               <v-list-group
                   :value="true"
             prepend-icon="folder"
@@ -299,6 +311,7 @@ export default {
               this.dialog=false;
               this.folder_id=0;
               this.getDocument();
+            
             })
             .catch((error) => {
               console.log(error)
@@ -339,6 +352,7 @@ export default {
               this.dialog1=false;
               this.DocumentName=""
               this.getDocument();
+               
             })
             .catch((error) => {
               console.log(error)
