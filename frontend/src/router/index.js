@@ -43,6 +43,7 @@ import Documents from "@/components/Team/Documents";
 import DocManage from "@/components/Docs/Manage.vue";
 import AllDocs from "@/components/Docs/AllDocs.vue";
 import ShowDoc from "@/components/Docs/ShowDoc.vue";
+import Preview from "@/components/Project/Preview.vue"
 
 
 
@@ -90,6 +91,11 @@ const routes = [
     path: '/design/:id',
     name: 'Design',
     component: Design
+  },
+  {
+    path: '/preview/:id',
+    name: 'Preview',
+    component: Preview
   },
   {
     path: '/text',

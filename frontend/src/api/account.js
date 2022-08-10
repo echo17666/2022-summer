@@ -7,7 +7,10 @@ const url={
     getprototype:'/design/getdesign',
     uploadImage:'/user/userprofile',
     changeUser:'/user/changeuser',
-    getUser:'/user/userinfo'
+    getUser:'/user/userinfo',
+    setpreview:'/design/setpreview',
+    cancelpreview:'/design/cancelpreview',
+    getOthers:'/design/showdisplaystatus'
 }
 
 export class Account{
@@ -106,5 +109,36 @@ export class Account{
             data: data
         })
     };
+    static async setpreview(data){
+        return service(url.setpreview, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data: data
+        })
+    };
+    static async cancelpreview(data){
+        return service(url.cancelpreview, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data: data
+        })
+    };
+    static async getOthers(data){
+        return service(url.getOthers, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'json',
+            data: data
+        })
+    };
+
 
 }

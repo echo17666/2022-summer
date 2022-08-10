@@ -27,6 +27,9 @@
     <v-btn  @click="open1()"  icon :style="{'margin-top':'10px'}" >
       <span class="material-icons-outlined">delete</span>
     </v-btn>
+    <v-btn  @click="open2()" v-show="design.is_displaying"  icon :style="{'margin-top':'10px'}" >
+      <span class="material-icons-outlined">preview</span>
+    </v-btn>
         </v-col>
         <v-col cols="12" md="12" sm="2">
             <v-card-text>
@@ -104,8 +107,25 @@ export default {
         this.name=this.design.design_name
         this.dialog=true;
     },
-     open1(){
+    open1(){
         this.dialog1=true;
+    },
+    open2(){
+      // let id=this.$route.params.id
+
+      // var key = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      // var a = key.split("");
+      let s="";
+      // for(let j=0;j<id.length;j++){
+      //   let b = id.charCodeAt(j);
+      //   s+=a[b%36];
+      // }
+      // s+="PV"
+      s+=this.design.id;
+
+      var newPreview = this.$router.resolve({name:'Preview',params: { id: s }})
+      window.open(newPreview.href,'_blank')
+
     },
     deleteDesign(){
         let formdata = new FormData()
