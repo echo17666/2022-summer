@@ -217,6 +217,7 @@ export default {
               this.FolderName="";
               this.DocumentName="";
               this.dialog1=false;
+              this.dialog=false;
               this.folder_id=0;
             })
             .catch((error) => {
@@ -253,7 +254,8 @@ export default {
                 type: 'success'
               })
               console.log(this.dialog)
-              this.dialog=false
+              this.dialog=false;
+              this.dialog1=false;
               this.DocumentName=""
               this.getDocument()
             })
