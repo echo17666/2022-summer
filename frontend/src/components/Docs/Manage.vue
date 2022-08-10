@@ -139,18 +139,79 @@
                   </v-col>
                   <v-col col="12" md="12" sm="10">
                     <v-row>
-                      <v-col cols="12" md="3">
-                        <el-button>模板1</el-button>
-                      </v-col>
-                      <v-col cols="12" md="3">
-                       <el-button>模板1</el-button>
-                      </v-col>
-                      <v-col cols="12" md="3">
-                        <el-button>模板1</el-button>
-                      </v-col>
-                      <v-col cols="12" md="3">
-                        <el-button>模板1</el-button>
-                      </v-col>
+                    
+
+                      <el-radio-group v-model="model">
+
+                        <el-radio-button  v-model="model" label="0" border>
+                          
+                          <v-row>
+                            <v-col cols="12" md="12" sm="11">
+                          <span class="material-icons-outlined" :style="{'font-size':'50px'}">
+                              article
+                          </span>
+                            </v-col>
+                              <v-col cols="12" md="12" sm="1">
+                                空白文档
+                              </v-col>
+                          </v-row>
+                          
+                        </el-radio-button >
+       <el-radio-button  v-model="model" label="1" border>
+                          
+                          <v-row>
+                            <v-col cols="12" md="12" sm="11">
+                          <span class="material-icons-outlined" :style="{'font-size':'50px'}">
+                              article
+                          </span>
+                            </v-col>
+                              <v-col cols="12" md="12" sm="1">
+                                项目计划
+                              </v-col>
+                          </v-row>
+                          
+                        </el-radio-button >
+      <el-radio-button v-model="model" label="2" border>
+                        <v-row>
+                            <v-col cols="12" md="12" sm="11">
+                          <span class="material-icons-outlined" :style="{'font-size':'50px'}">
+                              article
+                          </span>
+                            </v-col>
+                              <v-col cols="12" md="12" sm="1">
+                                会议纪要
+                              </v-col>
+                          </v-row>
+                          
+                       </el-radio-button >
+       <el-radio-button  v-model="model" label="3" border>
+                          <v-row>
+                            <v-col cols="12" md="12" sm="11">
+                          <span class="material-icons-outlined" :style="{'font-size':'50px'}">
+                              article
+                          </span>
+                            </v-col>
+                              <v-col cols="12" md="12" sm="1">
+                                工作周报
+                              </v-col>
+                          </v-row>
+                          
+                       </el-radio-button >
+      <el-radio-button v-model="model" label="4" border>
+                         
+                          <v-row>
+                            <v-col cols="12" md="12" sm="11">
+                          <span class="material-icons-outlined" :style="{'font-size':'50px'}">
+                              article
+                          </span>
+                            </v-col>
+                              <v-col cols="12" md="12" sm="1">
+                                需求文档
+                              </v-col>
+                          </v-row>
+                    
+                        </el-radio-button>
+                      </el-radio-group>
                     </v-row>
                   </v-col>
                 </v-row>
@@ -185,6 +246,7 @@ export default {
   data(){
     return {
      Projects: [],
+      model:0,
       folder:[],
       FolderName:"",
       DocumentName:"",
@@ -261,7 +323,7 @@ export default {
         let formdata = new FormData();
         formdata.append("document_name",this.DocumentName)
         formdata.append("project_id",0)
-        formdata.append("model_id",1)
+        formdata.append("model_id",this.model)
         formdata.append("folder_id",this.folder_id)
 
         document.createdocument(formdata)
@@ -290,6 +352,13 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.el-radio-button {
+  margin-left:20px;
+   margin-right:20px;
+   margin-top:20px;
+   margin-bottom:20px;
+  width:140px;
+  height:100px;
+}
 </style>
