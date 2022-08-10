@@ -2,16 +2,32 @@
   <div class="design" ref="app">
     <div class="components">
         <v-row >
-          <v-col cols="12" md="3">
-            <div v-for="(design,index) in showList"
-                  :key="index+'0'">
-              <router-link :to="{name:'Preview',params:{id:design.id}}">
-                {{design.name}}
-              </router-link>
-            </div>
+          <v-col cols="12" md="3" style="margin-left:-25px">
+            <el-menu
+              :default-openeds="this.activeNames"
+              :collapse="false"
+              class="el-menu-vertical-demo"
+              @open="handleOpen"
+              @close="handleClose">
+              <el-submenu index="1">
+                <template slot="title">
+                  <i class="el-icon-document"></i>
+                  <span>预览界面</span>
+                </template>
+                <el-menu-item-group>
+                
+                  <el-menu-item v-for="(design,index) in showList"
+                  :key="index+'0'" :index="index"
+                  @click="open(design.id)">{{design.design_name}}</el-menu-item>
+                  
+                </el-menu-item-group>
+              </el-submenu>
+              
+            </el-menu>
+            
           </v-col>
          
-      <v-col cols="12" md="8">
+      <v-col cols="12" md="8" >
         <div class="prototype" ref="prototype"> 
           <div v-for="(info,index) in inputinfo"
                   :key="index+'1'">
@@ -148,8 +164,8 @@ export default {
         dialog_width:500,
         dialog_height:500,
         dialog:false,
-        activeNames:['3'],
-        showList:[]
+        activeNames:['1'],
+        showList:[],
 
       }
     },
@@ -157,30 +173,12 @@ export default {
       this.show();
     },
     methods: {
-      last(){
-        let id=this.$route.params.id
-        for(var i=0;i<this.showList.length;i++){
-          if(this.showList[i]==id){
-            if(i>0){
-              this.$router.push({name:'Preview',params:{id:this.showList[i-1]}})
-              this.$router.go(0)
-            }
-            break;
-          }
-        }
-      },
-      next(){
-        let id=this.$route.params.id
-        for(var i=0;i<this.showList.length;i++){
-          if(this.showList[i]==id){
-            if(i<this.showList.length-1){
-              this.$router.push({name:'Preview',params:{id:this.showList[i+1]}})
-              this.$router.go(0)
-            }
-            break;
-          }
-        }
+      open(id){
+        let now_id=this.$route.params.id
 
+        if(now_id==id) return
+        this.$router.push({name:'Preview',params:{id:id}})
+        this.$router.go(0)
       },
       show(){
         console.log('show')
