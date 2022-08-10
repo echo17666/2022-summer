@@ -8,13 +8,13 @@
       </v-row>
        <div class="text-center">
       
-       <div>
+     
     <v-pagination  :style="{'position':'absolute','bottom':'20px','left':'50%'}"
       v-model="page"
       :length="pageTotal"
       circle
     ></v-pagination>
-       </div>
+     
        
   </div>
   </div>

@@ -1,39 +1,13 @@
 <template>
   <div>
-    <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'200px'}">
-      <v-row>
-        <v-col cols="12" md="10">
-          <v-row>
-            <v-col cols="12" md="12" sm="3">
-            <router-link :to="{ name: 'ViewAll', params: { id: project.url } }">
-            <v-card-title>
-              <h1>
-             {{project.project_name}}
-             </h1>
-            </v-card-title>
-              </router-link>
-              </v-col>
-
-        <v-col cols="12" md="12" sm="9">
-          <v-card-text>
-            <h3>
-             简介：{{project.project_description}}</h3>
-          </v-card-text>
-          <v-card-text v-if="project.project_status===2">
-              <h3>
-            项目已完成
-              </h3>
-          </v-card-text>
-          <v-card-text v-else-if="project.project_status===1">
-              <h3>
-            项目进行中
-              </h3>
-          </v-card-text>
-          </v-col>
-          </v-row>
-          </v-col>
-  <v-col cols="12" md="2">
-             <v-btn  @click="open()"  icon :style="{'margin-top':'10px'}" >
+    <v-card outlined class="mx-auto" :style="{'border-radius':'20px',height:'250px','position':'relative', 'width':'380px'}">
+     
+           <v-img
+      :src="imgurl"
+      height="65%"
+    ></v-img>
+    <div :style="{'z-index':'100','position':'absolute','bottom':'0px','right':'0px','margin-bottom':'10px','margin-right':'10px'}">
+       <v-btn  @click="open()"  icon :style="{'margin-top':'10px'}" >
       <span class="material-icons-outlined">edit</span>
     </v-btn>
 
@@ -67,6 +41,39 @@
     >
       <span class="material-icons-outlined">copy</span>
     </v-btn>
+    </div>
+
+
+          <v-row>
+            <v-col cols="12" md="12" sm="3">
+            <router-link :to="{ name: 'ViewAll', params: { id: project.url } }">
+            <v-card-title>
+              <h3>
+             {{project.project_name}}
+             </h3>
+             
+            </v-card-title>
+              </router-link>
+              <div :style="{'z-index':'100','position':'absolute','bottom':'0px','left':'0px','margin-bottom':'0px','margin-right':'10px'}">
+              <v-card-text v-if="project.project_status===2">
+              <h3>
+            项目已完成
+              </h3>
+          </v-card-text>
+          <v-card-text v-else-if="project.project_status===1">
+              <h3>
+            项目进行中
+              </h3>
+          </v-card-text>
+              </div>
+              </v-col>
+
+        <v-col cols="12" md="12" sm="9">
+          
+          </v-col>
+      
+  <v-col cols="12" md="2">
+            
 
 
 
@@ -132,6 +139,7 @@ export default {
       dialog:false,
         name:"",
         intro:"",
+        imgurl:'',
     }
   },
   methods: {
@@ -255,6 +263,11 @@ export default {
       this.$parent.getProject();
     }
   },
+   mounted(){
+    this.i=this.project.project_name%7;
+    this.imgurl=require("../../assets/project/"+this.i+".jpg");
+    console.log(this.imgurl)
+  }
 
 };
 

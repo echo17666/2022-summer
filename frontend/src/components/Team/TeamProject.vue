@@ -1,17 +1,15 @@
 <template>
   <div class="teamproject" style="margin-top:15px" :style="{'margin-left':'10px','margin-right':'10px'}">
     <v-row :style="{'margin-top':'10px'}">
-      <v-col cols="12" md="4">
+      <v-col cols="12" md="3">
     <h1>团队项目列表</h1>
       </v-col>
+    <v-col cols="12" md="1">
+    <v-btn  @click="dialog=!dialog" class="mx-2" fab dark color="indigo">
+      <span class="material-icons-outlined">add</span>
+    </v-btn>
+      </v-col>
      <v-col cols="12" md="4">
-    <!-- <v-text-field
-        v-model="keyword"
-        label="搜索项目"
-        placeholder="输入后按回车搜索"
-        outlined
-        @change="getProject()"
-    ></v-text-field> -->
      <el-input label="搜索项目" placeholder="关键字检索"  @change="getProject()" v-model="keyword" class="input-with-select">
     <el-button slot="append" icon="el-icon-search"></el-button>
   </el-input>
@@ -75,11 +73,13 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-
-    <div style="height: 20px"></div>
-    <v-btn  @click="dialog=!dialog" class="mx-2" fab dark color="indigo">
-      <span class="material-icons-outlined">add</span>
-    </v-btn>
+ <v-pagination  :style="{'position':'absolute','bottom':'20px','left':'50%'}"
+      v-model="page"
+      :length="pageTotal"
+      circle
+    ></v-pagination>
+    
+    
 
   </div>
 
@@ -95,6 +95,8 @@ export default {
   data() {
     return {
       dialog: false,
+      page:1,
+      pageTotal:0,
       name: "",
       description: "",
       keyword:"",
@@ -109,21 +111,11 @@ export default {
       sort:"",
       type:"",
       projects: [],
+      templateProjects:[]
     }
   },
 
   methods: {
-    sort1(){
-      if(this.type==="按时间升序")
-        this.sort="1";
-      else if(this.type==="按名称升序")
-        this.sort="2";
-      else if(this.type==="按名称降序")
-        this.sort="3";
-      else if(this.type==="按时间降序")
-        this.sort="0";
-
-    },
     getProject() {
       let id=this.$route.params.id
       let s=id.split('ZY');
@@ -136,6 +128,25 @@ export default {
           .then((response) => {
             this.projects = response.data.Teams;
             console.log(response.data)
+
+            this.templateProjects = [];
+							if(this.projects.length-6*(this.page-1)<6) {
+                  for(let i = 0; i < this.projects.length-6*(this.page-1); i++){
+                    this.templateProjects.push(response.data.Teams[i+6*(this.page-1)]);
+                    console.log(this.templateProjects,"xxx")
+                  }
+              }
+              else{
+                for(let i = 0; i < 6; i++){
+                    this.templateProjects.push(response.data.Teams[i+6*(this.page-1)]);
+                    console.log(this.templateProjects,"xxx")
+                  }
+						}
+						this.pageTotal = Math.ceil(this.projects.length /6);
+						if(this.pageTotal===0) this.pageTotal = 1;
+
+
+
           var key = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
           var a = key.split("");
           for(let i=0;i<this.projects.length;i++){
@@ -191,6 +202,11 @@ export default {
       this.description="";
       this.getProject();
     },
+  },
+    watch:{
+   page(newPage,oldPage){
+      this.getTeams();
+    }
   },
   mounted() {
     this.getProject();
