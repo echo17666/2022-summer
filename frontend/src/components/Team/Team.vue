@@ -9,10 +9,7 @@
 
 
       <v-list dense>
-        <v-card
-            class="mx-auto"
-            width="300"
-        >
+   
          <v-list-item
            @click="$router.push({name:'TeamProject'})"
         >
@@ -73,8 +70,8 @@
         </v-list-item>
 
 
-        <v-divider/>
-      </v-card>
+      
+
       </v-list>
     </v-navigation-drawer>
     </v-col>

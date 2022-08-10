@@ -90,6 +90,20 @@ export default {
       let s=id.split('ZY');
       let team_id=s[1];
       let formdata = new FormData();
+      if(this.email==""){
+        this.$notify({
+          title: '邮箱不能为空',
+          type: 'warning'
+        })
+        return;
+      }
+      if(!this.validEmail(this.email)){
+        this.$notify({
+          title: '邮箱格式不正确',
+          type: 'error'
+        })
+        return;
+      }
       formdata.append("team_id",team_id)
       formdata.append("user_email",this.email)
 
@@ -106,6 +120,11 @@ export default {
         .catch((error) => {
           console.log(error)
         });
+    },
+    validEmail: function (email) {
+      let re =
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
     },
   },
   mounted(){
